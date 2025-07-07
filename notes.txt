@@ -1,0 +1,90 @@
+What we have currently -
+An object for the filter operator with the following fields:
+    int column_index;  // The index of the column on which the filter is applied
+    emp::Integer target_value;  // A target value for comparison if it's not a column
+    std::vector<emp::Integer> target_column; // A column for comparison, if applicable
+    std::string condition;  // One of the conditions: "gt, geq, lt, leq, eq, neq"
+
+Observations:
+Since there is a column index, every instance is associated with a column of a table,
+but the table does not show up as a field because it is passed in as paramater (SecureRelation object)
+
+A statistic is OF an relation-attribute pair.
+How do we associate it with an operator?
+
+The object Bater suggested:
+Filter operator with a field for statistic
+
+Approach:
+1. make a stats struct
+2. each rel has a list of stats where each stat is for a col in the rel, the list generated with the rel
+3. filter operator has a new field called selectivity
+4. filter operator has a new method called "get_stat" that takes the rel and its corresponding stats list as parameters
+
+
+06/27/2025
+Stopped at line 83 of qplan.cpp. Cannot find a way to break down a query from scratch but
+might need to put that off and just focus on the optimization. Might need to talk to Bater and Joe
+about this, because Bater knew where I would get stuck and asked Joe to pick up that slack.
+But I need to provide more details on what I need so that I can build the system I am
+envisioning.
+
+
+07/01/2025
+Problem: Cannto call execute on instance of abstract class
+1. Add a field to the Unary Operator class that indicates what the
+child class is.
+2. There are C++ functions for inferring type - cast the objects accordingly.
+
+Optimizer:
+1. Look up example optimizer implementation first so that tree
+implementation 
+2. Write pseudocode to visualize the structure first.
+
+Join cost:
+1. Look at the data distribution
+
+[.1, .2, .4, .3] (hist for rel1 for join attribute)
+[.2, .3, .5, 0.0](hist for rel2 for join attribute)
+Cost = Sum (Product (f_i * f_j)) over all the buckets, 
+where f_i = percentage of rows in bucket i 
+    f_j = percentage of rows in bucket j
+
+Eg: 4th bucket, 30% of rows in rel1 is in bucket 4, and 0% in rel2, so estimated contribution to join is 0%.
+
+- not every member of the bucket will find a match, so might need a hyperparameter fraction that we expect
+to find a match in the other relation. For example, we can assume 1/4 of the attribute values ineach bucket
+will match with a value in the other relation.
+
+- might need to change the way we do this computation if statistics are noisy
+
+- need an expression that also accounts for the noise. Eg: for filter cost, consider confidence interval
+
+2. Take a sample and do the join and then find the proportion of tuples relative ot the cross product
+Eg: Get 10 tuples from each table and do the join, if the cardinality of the result is 50%
+of the cross product (100), then assume selectivity is 50%. ---> This is where the novelty of the research comes in.
+
+
+________________________
+
+mcv = [a, b, c]
+mcf = [fa, fb, fc]
+
+Now divide everything else into buckets
+and draw histogram
+
+hist_bounds = [d, e, f]
+hist_frequencies = [fd, fe, ff]
+
+________________________
+
+lcv = [g, h, k] ----> generate in noisy manner when considering "pretend" members
+lcf = [fg, fh]
+
+________________________
+
+Privacy implication:
+directly revealing the most vulnerable parts of the data
+
+One work-around:
+"Pretend" members in the lcv list
