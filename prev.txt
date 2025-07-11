@@ -28,3 +28,22 @@ Previous result:
 7	7	8	| Flag: 0
 3	6	1	| Flag: 0
 
+connected
+Previous result:
+7	7	2	| Flag: 0
+9	9	7	| Flag: 0
+3	0	0	| Flag: 0
+8	2	3	| Flag: 0
+0	3	9	| Flag: 0
+2	9	9	| Flag: 0
+4	9	9	| Flag: 1
+8	7	1	| Flag: 0
+3	0	7	| Flag: 0
+9	3	2	| Flag: 0
+0	9	3	| Flag: 0
+5	8	6	| Flag: 0
+2	6	5	| Flag: 0
+2	5	5	| Flag: 0
+7	7	8	| Flag: 0
+3	6	1	| Flag: 0
+

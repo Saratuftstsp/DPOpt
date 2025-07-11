@@ -1,0 +1,15 @@
+Templates of test queries
+- 1, 2 or 3 joins and self-join
+
+1. select * from r1 join r2 where r1.c1 = someValue and r2.c1 = someValue;
+
+2. select * from r1, r2, r3
+    where r1.c1 = r2.c1 and r2.c2 = r3.c2
+
+3. select * from r1, r2, r3, r4
+    where r1.c1 = r2.c1 and r1.c2 = r3.c2 and r2.c2 = r4.c2;
+
+4. select * from someRel instance1 join someRel instance2
+    on instance1.c1 = instace2.c1
+    where instance1.c2 = someValue and 
+    instance2.c2 = someOtherValue
