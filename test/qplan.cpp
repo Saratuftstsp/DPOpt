@@ -1,10 +1,11 @@
 #include "emp-sh2pc/emp-sh2pc.h"
 #include "core/relation.hpp"
 #include "core/op_filter.hpp"
-//#include "core/op_filter_syscat.hpp"
+#include "core/op_filter_syscat.hpp"
 #include <iostream>
 #include <chrono>
 
+#include "core/op_equijoin_syscat.hpp"
 #include "core/op_equijoin.hpp"
 #include "core/op_idx_equijoin.hpp"  // Including the new header file
 #include "core/stats.hpp"
@@ -41,12 +42,63 @@ void init_relation(SecureRelation& relation, std::vector<Stats>& rel_stats, int 
         s.mcv = mcv;
         s.mcf = mcf;
         s.num_rows = num_rows;
+        s.ndistinct = 10;
         rel_stats.push_back(s);
     }
 
     for (int row = 0; row < num_rows; ++row) {
         relation.flags[row] = Integer(1, 1, ALICE);  // Set all flags to 1 initially
     }
+}
+
+void template1_test(SecureRelation rel1, std::vector<Stats> rel1_stats, SecureRelation rel2, std::vector<Stats> rel2_stats){
+    //___________________________________EXECUTION TREE_____________________________________________________
+    // filter 1
+    FilterOperatorSyscat f1(0,Integer(32,8,ALICE),"eq", &rel2_stats.at(0));
+    planNode select1(&f1, &rel1);
+    SecureRelation inter1 = select1.get_output();
+    //std::cout << "Selectivity of filter1 " << f1.selectivity << "\n";
+
+    // filter 2
+    FilterOperatorSyscat f2(0,Integer(32,5,ALICE),"eq", &rel2_stats.at(0));
+    planNode select2(&f2, &rel2);
+    SecureRelation inter2 = select2.get_output();
+    //std::cout << "Selectivity of filter2 " << f2.selectivity << "\n";
+
+    // join 
+    EquiJoinOperatorSyscat j1(1,1, &(rel1_stats.at(0)), &(rel2_stats.at(0)));
+    //EquiJoinOperator j1(1,1);
+    planNode root_join(&j1, &select1, &select2);
+    //std::cout << "Selectivity of join1 " << j1.selectivity << "\n";
+    
+    //B. Pass tree into some function that reorders operator to find
+    //   other trees, use heuristics, compute cost
+    //   modifies the links among the operators and returns the root (because that is our only pointer to the tree)
+
+    
+    //C. Executor recursively calls operate
+    SecureRelation output = root_join.get_output();
+    std::cout << output.flags.size() << "\n";
+    //output.sort_by_flag();
+    output.print_relation("Executing join operator as a planNode:");
+}
+
+void template1_prev_test(SecureRelation rel1, std::vector<Stats> rel1_stats, SecureRelation rel2, std::vector<Stats> rel2_stats){
+    //___________________________________________PREVIOUS VERSION___________________________________________________________
+
+    //A.1) previous filter implementation
+    FilterOperator prev_f1(0, Integer(32,4,ALICE), "eq");
+    SecureRelation prev_output1 = prev_f1.execute(rel1);
+
+    FilterOperator prev_f2(0, Integer(32,5,ALICE), "eq");
+    SecureRelation prev_output2 = prev_f2.execute(rel2);
+
+
+    EquiJoinOperator join(1,1);
+    SecureRelation join_res = join.execute(prev_output1, prev_output2);
+    join_res.sort_by_flag();
+    join_res.print_relation("Two filters on two tables, followed by a join, result:");
+    std::cout << join_res.flags.size() << "\n";
 }
 
 int main(int argc, char** argv) {
@@ -61,70 +113,37 @@ int main(int argc, char** argv) {
 
     //2. Create and initialize a large relation
     const int num_cols = 3;  // 3 columns
-    const int num_rows = 1 << 4;
+    const int num_rows = 1 << 6;
     //const int num_rows = 1 << 12;  // Around a million rows
 
     SecureRelation rel1(num_cols, num_rows);
     std::vector<Stats> rel1_stats;
     init_relation(rel1, rel1_stats, num_cols, num_rows);
-    std::vector<float> mcv = rel1_stats.at(0).mcv;
-    std::vector<float> mcf = rel1_stats.at(0).mcf;
-    float total = 0;
-    for (int i = 0; i < mcv.size(); i++){
-        total += mcf.at(i);
-    } //std::cout << total << "\n";
+    
 
     SecureRelation rel2(num_cols, num_rows);
     std::vector<Stats> rel2_stats;
     init_relation(rel2, rel2_stats, num_cols, num_rows);
 
-    //auto start_time = std::chrono::high_resolution_clock::now();
+    auto start_time = std::chrono::high_resolution_clock::now();
 
     //A. Parse query - get Tree object of operators
     std::string query = "select * from rel1 join rel2 on rel1.col1 = rel2.col1 where rel1.col0 = 4 and rel2.col0 = 5;";
     std::map<std::string, std::string> queryElements; // don't know how to get this or what format it will be
     
-    //A.1) previous implementation
-    FilterOperator prev_f1(0, Integer(32,4,ALICE), "eq");
-    SecureRelation prev_output = prev_f1.execute(rel1);
-    prev_output.print_relation("Previous result:");
-
-    //FilterOperatorSyscat f1(0,Integer(32,4,ALICE),"eq", &rel2_stats.at(0));
-    //planNode select1(&f1, &rel1);
-
-    
-    //B. Pass tree into some function that reorders operator to find
-    //   other trees, use heuristics, compute cost
-    //   returns best plan
-
-    
-    //C. Executor recursively calls operate
-    //SecureRelation output = select1.get_output();
-    //output.print_relation("Executing filter operator as a planNode:");
-
-
-    //3. Filter(s) based on a fixed value
-    /*FilterOperatorSyscat filter_by_fixed_value1(0, Integer(32, 4, ALICE), "eq");
-    //std::cout << "Before: " << filter_by_fixed_value1.selectivity << "\n";
-    filter_by_fixed_value1.get_stat(rel1_stats.at(0));
-    //std::cout << "After: " << filter_by_fixed_value1.selectivity << "\n";
-    SecureRelation filtered_relation1 = filter_by_fixed_value1.execute(rel1);
-
-    FilterOperatorSyscat filter_by_fixed_value2(0, Integer(32, 6, ALICE), "gt");
-    filter_by_fixed_value1.get_stat(rel2_stats.at(0));
-    SecureRelation filtered_relation2 = filter_by_fixed_value2.execute(rel2);*/
-
-    //4. Join
-    /*EquiJoinOperator join(1,1);
-    SecureRelation join_res = join.execute(filtered_relation1, filtered_relation2);
-    join_res.print_relation("Two filters on two tables, followed by a join, result:");
+    //template1_prev_test(rel1, rel1_stats, rel2, rel2_stats);
 
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-    std::cout << "Filter by Fixed Value Time: " << duration_filter_by_fixed_value << " ms" << std::endl;*/
+    std::cout << "Time: " << duration_filter_by_fixed_value << " ms" << std::endl;
     io->flush();
 
-
+    start_time = std::chrono::high_resolution_clock::now();
+    template1_test(rel1, rel1_stats, rel2, rel2_stats);
+    end_time = std::chrono::high_resolution_clock::now();
+    duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+    std::cout << "Time: " << duration_filter_by_fixed_value << " ms" << std::endl;
+    io->flush();
 
     // Filter based on an input column (comparing first and second columns)
     /* FilterOperator filter_by_column(0, relation2.columns[1], "gt");
@@ -138,3 +157,13 @@ int main(int argc, char** argv) {
 
 /*SQL query:
 select * from rel1, rel2 where rel1.col1<300 and rel1.col2=rel2.col2*/
+
+//A.1) previous filter implementation
+    /*FilterOperator prev_f1(0, Integer(32,4,ALICE), "eq");
+    SecureRelation prev_output = prev_f1.execute(rel1);
+    prev_output.print_relation("Previous result:");*/
+
+//A.3) previous equijoin implementation
+    /*EquiJoinOperator j1_prev(0,0);
+    SecureRelation join_res = j1_prev.execute(rel1, rel2);
+    join_res.print_relation("Result with previous implementation of equijoin operator: \n");*/
