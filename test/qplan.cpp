@@ -149,6 +149,17 @@ int main(int argc, char** argv) {
     /* FilterOperator filter_by_column(0, relation2.columns[1], "gt");
     SecureRelation filtered_relation2 = filter_by_column.execute(relation2);*/
 
+     //1. generate random data
+    // store that in a SecureRelation object
+    // also write it to a csv
+
+    //2. attempt to read using scanner
+    /*string fname = "...";
+    Scanner scanner(fname);
+    SecureRelation scanned = scanner.operation();*/
+
+    //3. comapre whether thew two SecureRelation objects match or not
+
 
     delete io;
     return 0;
