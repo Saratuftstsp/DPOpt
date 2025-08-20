@@ -7,9 +7,11 @@
 
 
 ### Compilation
-After you have installed dependencies, switch to the root directory of SPECIAL and run:
+After you have installed dependencies, switch to the root directory of SPECIAL and run the following in the specified order:
 
-`cmake . & make`
+1. `cmake -DCMAKE_CXX_FLAGS="-I/opt/homebrew/opt/boost/include" -DCMAKE_EXE_LINKER_FLAGS="-L/opt/homebrew/opt/boost/lib"`
+
+2. `make`
 
 ### Test
 * IF you want to test the code, type
@@ -20,6 +22,9 @@ After you have installed dependencies, switch to the root directory of SPECIAL a
 
 	`./bin/test_filter 1 12345 & ./bin/test_filter 2 12345`
 
+* Test differentially private query optimizer and executor
+   `./bin/test_qplan 1 12345 & ./bin/test_qplan 2 12345`
+
 	
 ### Question
-Please send email to cw166@iu.edu
+Please send email to sara.alam@tufts.edu

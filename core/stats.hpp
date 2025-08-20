@@ -6,5 +6,6 @@ struct Stats{
     int num_rows;
     std::vector<float> mcv;
     std::vector<float> mcf;
-    int ndistinct;
+    int ndistinct = 0;
+    bool diffp = 0;
 };

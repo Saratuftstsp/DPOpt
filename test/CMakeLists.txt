@@ -1,7 +1,17 @@
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+
 #Testing macro
+set(PQXX_PREFIX /opt/homebrew/opt/libpqxx)
+set(PQ_PREFIX /opt/homebrew/opt/libpq)
 macro (add_test_executable_with_lib _name libs)
 	add_executable(test_${_name} "${_name}.cpp")
 	target_link_libraries(test_${_name} ${EMP-OT_LIBRARIES})
+	target_include_directories(test_${_name} PRIVATE /opt/homebrew/opt/libpqxx/include)
+    target_link_directories(test_${_name} PRIVATE /opt/homebrew/opt/libpqxx/lib /opt/homebrew/opt/libpq/lib)
+    target_link_libraries(test_${_name} PRIVATE ${EMP-OT_LIBRARIES} pqxx pq)
 endmacro()
 
 macro (add_test_case _name)
@@ -12,8 +22,8 @@ endmacro()
 macro (add_test_case_with_run _name)
 	add_test_executable_with_lib(${_name} "")
 	add_test(NAME ${_name} COMMAND "./run" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/test_${_name}" WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/")
-
 endmacro()
+
 
 # Test cases
 #add_test_case_with_run(bit)
@@ -31,5 +41,3 @@ add_test_case_with_run(pac_filter)
 add_test_case_with_run(equijoin)
 add_test_case_with_run(index_equijoin)
 add_test_case_with_run(qplan)
-
-

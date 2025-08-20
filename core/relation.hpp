@@ -12,8 +12,12 @@
 
 class SecureRelation {
 public:
+    std::vector<std::vector<int>> true_cols;
     std::vector<std::vector<emp::Integer>> columns;
     std::vector<emp::Integer> flags;
+    //_________________________________________NEW FIELDS ADDED FOR DPOpt_________________________________________________
+    std::vector<std::string> columnNames;
+    bool print_flag = true;
 
     // Constructor to initialize the relation with specified column count and row count
     SecureRelation() : SecureRelation(0, 0) {} // Default constructor
@@ -39,11 +43,19 @@ public:
 
     // Utility function to print the relation's details
     void print_relation(const std::string& label) const;
+
+    //_________________________________________________________________NEW HELPER FUNCTIONS ADDED FOR DPOpt___________________________________
+    // Function to create column names
+    void setColumnNames(const std::vector<std::string> &names);
+
+    // Function to add row data from csv
+    void addRow(const std::vector<std::string> &rowData,int alice_size);
 };
 
 // Implementations
 
 SecureRelation::SecureRelation(int column_count, int row_count) {
+    true_cols.resize(column_count);
     columns.resize(column_count, std::vector<emp::Integer>(row_count, emp::Integer(32, 0, emp::PUBLIC)));
     flags.resize(row_count, emp::Integer(1, 1, emp::PUBLIC));
 }
@@ -57,41 +69,55 @@ void SecureRelation::sort_by_column(int column_index) {
 }
 
 void SecureRelation::sort_by_flag() {
+    //this->print_relation("Before bitonic_sort: \n");
+    
     bitonic_sort(0, flags.size(), true, flags);
 }
 
 void SecureRelation::bitonic_sort(int low, int high, bool ascending, std::vector<emp::Integer>& key_column) {
-    if (high <= 1) return;
+    if (high <= 1) {
+        return;
+    }
 
     int mid = high / 2;
+    //if (print_flag == true){ std::cout << "Before merge: " << columns[0][mid].reveal<int>() << "\n"; }
     bitonic_sort(low, mid, true, key_column);
     bitonic_sort(low + mid, mid, false, key_column);
     bitonic_merge(low, high, ascending, key_column);
+    //if (print_flag == true){ std::cout << "After merge: " << key_column[mid].reveal<int>() << "\n"; }
 }
 
 void SecureRelation::bitonic_merge(int low, int high, bool ascending, std::vector<emp::Integer>& key_column) {
     if (high <= 1) return;
-
+    
     int mid = high / 2;
+    //if (print_flag == true){ std::cout << "Index "<< mid <<" before swap: " << columns[0][mid].reveal<int>() << "\n"; }
     for (int i = low; i < low + mid; i++) {
         emp::Bit condition = (key_column[i] > key_column[i+mid]) == ascending;
+        //std::cout << condition.reveal<bool>() << "\n";
         swap_rows(i, i+mid, condition);
     }
-
+    //if (print_flag == true){ std::cout << "Index " << mid << " after swap: " << columns[0][mid].reveal<int>() << "\n"; }
     bitonic_merge(low, mid, ascending, key_column);
     bitonic_merge(low + mid, mid, ascending, key_column);
 }
 
 void SecureRelation::swap_rows(int i, int j, emp::Bit condition) {
+    
     for (auto& column : columns) {
         emp::Integer temp = column[i];
+        //if (print_flag == true){ std::cout << "Index " << i << " before swap: " << columns[0][i].reveal<int>() << "\n"; }
         column[i] = emp::If(condition, column[j], column[i]);
         column[j] = emp::If(condition, temp, column[j]);
+        //if (print_flag == true){ std::cout << "Index " << i << " after swap: " << columns[0][i].reveal<int>() << "\n"; }
     }
 
     emp::Integer temp_flag = flags[i];
+    //if (print_flag == true){ std::cout << "Index " << i << " flag before swap: " << flags[i].reveal<int>() << "\n"; }
     flags[i] = emp::If(condition, flags[j], flags[i]);
     flags[j] = emp::If(condition, temp_flag, flags[j]);
+    //if (print_flag == true){ std::cout << "Index " << i << " flag before swap: " << flags[i].reveal<int>() << "\n"; }
+
 }
 
 // Implementation of the Goldreich's Bitonic Compaction methods:
@@ -164,5 +190,52 @@ void SecureRelation::print_relation(const std::string& label) const {
     }
     std::cout << "\n";
 }
+
+//_________________________________________________________________NEW HELPER FUNCTIONS ADDED FOR DPOpt______________________________________________________________________________________________________________________________________________________________
+
+// Saves the column names
+void SecureRelation::setColumnNames(const std::vector<std::string> &names)
+{
+    columnNames = names;
+    columns.resize(names.size()); // One column per name
+}
+
+// Adds data from csv to relation
+// Specify party
+void SecureRelation::addRow(const std::vector<std::string> &rowData, int alice_size)
+// void SecureRelation::addRow(const std::vector<std::string> &rowData, party ALICE)
+{
+    if (rowData.size() != columns.size())
+    {
+        std::cerr << "Error: rowData size doesn't match column count.\n";
+        return;
+    }
+
+    Integer alice_integer;
+    Integer bob_integer;
+    int curr_row_idx = columns[0].size();
+    //std::cout << "Curent number of columns: " << curr_size << endl;
+    for (size_t i = 0; i < rowData.size(); i++)
+        {
+            int value = std::stoi(rowData[i]); // Assumes CSV contains integers
+            
+            if(curr_row_idx < alice_size){
+                if (curr_row_idx == alice_size) std::cout << "Row number: " << (curr_row_idx + 1) << ", and value " << value << "\n";
+                alice_integer = Integer(32,value, ALICE);
+                bob_integer = Integer(32,0,BOB);
+            }else{
+                if (curr_row_idx == alice_size) std::cout << "Row number: " << (curr_row_idx + 1) << ", and value " << value << "\n";
+                alice_integer = Integer(32,0,ALICE);
+                bob_integer = Integer(32,value, BOB);;
+            }
+            
+            columns[i].push_back(alice_integer + bob_integer);
+            true_cols[i].push_back(value);
+        }
+    //manually create the emp Integers
+    flags.push_back(emp::Integer(1, 0, ALICE) + emp::Integer(1, 1, BOB)); // Default flag = 1
+
+}
+
 
 #endif // RELATION_HPP
