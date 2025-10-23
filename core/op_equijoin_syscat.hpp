@@ -18,11 +18,15 @@ public:
     int column_index1;  // The join column index for the first relation
     int column_index2;  // The join column index for the second relation
     float selectivity = 1;
-    Stats* stats1;
-    Stats* stats2;
+    Stats* stats1 = nullptr;
+    Stats* stats2 = nullptr;
+
+    EquiJoinOperatorSyscat(int col_idx1, int col_idx2);
 
     // Construction changed to also take in a Statistics object pointer
     EquiJoinOperatorSyscat(int col_idx1, int col_idx2, Stats* statistics1, Stats* statistics2);
+
+    void set_stats(Stats* stats1, Stats* stats2);
 
     
 protected: //Why was this made protected? ---> Need to ask Prof Wang
@@ -32,12 +36,13 @@ protected: //Why was this made protected? ---> Need to ask Prof Wang
 
     SecureRelation prune(SecureRelation rel);
 
+
 };
 
 // Definitions
-
+EquiJoinOperatorSyscat::EquiJoinOperatorSyscat(int col_idx1, int col_idx2): column_index1(col_idx1), column_index2(col_idx2){}
 EquiJoinOperatorSyscat::EquiJoinOperatorSyscat(int col_idx1, int col_idx2, Stats* statistics1, Stats* statistics2) 
-    : column_index1(col_idx1), column_index2(col_idx2), stats1(statistics1), stats2(statistics2) { this-> get_stat();}
+    : column_index1(col_idx1), column_index2(col_idx2), stats1(statistics1), stats2(statistics2) { if (stats1!=nullptr && stats2!=nullptr) {this-> get_stat();}}
 
 SecureRelation EquiJoinOperatorSyscat::operation(const SecureRelation& rel1, const SecureRelation& rel2) {
     //std::cout << "Calling prune for join.\n";
@@ -68,8 +73,8 @@ SecureRelation EquiJoinOperatorSyscat::operation(const SecureRelation& rel1, con
             result.flags[result_row_index] = emp::If(join_condition, emp::Integer(1, 1, ALICE), emp::Integer(1, 0, ALICE));
         }
     }
-    //std::cout << "Returning from operation for join.\n";
-    //result.sort_by_flag();
+
+
     return this->prune(result);
 }
 
@@ -125,7 +130,7 @@ SecureRelation EquiJoinOperatorSyscat::prune(SecureRelation rel){
     //std::cout << "Calling prune for join.\n";
     rel.sort_by_flag();
     //rel.print_relation("After sorting but before pruning: \n");
-    this->get_stat();
+    //this->get_stat();
     cout << selectivity << "\n";
     if (selectivity < 1){
         int num_rows1 = stats1->num_rows;
@@ -136,7 +141,7 @@ SecureRelation EquiJoinOperatorSyscat::prune(SecureRelation rel){
         if (cross_product_size > rel.flags.size()){ start_of_prune = ceil(selectivity * rel.flags.size());}
         SecureRelation pruned_rel(num_cols, start_of_prune);
         //std::cout << "Selectivity: " << selectivity << "\n";
-        std::cout << "Start of Prune: " << start_of_prune << "\n";
+        //std::cout << "Start of Prune: " << start_of_prune << "\n";
         for(int i = 0; i < num_cols; i++){
             for(int j=0; j < start_of_prune; j++){
                 pruned_rel.columns[i][j] = rel.columns[i][j];
@@ -151,6 +156,11 @@ SecureRelation EquiJoinOperatorSyscat::prune(SecureRelation rel){
     }
     //std::cout << "Returning from prune for join.\n";
     return rel;
+}
+
+void EquiJoinOperatorSyscat::set_stats(Stats* s1, Stats* s2){
+    stats1 = s1;
+    stats2 = s2;
 }
 
 

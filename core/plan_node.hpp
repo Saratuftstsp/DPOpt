@@ -24,75 +24,97 @@ public:
     //5. What is its output?
     SecureRelation* output = nullptr;
 
-    //5. What is its selectivity?
+    //6. What is its selectivity?
     float selectivity = 1;
 
+    //7. node name, needed by planner
+    std::string node_name = "";
+
+    planNode();
+    planNode(SecureRelation* rel);
+    planNode(UnaryOperator* u_op, float sel);
+    planNode(BinaryOperator* b_op, float sel);
+
     //a) Constructor: unary operator, input SecureRelation
-    planNode(UnaryOperator* u_op, SecureRelation* input_rel);
+    planNode(UnaryOperator* u_op, SecureRelation* input_rel, float sel);
 
     //b) Constructor: unary operator, input from another operator
-    planNode(UnaryOperator* u_op, planNode* child);
+    planNode(UnaryOperator* u_op, planNode* child, float sel);
 
     //c) Constructor: binary operator, both inputs SecureRelations
-    planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, SecureRelation* input_rel2);
+    planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, SecureRelation* input_rel2, float sel);
 
     //d) Constructor: binary operator, both inputs from other operators
-    planNode(BinaryOperator* bin_op, planNode* left_child, planNode* right_child);
+    planNode(BinaryOperator* bin_op, planNode* left_child, planNode* right_child, float sel);
 
     //e) Constructor: binary operator, left_child intermediate operator
     //   right_child SecureRelation
-    planNode(BinaryOperator* bin_op, planNode* left_child, SecureRelation* input_rel2);
+    planNode(BinaryOperator* bin_op, planNode* left_child, SecureRelation* input_rel2, float sel);
 
     //f) Constructor: binary operator, left_child SecureRelation
     //   right_child another operator
-    planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, planNode* left_child);
+    planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, planNode* right_child, float sel);
 
-    SecureRelation get_output();
+    SecureRelation* get_output();
 
     float get_cost();
 
+    void set_name(string name);
+
+    void set_previous(planNode &prev, int pos);
+    void set_next(planNode &nxt);
+
+
+
 };
 
+planNode::planNode(){}
+planNode::planNode(SecureRelation* rel): input1(rel){}
+
+planNode::planNode(UnaryOperator* u_op, float sel): up(u_op), selectivity(sel){}
+
+planNode::planNode(BinaryOperator* b_op, float sel): bp(b_op), selectivity(sel) {}
 
 //a) Constructor: unary operator, input SecureRelation
-planNode::planNode(UnaryOperator* u_op, SecureRelation* input_rel)
-    : up(u_op), input1(input_rel) {}
+planNode::planNode(UnaryOperator* u_op, SecureRelation* input_rel, float sel)
+    : up(u_op), input1(input_rel), selectivity(sel) {}
 
 //b) Constructor: unary operator, input from another operator
-planNode::planNode(UnaryOperator* u_op, planNode* child)
-    : up(u_op), previous1(child) {}
+planNode::planNode(UnaryOperator* u_op, planNode* child, float sel)
+    : up(u_op), previous1(child), selectivity(sel) {}
 
 //c) Constructor: binary operator, both inputs SecureRelations
-planNode::planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, SecureRelation* input_rel2)
-    : bp(bin_op), input1(input_rel1), input2(input_rel2) {}
+planNode::planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, SecureRelation* input_rel2, float sel)
+    : bp(bin_op), input1(input_rel1), input2(input_rel2), selectivity(sel) {}
 
 //d) Constructor: binary operator, both inputs from other operators
-planNode::planNode(BinaryOperator* bin_op, planNode* left_child, planNode* right_child)
-    : bp(bin_op), previous1(left_child), previous2(right_child) {}
+planNode::planNode(BinaryOperator* bin_op, planNode* left_child, planNode* right_child, float sel)
+    : bp(bin_op), previous1(left_child), previous2(right_child), selectivity(sel) {}
 
 //e) Constructor: binary operator, left_child intermediate operator
 //   right_child SecureRelation
-planNode::planNode(BinaryOperator* bin_op, planNode* left_child, SecureRelation* input_rel2)
-    : bp(bin_op), previous1(left_child), input2(input_rel2) {}
+planNode::planNode(BinaryOperator* bin_op, planNode* left_child, SecureRelation* input_rel2, float sel)
+    : bp(bin_op), previous1(left_child), input2(input_rel2), selectivity(sel) {}
 
 //f) Constructor: binary operator, left_child SecureRelation
 //   right_child another operator
-planNode::planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, planNode* left_child)
-    : bp(bin_op), input1(input_rel1), previous2(left_child) {}
+planNode::planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, planNode* right_child, float sel)
+    : bp(bin_op), input1(input_rel1), previous2(right_child), selectivity(sel) {}
 
 // Running the operator in the planNode and connecting to its parent
-SecureRelation planNode::get_output(){
-    SecureRelation output;
+SecureRelation* planNode::get_output(){
+    auto start_time = std::chrono::high_resolution_clock::now();
+    SecureRelation* output = new SecureRelation();
     // Case 1: Unary operator
     if (up != nullptr){
         // Case 1a) input is a SecureRelation
         if (input1 != nullptr){
-            std::cout << "Found right execution scenario.\n";
-            output = up->execute(*input1);
-            std::cout << "Completed execution.\n";
+            //std::cout << "Found right execution scenario.\n";
+            *output = up->execute(*input1);
+            //std::cout << "Completed execution.\n";
         }else{
-            SecureRelation input = previous1 -> get_output();
-            output = up->execute(input);
+            SecureRelation* input = previous1 -> get_output();
+            *output = up->execute(*input);
         }
     }
     // Case 2: Binary operator
@@ -100,28 +122,39 @@ SecureRelation planNode::get_output(){
         if (input1 != nullptr){
             //Case 2a) both left child and right child is also a secure relation
             if (input2 != nullptr){
-                output = bp -> execute(*input1, *input2);
+                *output = bp -> execute(*input1, *input2);
             //Case 2b) left child is a secure relation and right child is another operator
             }else{
-                SecureRelation right_input = previous2 -> get_output();
+                SecureRelation* right_input = previous2 -> get_output();
                 //selectivity =* previous2->selectivity;
-                output = bp -> execute(*input1, right_input);
+                *output = bp -> execute(*input1, *right_input);
             }
         }else{
-            SecureRelation left_input = previous1 -> get_output();
-            left_input.print_relation("Filter1 output: \n");
+            SecureRelation* left_input = previous1 -> get_output();
+            //(*left_input).print_relation("Filter1 output: \n");
             //Case 2c) left child is an operator and right child is a secure relation
             if (input2 != nullptr){
-                output = bp -> execute(left_input, *input2);
+                *output = bp -> execute(*left_input, *input2);
             //Case 2d) left child is a secure relation and right child is another operator
             }else{
-                SecureRelation right_input = previous2 -> get_output();
-                right_input.print_relation("Filter2 output: \n");
-                output = bp -> execute(left_input, right_input);
+                SecureRelation* right_input = previous2 -> get_output();
+                //(*right_input).print_relation("Filter2 output: \n");
+                *output = bp -> execute(*left_input, *right_input);
             }
         }
     }
-
+    else if (node_name.substr(0,3)=="rel") {
+        *output = *input1;
+    }
+    else{ //rootNode case
+        std::cout << "rootNode check" << endl;
+        *output = *(previous1 -> get_output());
+    }
+    string print_title = "Result of operator " + node_name + ": ";
+    //output->print_relation(print_title);
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
+    std::cout << "Runtime operator "<< duration_filter_by_fixed_value/2 << " ms" << std::endl;
     return output;
 }
 
@@ -165,4 +198,20 @@ float planNode::get_cost(){
     }
 
     return cost;
+}
+
+void planNode::set_name(string name){
+    node_name = name;
+}
+
+void planNode::set_previous(planNode &prev, int pos){
+    if (pos == 1){
+        previous1 = &prev;
+    }else{
+        previous2 = &prev;
+    }
+}
+
+void planNode::set_next(planNode &nxt){
+    next = &nxt;
 }

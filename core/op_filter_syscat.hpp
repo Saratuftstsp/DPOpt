@@ -36,6 +36,8 @@ public:
 
     SecureRelation prune(SecureRelation rel);
 
+    void set_stats(Stats* stats);
+
 };
 
 
@@ -47,9 +49,7 @@ FilterOperatorSyscat::FilterOperatorSyscat(int col_idx, const std::vector<emp::I
 
 FilterOperatorSyscat::FilterOperatorSyscat(int col_idx, const emp::Integer& target, const std::string& cnd, Stats* statistics)
     : column_index(col_idx), target_value(target), condition(cnd), stats(statistics) {
-        //std::cout << "Constructor reached.\n";
         this-> get_stat();
-        //std::cout << "Constructor finished.\n";
     }
     
 emp::Bit FilterOperatorSyscat::compare(const emp::Integer& a, const emp::Integer& b, const std::string& condition) {
@@ -74,9 +74,8 @@ SecureRelation FilterOperatorSyscat::operation(const SecureRelation& input) {
             output.flags[i] = Integer(1, compare(input.columns[column_index][i], target_column[i], condition).reveal<bool>(), party);
         }
     }
-    // resize that uses selectivity ----> Future plan, look at ShrinkWrap for inspo
-    //std::cout << "Returning from operation for filter.\n";
-    //output.print_relation("Output before prune:\n");
+    // resize that uses selectivity
+    //return output;
     return this->prune(output);
 }
 
@@ -88,30 +87,27 @@ void FilterOperatorSyscat::get_stat(){
     std::vector<float> mcv = stats->mcv;
     std::vector<float> mcf = stats->mcf;
 
-    for (int i = 0; i < stats->ndistinct; i++){
-        std::cout << "Iteration " << i << "\n";
+    for (int i = 0; i < stats->mcf.size(); i++){
         int val = mcv.at(i);
-        emp::Integer secure_val = Integer(32, val, PUBLIC); // not sure if this should be public
+        // this is public because no party provides it
+        // and it is part of the query itself
+        emp::Integer secure_val = Integer(32, val, PUBLIC);
         int cond_val = compare(secure_val, target_value, "eq").reveal<bool>();
-        if (cond_val == 1){
-            //std::cout << mcf.at(i) << "\n";
+        if (cond_val == 1){ //if filter value found
             // change selectivity and break out of loop
-            std::cout << selectivity << "\n";
-            selectivity = mcf.at(i)/(stats->num_rows); 
-            i = stats->ndistinct + 1;
-            std::cout << selectivity << "\n";
+            selectivity = (mcf.at(i)*1.0)/(stats->num_rows); 
+            i = stats->mcf.size() + 1;
         }
     }
-    //std::cout << selectivity << "\n";
-    std::cout << "Returning from get_stat for filter.\n";
+    //std::cout << "Number of rows: " << stats->num_rows << endl;
+    std::cout << "Selectivity after get_stat: " << selectivity << endl;
 }
 
 SecureRelation FilterOperatorSyscat::prune(SecureRelation rel){
-    //std::cout << "Calling prune for filter.\n";
+    std::cout << "Filter selectivity: " << selectivity << endl;
     rel.sort_by_flag();
-    //rel.print_relation("Output before prune:\n");
-    //this->get_stat();
-    if (selectivity < 1){
+
+    if (selectivity < 1){ // this ensures noisy selectivity of more than 1 is not considered
         int num_rows = rel.flags.size();
         int num_cols = rel.columns.size();
         float start_of_prune = selectivity * num_rows + 1 ;
@@ -126,13 +122,17 @@ SecureRelation FilterOperatorSyscat::prune(SecureRelation rel){
         for(int j=0; j < start_of_prune; j++){
                 pruned_rel.flags[j] = rel.flags[j];
         }
-        //std::cout << "Returning from prune for filter.\n";
+        
         return pruned_rel;
     }
-    //std::cout << "Returning prune for filter.\n";
+    
     return rel;
 }
 
+
+void FilterOperatorSyscat::set_stats(Stats* s){
+    stats = s;
+}
 
 #endif // FILTER_OPERATOR_SYSCAT_HPP
 

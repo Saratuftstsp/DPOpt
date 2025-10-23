@@ -63,7 +63,7 @@ protected:
             for(int i = 0; i < alice_size; i++){
                 combinedData.addRow(dummy_row, party);
             }
-        }std::cout << "Vector length after dummies inserted: " << combinedData.columns[0].size() << endl;
+        }//std::cout << "Vector length after dummies inserted: " << combinedData.columns[0].size() << endl;
         
 
         std::string line;

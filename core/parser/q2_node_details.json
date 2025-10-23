@@ -1,0 +1,21 @@
+{
+ "filter_0": {
+  "input1": "rel1",
+  "colref1": "col0",
+  "filtercond": "rel1.col0 = 4"
+ },
+ "filter_1": {
+  "input1": "rel2",
+  "colref1": "col0",
+  "filtercond": "rel2.col0 = 5"
+ },
+ "select_0": {},
+ "join_0": {
+  "input1": "rel1",
+  "input2": "",
+  "colref1": "col1",
+  "colref2": "col1"
+ },
+ "rel1_0": {},
+ "rel2_0": {}
+}

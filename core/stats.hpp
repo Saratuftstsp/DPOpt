@@ -8,4 +8,8 @@ struct Stats{
     std::vector<float> mcf;
     int ndistinct = 0;
     bool diffp = 0;
+
+    //Integer n_distinct_priv;
+    std::vector<Integer> mcf_priv;
+    std::vector<int> mcf_noisy;
 };

@@ -7,6 +7,7 @@
 
 class BinaryOperator {
 public:
+
     // The primary interface for the binary operator
     SecureRelation execute(const SecureRelation& input1, const SecureRelation& input2) {
         return operation(input1, input2);

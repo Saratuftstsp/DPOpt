@@ -1,0 +1,45 @@
+{
+ "filter_0": {
+  "input1": "r1",
+  "colref1": "c3",
+  "filtercond": "r1.c3 = 4"
+ },
+ "filter_1": {
+  "input1": "r2",
+  "colref1": "c3",
+  "filtercond": "r2.c3 = 5"
+ },
+ "filter_2": {
+  "input1": "r3",
+  "colref1": "c3",
+  "filtercond": "r3.c3 = 6"
+ },
+ "filter_3": {
+  "input1": "r4",
+  "colref1": "c3",
+  "filtercond": "r4.c3 = 3"
+ },
+ "select_0": {},
+ "join_0": {
+  "input1": "r1",
+  "input2": "",
+  "colref1": "c2",
+  "colref2": "c2"
+ },
+ "join_1": {
+  "input1": "r1",
+  "input2": "",
+  "colref1": "c2",
+  "colref2": "c2"
+ },
+ "r1_0": {},
+ "r2_0": {},
+ "join_2": {
+  "input1": "r3",
+  "input2": "",
+  "colref1": "c2",
+  "colref2": "c2"
+ },
+ "r3_0": {},
+ "r4_0": {}
+}

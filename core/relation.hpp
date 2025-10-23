@@ -22,6 +22,9 @@ public:
     // Constructor to initialize the relation with specified column count and row count
     SecureRelation() : SecureRelation(0, 0) {} // Default constructor
     SecureRelation(int column_count, int row_count);
+    //move constructor
+    //SecureRelation& SecureRelation::operator=(SecureRelation&& other) noexcept;
+
 
     // Methods to sort the relation based on a given column index or the flag
     void sort_by_column(int column_index);
@@ -54,7 +57,7 @@ public:
 
 // Implementations
 
-SecureRelation::SecureRelation(int column_count, int row_count) {
+inline SecureRelation::SecureRelation(int column_count, int row_count) {
     true_cols.resize(column_count);
     columns.resize(column_count, std::vector<emp::Integer>(row_count, emp::Integer(32, 0, emp::PUBLIC)));
     flags.resize(row_count, emp::Integer(1, 1, emp::PUBLIC));
@@ -207,6 +210,7 @@ void SecureRelation::addRow(const std::vector<std::string> &rowData, int alice_s
 {
     if (rowData.size() != columns.size())
     {
+        
         std::cerr << "Error: rowData size doesn't match column count.\n";
         return;
     }
@@ -220,11 +224,11 @@ void SecureRelation::addRow(const std::vector<std::string> &rowData, int alice_s
             int value = std::stoi(rowData[i]); // Assumes CSV contains integers
             
             if(curr_row_idx < alice_size){
-                if (curr_row_idx == alice_size) std::cout << "Row number: " << (curr_row_idx + 1) << ", and value " << value << "\n";
+                //if (curr_row_idx == alice_size) std::cout << "Row number: " << (curr_row_idx + 1) << ", and value " << value << "\n";
                 alice_integer = Integer(32,value, ALICE);
                 bob_integer = Integer(32,0,BOB);
             }else{
-                if (curr_row_idx == alice_size) std::cout << "Row number: " << (curr_row_idx + 1) << ", and value " << value << "\n";
+                //if (curr_row_idx == alice_size) std::cout << "Row number: " << (curr_row_idx + 1) << ", and value " << value << "\n";
                 alice_integer = Integer(32,0,ALICE);
                 bob_integer = Integer(32,value, BOB);;
             }
@@ -236,6 +240,26 @@ void SecureRelation::addRow(const std::vector<std::string> &rowData, int alice_s
     flags.push_back(emp::Integer(1, 0, ALICE) + emp::Integer(1, 1, BOB)); // Default flag = 1
 
 }
+
+/*SecureRelation& SecureRelation::operator=(SecureRelation&& other) noexcept {
+    if (this != &other) {
+        // free current resources if necessary
+
+        this->true_cols = other.true_cols;
+        this->columns = std::move(other.columns);
+        this->flags = std::move(other.flags);
+        this->columnNames = std::move(other.columnNames);
+
+        // leave other in a valid but empty state
+        other.true_cols.clear();
+        other.columns.clear();
+        other.flags.clear();
+        other.columnNames.clear();
+    }
+    return *this;
+}*/
+
+
 
 
 #endif // RELATION_HPP
