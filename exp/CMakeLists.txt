@@ -20,54 +20,54 @@ IF(${ENABLE_FLOAT})
 ENDIF(${ENABLE_FLOAT})
 
 #Experiments
-add_exp_case_with_run(q1)
-add_exp_case_with_run(q1_a)
-add_exp_case_with_run(q1_b)
+#add_exp_case_with_run(q1)
+#add_exp_case_with_run(q1_a)
+#add_exp_case_with_run(q1_b)
 
 
-add_exp_case_with_run(q2)
-add_exp_case_with_run(q2_a)
-add_exp_case_with_run(q2_b)
-add_exp_case_with_run(q2_eps)
+#add_exp_case_with_run(q2)
+#add_exp_case_with_run(q2_a)
+#add_exp_case_with_run(q2_b)
+#add_exp_case_with_run(q2_eps)
 
 
-add_exp_case_with_run(q3)
-add_exp_case_with_run(q3_a)
-add_exp_case_with_run(q3_b)
+#add_exp_case_with_run(q3)
+#add_exp_case_with_run(q3_a)
+#add_exp_case_with_run(q3_b)
 
 
-add_exp_case_with_run(q4)
-add_exp_case_with_run(q4_a)
-add_exp_case_with_run(q4_b)
-add_exp_case_with_run(q4_eps)
+#add_exp_case_with_run(q4)
+#add_exp_case_with_run(q4_a)
+#add_exp_case_with_run(q4_b)
+#add_exp_case_with_run(q4_eps)
 
 
-add_exp_case_with_run(q5)
-add_exp_case_with_run(q5_b)
-add_exp_case_with_run(q5_a)
+#add_exp_case_with_run(q5)
+#add_exp_case_with_run(q5_b)
+#add_exp_case_with_run(q5_a)
 
 
-add_exp_case_with_run(q6)
-add_exp_case_with_run(q6_b)
+#add_exp_case_with_run(q6)
+#add_exp_case_with_run(q6_b)
 
 
-add_exp_case_with_run(q7)
-add_exp_case_with_run(q7_b)
+#add_exp_case_with_run(q7)
+#add_exp_case_with_run(q7_b)
 
 
-add_exp_case_with_run(q8)
-add_exp_case_with_run(q8_b)
-add_exp_case_with_run(q8_eps)
+#add_exp_case_with_run(q8)
+#add_exp_case_with_run(q8_b)
+#add_exp_case_with_run(q8_eps)
 
 
-add_exp_case_with_run(q2_scale)
-add_exp_case_with_run(q4_scale)
-add_exp_case_with_run(q8_scale)
+#add_exp_case_with_run(q2_scale)
+#add_exp_case_with_run(q4_scale)
+#add_exp_case_with_run(q8_scale)
 
 
-add_exp_case_with_run(selection)
-add_exp_case_with_run(parallel_join)
-add_exp_case_with_run(plan_test)
+#add_exp_case_with_run(selection)
+#add_exp_case_with_run(parallel_join)
+#add_exp_case_with_run(plan_test)
 
 
 

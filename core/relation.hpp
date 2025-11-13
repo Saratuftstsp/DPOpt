@@ -73,7 +73,6 @@ void SecureRelation::sort_by_column(int column_index) {
 
 void SecureRelation::sort_by_flag() {
     //this->print_relation("Before bitonic_sort: \n");
-    
     bitonic_sort(0, flags.size(), true, flags);
 }
 

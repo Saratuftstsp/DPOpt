@@ -103,6 +103,7 @@ planNode::planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, planNode*
 
 // Running the operator in the planNode and connecting to its parent
 SecureRelation* planNode::get_output(){
+    std::cout << node_name << endl;
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* output = new SecureRelation();
     // Case 1: Unary operator
@@ -154,7 +155,7 @@ SecureRelation* planNode::get_output(){
     //output->print_relation(print_title);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Runtime operator "<< duration_filter_by_fixed_value/2 << " ms" << std::endl;
+    std::cout << "Total runtime for individual operator "<< duration_filter_by_fixed_value << " ms" << std::endl;
     return output;
 }
 

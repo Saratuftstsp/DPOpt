@@ -13,6 +13,7 @@
 #include "core/plan_node.hpp"
 #include "core/op_scanner.hpp"
 #include "core/dpoptimizer.hpp"
+#include "core/parser/parser.hpp"
 
 using namespace emp;
 
@@ -182,18 +183,20 @@ void template1_test(SecureRelation rel1, std::vector<Stats> rel1_stats,
 
     //filter 1
     //rel1.print_relation("Data before filter: \n");
-    FilterOperatorSyscat f1_before_dp(0,Integer(32,2,PUBLIC),"eq", &rel1_stats.at(0));
-    //planNode select1(&f1, &rel1);
-    //select1.selectivity = f1.selectivity;
+    FilterOperatorSyscat f1(0,Integer(32,2,PUBLIC),"eq", &rel1_stats.at(0));
+    planNode select1(&f1, &rel1);
+    select1.selectivity = f1.selectivity;
+    SecureRelation output = *select1.get_output();
+    output.print_relation("PlanNode version of filter: ");
     //float cost = select1.get_cost();
-    std::cout << "Before DP: " << f1_before_dp.selectivity << "\n";
-    std::cout << "Ndist: " << rel1_stats.at(0).ndistinct << "\n";
+    //std::cout << "Before DP: " << f1_before_dp.selectivity << "\n";
+    //std::cout << "Ndist: " << rel1_stats.at(0).ndistinct << "\n";
 
-    DPOptimizer optimizer;
+    /*DPOptimizer optimizer;
     optimizer.dpanalyze(rel1_stats);
-    FilterOperatorSyscat f1_after_dp(0,Integer(32,2,PUBLIC),"eq", &rel1_stats.at(0));
+    FilterOperatorSyscat f1_after_dp(0,Integer(32,2,PUBLIC),"eq", &rel1_stats.at(0));*/
     //cost = select1.get_cost();
-    std::cout << "After DP: " << f1_after_dp.selectivity << "\n";
+    //std::cout << "After DP: " << f1_after_dp.selectivity << "\n";
     //SecureRelation inter1 = select1.get_output(); 
     //inter1.print_relation("Filter output with different parties specified: \n");
 
@@ -225,7 +228,7 @@ void template1_prev_test(SecureRelation rel1, std::vector<Stats> rel1_stats,
     //___________________________________________PREVIOUS VERSION___________________________________________________________
 
     //A.1) previous filter implementation
-    FilterOperator prev_f1(0, Integer(32,5,PUBLIC), "eq");
+    FilterOperator prev_f1(0, Integer(32,2,PUBLIC), "eq");
     SecureRelation prev_output1 = prev_f1.execute(rel1);
 
     //FilterOperator prev_f2(0, Integer(32,6,ALICE), "eq");
@@ -241,6 +244,7 @@ void template1_prev_test(SecureRelation rel1, std::vector<Stats> rel1_stats,
     //std::cout << prev_output2.flags.size() << "\n";
 }
 
+
 int main(int argc, char** argv) {
 
     // 1. Get port and party information from user
@@ -251,37 +255,36 @@ int main(int argc, char** argv) {
     NetIO* io = new NetIO(party == ALICE ? nullptr : "127.0.0.1", port);
     setup_semi_honest(io, party);
 
-    /*
+
     //2. Create and initialize a large relation
     const int num_cols = 3;  // 3 columns
     const int num_rows = 1 << 4;
     //const int num_rows = 1 << 12;  // Around a million rows
 
-    SecureRelation rel1(num_cols, num_rows);
+    /*SecureRelation rel1(num_cols, num_rows);
     std::vector<Stats> rel1_stats;
     init_relation(rel1, rel1_stats, num_cols, num_rows, party);
     
 
     SecureRelation rel2(num_cols, num_rows);
     std::vector<Stats> rel2_stats;
-    //init_relation(rel2, rel2_stats, num_cols, num_rows, party);*/
+    init_relation(rel2, rel2_stats, num_cols, num_rows, party);
 
-    /*SecureRelation rel3(num_cols, num_rows);
+    SecureRelation rel3(num_cols, num_rows);
     std::vector<Stats> rel3_stats;
-    init_relation(rel3, rel3_stats, num_cols, num_rows, party);
+    init_relation(rel3, rel3_stats, num_cols, num_rows, party);*/
 
     auto start_time = std::chrono::high_resolution_clock::now();
 
     //A. Parse query - get Tree object of operators
     std::string query = "select * from rel1 join rel2 on rel1.col1 = rel2.col1 where rel1.col0 = 4 and rel2.col0 = 5;";
-    std::map<std::string, std::string> queryElements; // don't know how to get this or what format it will be
-    
-    //template1_prev_test(rel1, rel1_stats, rel2, rel2_stats, party);
+    //std::map<std::string, std::string> queryElements; // don't know how to get this or what format it will be
 
+    //template1_prev_test(rel1, rel1_stats, rel2, rel2_stats, party);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-    //std::cout << "Time: " << duration_filter_by_fixed_value << " ms" << std::endl;
-    io->flush();*/
+    std::cout << "Time: " << duration_filter_by_fixed_value << " ms" << std::endl;
+    io->flush();
 
     //start_time = std::chrono::high_resolution_clock::now();
     test_scanner(party, 8, 8);
@@ -290,7 +293,7 @@ int main(int argc, char** argv) {
     //end_time = std::chrono::high_resolution_clock::now();
     //duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
     //std::cout << "Time: " << duration_filter_by_fixed_value << " ms" << std::endl;
-    io->flush();
+    //io->flush();
 
     // Filter based on an input column (comparing first and second columns)
     /* FilterOperator filter_by_column(0, relation2.columns[1], "gt");
