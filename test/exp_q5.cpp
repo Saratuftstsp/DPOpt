@@ -257,7 +257,7 @@ int main(int argc, char** argv) {
 
     //2. Create and initialize a large relation
     const int num_cols = 4;  // 4 columns
-    const int num_rows = 20;
+    const int num_rows = 10;
     int alice_rows = num_rows/2;
     int bob_rows = num_rows - alice_rows;
     //std::cout << alice_rows << ", " << bob_rows << endl;

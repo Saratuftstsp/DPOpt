@@ -318,15 +318,15 @@ int main(int argc, char** argv) {
     // previous ops
     //std::cout << "Q4 Oblivious run: " << endl;
     //q4_prev_ops(rels_dict);
-    q4_prev_ops(rels_dict);
-    //debug_prev_ops(rels_dict);
+    //q4_prev_ops(rels_dict);
+    debug_prev_ops(rels_dict);
 
    std::cout << "\n\n___________________________________________________________________________________________________________________________\n\n";
     // current ops
     //std::cout << "Q4 DP run: " << endl;
     //q4_dp_ops(rels_dict, rel_stats_dict);
 
-    //debug_dp_ops(rels_dict, rel_stats_dict);
+    debug_dp_ops(rels_dict, rel_stats_dict);
 
 
     
