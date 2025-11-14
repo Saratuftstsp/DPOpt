@@ -1,5 +1,5 @@
 connected
-Time taken to scan relations: 8 ms
+Time taken to scan relations: 7 ms
 Q2 Oblivious run: 
 Q2 CostModel cost oblivious case: 120
 
@@ -15,11 +15,47 @@ Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
 Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 1 ms
+Total runtime for individual operator 2 ms
 rel3
 Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 1 ms
+Total runtime for individual operator 2 ms
+
+
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+
+
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
 
 
 filter_0
@@ -51,50 +87,14 @@ Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
 Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 1 ms
+Total runtime for individual operator 2 ms
 rel3
 Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 1 ms
+Total runtime for individual operator 2 ms
 
 
-filter_0
-rel1
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 0 ms
-filter_1
-rel2
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 1 ms
-rel3
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 1 ms
-
-
-filter_0
-rel1
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 0 ms
-filter_1
-rel2
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 1 ms
-rel3
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 1 ms
-
-
-Q2 runtime oblivious case: 1 ms
+Q2 runtime oblivious case: 2 ms
 
 
 ___________________________________________________________________________________________________________________________
@@ -114,55 +114,15 @@ Total runtime for individual operator 1 ms
 filter_1
 rel2
 Total runtime for individual operator 0 ms
-Runtime for individual operator 1 ms
-Filter selectivity: 0.1
-Total runtime for individual operator 3 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 5 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
 rel3
 Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 5 ms
-join_1
-join_0
-filter_0
-rel1
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Filter selectivity: 0.1
 Total runtime for individual operator 2 ms
-filter_1
-rel2
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Filter selectivity: 0.1
-Total runtime for individual operator 2 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 4 ms
-rel3
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 4 ms
-join_1
-join_0
-filter_0
-rel1
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Filter selectivity: 0.1
-Total runtime for individual operator 2 ms
-filter_1
-rel2
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Filter selectivity: 0.1
-Total runtime for individual operator 2 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 4 ms
-rel3
-Total runtime for individual operator 0 ms
-Runtime for individual operator 0 ms
-Total runtime for individual operator 4 ms
 join_1
 join_0
 filter_0
@@ -178,11 +138,11 @@ Runtime for individual operator 0 ms
 Filter selectivity: 0.1
 Total runtime for individual operator 1 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 3 ms
+Total runtime for individual operator 2 ms
 rel3
 Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 3 ms
+Total runtime for individual operator 2 ms
 join_1
 join_0
 filter_0
@@ -196,13 +156,53 @@ rel2
 Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
 Filter selectivity: 0.1
-Total runtime for individual operator 2 ms
+Total runtime for individual operator 1 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 3 ms
+Total runtime for individual operator 2 ms
 rel3
 Total runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
-Total runtime for individual operator 3 ms
+Total runtime for individual operator 2 ms
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
 
 
-Q2 runtime with DP Syscat: 4 ms
+Q2 runtime with DP Syscat: 2 ms
