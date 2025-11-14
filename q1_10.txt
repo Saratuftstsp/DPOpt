@@ -1,0 +1,158 @@
+connected
+Time taken to scan relations: 10 ms
+Q1 Oblivious run: 
+CostModel cost oblivious case: 120
+
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+
+
+Q1 runtime oblivious case: 1 ms
+
+
+___________________________________________________________________________________________________________________________
+
+Q1 DP run: 
+Selectivity after get_stat: 0.1
+Selectivity after get_stat: 0.1
+Q1 cost DP Syscat case (cost model output): 540
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Total runtime for individual operator 1 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 2 ms
+
+
+Q1 runtime with DP Syscat: 2 ms
