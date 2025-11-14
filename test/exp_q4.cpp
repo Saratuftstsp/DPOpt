@@ -156,8 +156,8 @@ void q4_dp_ops(std::map<string, SecureRelation*> rels_dict,std::map<string, std:
 }
 
 void q4_prev_ops(std::map<string, SecureRelation*> rels_dict){
-    planNode *testNode = new planNode(rels_dict["rel1"]);
-    testNode->node_name = "rel1";
+    planNode *testNode1 = new planNode(rels_dict["rel1"]);
+    testNode1->node_name = "rel1";
 
     planNode *testNode2 = new planNode(rels_dict["rel2"]);
     testNode2->node_name = "rel2";
@@ -174,7 +174,7 @@ void q4_prev_ops(std::map<string, SecureRelation*> rels_dict){
     FilterOperator* filter_op1 = new FilterOperator(1, Integer(32, 5, PUBLIC), "eq");
     planNode *filterNode1 = new planNode(filter_op1, 1);
     filterNode1->node_name = "filter_0";
-    filterNode1->set_previous(*testNode, 1);
+    filterNode1->set_previous(*testNode1, 1);
 
     FilterOperator* filter_op2 = new FilterOperator(1, Integer(32, 5, PUBLIC), "eq");
     planNode *filterNode2 = new planNode(filter_op2, 1);
@@ -214,13 +214,13 @@ void q4_prev_ops(std::map<string, SecureRelation*> rels_dict){
     //Record runtime
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
-    for(int i= 0; i < 5; i++){
-        query_output = jNode4->get_output();
-    }
+    //for(int i= 0; i < 5; i++){
+    query_output = jNode4->get_output();
+    //}
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ4 runtime oblivious case: " << duration_filter_by_fixed_value/5 << " ms" << std::endl;
+    std::cout << "\n\nQ4 runtime oblivious case: " << duration_filter_by_fixed_value << " ms" << std::endl;
 }
 
 void debug_prev_ops(std::map<string, SecureRelation*> rels_dict){
@@ -237,12 +237,12 @@ void debug_prev_ops(std::map<string, SecureRelation*> rels_dict){
     EquiJoinOperator* jOp4 = new EquiJoinOperator(1, 1);
 
     auto start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation inter1 = filter_op1->execute(*rels_dict["rel0"]);
-    SecureRelation inter2 = filter_op2->execute(*rels_dict["rel1"]);
+    SecureRelation inter1 = filter_op1->execute(*rels_dict["rel1"]);
+    SecureRelation inter2 = filter_op2->execute(*rels_dict["rel2"]);
     inter2 = jOp->execute(inter1,inter2);
-    inter2 = jOp2->execute(inter2, *rels_dict["rel2"]);
-    inter2 = jOp3->execute(inter2, *rels_dict["rel3"]);
-    inter2 = jOp4->execute(inter2, *rels_dict["rel4"]);
+    inter2 = jOp2->execute(inter2, *rels_dict["rel3"]);
+    inter2 = jOp3->execute(inter2, *rels_dict["rel4"]);
+    inter2 = jOp4->execute(inter2, *rels_dict["rel0"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
     std::cout << "\n\nQ4 runtime oblivious case: " << duration_filter_by_fixed_value << " ms" << std::endl;
@@ -316,17 +316,17 @@ int main(int argc, char** argv) {
     //planNode* node = parse_and_plan(rels_dict);
 
     // previous ops
-    // previous ops
     //std::cout << "Q4 Oblivious run: " << endl;
     //q4_prev_ops(rels_dict);
-    debug_prev_ops(rels_dict);
+    q4_prev_ops(rels_dict);
+    //debug_prev_ops(rels_dict);
 
    std::cout << "\n\n___________________________________________________________________________________________________________________________\n\n";
     // current ops
     //std::cout << "Q4 DP run: " << endl;
     //q4_dp_ops(rels_dict, rel_stats_dict);
 
-    debug_dp_ops(rels_dict, rel_stats_dict);
+    //debug_dp_ops(rels_dict, rel_stats_dict);
 
 
     

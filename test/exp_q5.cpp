@@ -25,7 +25,7 @@ using namespace emp;
 
 void get_relations(int party, int num_cols, int alice_rows, int bob_rows, std::map<string, SecureRelation*> &rels_dict){
     auto start_time = std::chrono::high_resolution_clock::now();
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 5; i++){
         string relname = "rel" + std::to_string(i);
         std::string fname = party==BOB ? relname+"_bob.csv":relname+"_alice.csv";
         //std::cout << "Party: " << party << "\n";
@@ -84,324 +84,163 @@ void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict,
     }
 }
 
-void q3_dp_ops(std::map<string, SecureRelation*> rels_dict,std::map<string, std::vector<Stats>> rel_stats_dict){
-
-    planNode *testNode = new planNode(rels_dict["rel1"]);
-    testNode->node_name = "rel1";
-
-    planNode *testNode2 = new planNode(rels_dict["rel2"]);
-    testNode2->node_name = "rel2";
-
-    planNode *testNode3 = new planNode(rels_dict["rel3"]);
-    testNode3->node_name = "rel3";
-
-    planNode *testNode4 = new planNode(rels_dict["rel4"]);
-    testNode4->node_name = "rel4";
-
-    FilterOperatorSyscat* filter_op1 = new FilterOperatorSyscat(1, Integer(32, 5, PUBLIC), "eq", &rel_stats_dict["rel1"][1]);
-    planNode* filterNode1 = new planNode(filter_op1, filter_op1->selectivity);
-    filterNode1->node_name = "filter_0";
-    filterNode1->set_previous(*testNode, 1);
-
-    FilterOperatorSyscat* filter_op2 = new FilterOperatorSyscat(1, Integer(32, 5, PUBLIC), "eq", &rel_stats_dict["rel2"][1]);
-    planNode *filterNode2 = new planNode(filter_op2, filter_op2->selectivity);
-    filterNode2->node_name = "filter_1";
-    filterNode2->set_previous(*testNode2, 1);
-
-    EquiJoinOperatorSyscat* jOp = new EquiJoinOperatorSyscat(1, 1, nullptr, nullptr);
-    planNode* jNode = new planNode(jOp, filterNode1, filterNode2, jOp->selectivity);
-    jNode->node_name = "join_0";
-
-    EquiJoinOperatorSyscat* jOp2 = new EquiJoinOperatorSyscat(1, 1, nullptr, nullptr);
-    planNode* jNode2 = new planNode(jOp, jNode, testNode3, jOp->selectivity);
-    jNode2->node_name = "join_1";
-    jNode2->set_previous(*jNode,1);
-    jNode2->set_previous(*testNode3,2);
-
-    EquiJoinOperatorSyscat* jOp3 = new EquiJoinOperatorSyscat(1, 1, nullptr, nullptr);
-    planNode* jNode3 = new planNode(jOp, jNode2, testNode4, jOp->selectivity);
-    jNode3->node_name = "join_2";
-    jNode3->set_previous(*jNode2,1);
-    jNode3->set_previous(*testNode4,2);
-
-    auto start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation* query_output;
-    for(int i= 0; i < 2; i++){
-        query_output = jNode2->get_output();
-    }
-    //(*query_output).print_relation("Testing query output: ");
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Runtime with DP Syscat: " << duration_filter_by_fixed_value/2 << " ms" << std::endl;
-    //std::cout << "Output size for DP Syscat case: " << query_output->flags.size() << endl;
+float get_plan_cost(planNode* last_op_node, int prune){
     CostModel cm;
-    float cost = cm.get_cost(jNode);
-    std::cout << "Cost DP Syscat case: " << cost << endl;
-    //query_output->print_relation("Result of DP-Syscat-optimized execution.");
+    float cost = 0;
+    std::tuple<float,float> costModel_output = cm.get_cost(last_op_node, cost,prune);
+    cost = std::get<0>(costModel_output);
+    return cost;
 }
 
-void q3_prev_ops(std::map<string, SecureRelation*> rels_dict){
-    planNode *testNode = new planNode(rels_dict["rel1"]);
-    testNode->node_name = "rel1";
+void debug_prev_ops(std::map<string, SecureRelation*> rels_dict){
 
-    planNode *testNode2 = new planNode(rels_dict["rel2"]);
-    testNode2->node_name = "rel2";
+    planNode *testNode1 = new planNode(rels_dict["rel0"]);
+    testNode1->node_name = "rel0";
 
-    planNode *testNode3 = new planNode(rels_dict["rel3"]);
-    testNode3->node_name = "rel3";
+    planNode *testNode2 = new planNode(rels_dict["rel1"]);
+    testNode2->node_name = "rel1";
 
-    planNode *testNode4 = new planNode(rels_dict["rel4"]);
-    testNode4->node_name = "rel4";
+    planNode *testNode3 = new planNode(rels_dict["rel2"]);
+    testNode3->node_name = "rel2";
 
-    FilterOperator* filter_op1 = new FilterOperator(1, Integer(32, 5, PUBLIC), "eq");
+    planNode *testNode4 = new planNode(rels_dict["rel3"]);
+    testNode4->node_name = "rel3";
+
+    planNode *testNode5 = new planNode(rels_dict["rel4"]);
+    testNode5->node_name = "rel4";
+
+    FilterOperator* filter_op1 = new FilterOperator(1, Integer(32, 3, PUBLIC), "eq");
     planNode *filterNode1 = new planNode(filter_op1, 1);
-    filterNode1->node_name = "filter_0";
-    filterNode1->set_previous(*testNode, 1);
+    filterNode1->node_name = "filter_1";
+    filterNode1->set_previous(*testNode1, 1);
 
     FilterOperator* filter_op2 = new FilterOperator(1, Integer(32, 5, PUBLIC), "eq");
     planNode *filterNode2 = new planNode(filter_op2, 1);
-    filterNode2->node_name = "filter_1";
+    filterNode2->node_name = "filter_2";
     filterNode2->set_previous(*testNode2, 1);
 
-    EquiJoinOperator* jOp = new EquiJoinOperator(1, 1);
-    planNode* jNode = new planNode(jOp, filterNode1, filterNode2, 1);
-    
+    FilterOperator* filter_op3 = new FilterOperator(2, Integer(32, 7, PUBLIC), "eq");
+    planNode *filterNode3 = new planNode(filter_op3, 1);
+    filterNode3->node_name = "filter_3";
+    filterNode3->set_previous(*testNode3, 1);
+
+    EquiJoinOperator* jOp1 = new EquiJoinOperator(1, 1);
+    planNode* jNode1 = new planNode(jOp1, filterNode1, filterNode2, 1);
+    jNode1->set_previous(*filterNode1,1);
+    jNode1->set_previous(*filterNode2,2);
+    jNode1->node_name = "join_1";
 
     EquiJoinOperator* jOp2 = new EquiJoinOperator(1, 1);
-    planNode* jNode2 = new planNode(jOp2, filterNode2, testNode3, 1);
-    jNode2->set_previous(*jNode,1);
-    jNode2->set_previous(*testNode3,2);
+    planNode* jNode2 = new planNode(jOp2, jNode1, filterNode3, 1);
+    jNode2->set_previous(*jNode1,1);
+    jNode2->set_previous(*filterNode3,2);
+    jNode2->node_name = "join_2";
 
     EquiJoinOperator* jOp3 = new EquiJoinOperator(1, 1);
     planNode* jNode3 = new planNode(jOp3, jNode2, testNode4, 1);
     jNode3->set_previous(*jNode2,1);
     jNode3->set_previous(*testNode4,2);
+    jNode2->node_name = "join_3";
 
+    EquiJoinOperator* jOp4 = new EquiJoinOperator(1, 1);
+    planNode* jNode4 = new planNode(jOp4, jNode3, testNode5, 1);
+    jNode4->set_previous(*jNode3,1);
+    jNode4->set_previous(*testNode5,2);
+    jNode4->node_name = "join_4";
+
+    //Cost computation:
+    float cost = get_plan_cost(jNode4,0);
+    std::cout << "Q5 CostModel cost oblivious case: " << cost << endl;
+
+    // query execution (without planNode implementation to reduce memory usage)
     auto start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation* query_output;
-    for(int i= 0; i < 2; i++){
-        query_output = jNode3->get_output();
-    }
-    //(*query_output).print_relation("Testing query output: ");
+    //SecureRelation* query_output = jNode4->get_output();
+    SecureRelation inter1 = filter_op1->execute(*rels_dict["rel0"]);
+    SecureRelation inter2 = filter_op2->execute(*rels_dict["rel1"]);
+    SecureRelation inter3 = filter_op3->execute(*rels_dict["rel2"]);
+    inter2 = jOp1->execute(inter1,inter2);
+    inter2 = jOp2->execute(inter2, inter3);
+    inter2 = jOp3->execute(inter2, *rels_dict["rel3"]);
+    inter2 = jOp4->execute(inter2, *rels_dict["rel4"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Q3 runtime in the completely oblivious case: " << duration_filter_by_fixed_value/2 << " ms" << std::endl;
-    //std::cout << "Output size for oblivious case: " << query_output->flags.size() << endl;
-    float input_size1 = rels_dict["rel1"]->flags.size();
-    float input_size2 = rels_dict["rel2"]->flags.size();
-    float input_size3 = rels_dict["rel3"]->flags.size();
-    float input_size4 = rels_dict["rel4"]->flags.size();
-    float cost = input_size1 + input_size2 + (input_size1 * input_size2) + input_size3 + (input_size1 * input_size2 * input_size1) + input_size4 + (input_size1 * input_size2 * input_size1 * input_size4);
-    std::cout << "Cost oblivious case: " << input_size1 + input_size2 + (input_size1 * input_size2) << endl;
-    //query_output->sort_by_flag();
-    //query_output->print_relation("Result of oblivious execution.");
+    std::cout << "\n\nQ5 runtime oblivious case: " << duration_filter_by_fixed_value << " ms" << std::endl;
 }
 
-void q2_dp_ops(std::map<string, SecureRelation*> rels_dict,std::map<string, std::vector<Stats>> rel_stats_dict){
+void debug_dp_ops(std::map<string, SecureRelation*> rels_dict, std::map<string, std::vector<Stats>> rel_stats_dict){
+    planNode *testNode1 = new planNode(rels_dict["rel0"]);
+    testNode1->node_name = "rel0";
 
-    planNode *testNode = new planNode(rels_dict["rel1"]);
-    testNode->node_name = "rel1";
+    planNode *testNode2 = new planNode(rels_dict["rel1"]);
+    testNode2->node_name = "rel1";
 
-    planNode *testNode2 = new planNode(rels_dict["rel2"]);
-    testNode2->node_name = "rel2";
+    planNode *testNode3 = new planNode(rels_dict["rel2"]);
+    testNode3->node_name = "rel2";
 
-    planNode *testNode3 = new planNode(rels_dict["rel3"]);
-    testNode3->node_name = "rel3";
+    planNode *testNode4 = new planNode(rels_dict["rel3"]);
+    testNode4->node_name = "rel3";
 
-    FilterOperatorSyscat* filter_op1 = new FilterOperatorSyscat(1, Integer(32, 5, PUBLIC), "eq", &rel_stats_dict["rel1"][1]);
-    planNode* filterNode1 = new planNode(filter_op1, filter_op1->selectivity);
-    filterNode1->node_name = "filter_0";
-    filterNode1->set_previous(*testNode, 1);
+    planNode *testNode5 = new planNode(rels_dict["rel4"]);
+    testNode5->node_name = "rel4";
 
-    FilterOperatorSyscat* filter_op2 = new FilterOperatorSyscat(1, Integer(32, 5, PUBLIC), "eq", &rel_stats_dict["rel2"][1]);
-    planNode *filterNode2 = new planNode(filter_op2, filter_op2->selectivity);
-    filterNode2->node_name = "filter_1";
-    filterNode2->set_previous(*testNode2, 1);
-
-    EquiJoinOperatorSyscat* jOp = new EquiJoinOperatorSyscat(1, 1, nullptr, nullptr);
-    planNode* jNode = new planNode(jOp, filterNode1, filterNode2, jOp->selectivity);
-    jNode->node_name = "join_0";
-
-    EquiJoinOperatorSyscat* jOp2 = new EquiJoinOperatorSyscat(1, 1, nullptr, nullptr);
-    planNode* jNode2 = new planNode(jOp, jNode, testNode3, jOp->selectivity);
-    jNode2->node_name = "join_1";
-    jNode2->set_previous(*jNode,1);
-    jNode2->set_previous(*testNode3,2);
-
-    auto start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation* query_output;
-    for(int i= 0; i < 2; i++){
-        query_output = jNode2->get_output();
-    }
-    //(*query_output).print_relation("Testing query output: ");
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Runtime with DP Syscat: " << duration_filter_by_fixed_value/2 << " ms" << std::endl;
-    //std::cout << "Output size for DP Syscat case: " << query_output->flags.size() << endl;
-    CostModel cm;
-    float cost = cm.get_cost(jNode);
-    std::cout << "Cost DP Syscat case: " << cost << endl;
-    //query_output->print_relation("Result of DP-Syscat-optimized execution.");
-}
-
-void q2_prev_ops(std::map<string, SecureRelation*> rels_dict){
-    planNode *testNode = new planNode(rels_dict["rel1"]);
-    testNode->node_name = "rel1";
-
-    planNode *testNode2 = new planNode(rels_dict["rel2"]);
-    testNode2->node_name = "rel2";
-
-    planNode *testNode3 = new planNode(rels_dict["rel3"]);
-    testNode2->node_name = "rel3";
-
-    FilterOperator* filter_op1 = new FilterOperator(1, Integer(32, 5, PUBLIC), "eq");
+    FilterOperatorSyscat* filter_op1 = new FilterOperatorSyscat(1, Integer(32, 3, PUBLIC), "eq", &rel_stats_dict["rel0"][1]);
     planNode *filterNode1 = new planNode(filter_op1, 1);
-    filterNode1->node_name = "filter_0";
-    filterNode1->set_previous(*testNode, 1);
+    filterNode1->node_name = "filter_1";
+    filterNode1->set_previous(*testNode1, 1);
 
-    FilterOperator* filter_op2 = new FilterOperator(1, Integer(32, 5, PUBLIC), "eq");
+    FilterOperatorSyscat* filter_op2 = new FilterOperatorSyscat(1, Integer(32, 5, PUBLIC), "eq", &rel_stats_dict["rel1"][1]);
     planNode *filterNode2 = new planNode(filter_op2, 1);
-    filterNode2->node_name = "filter_1";
+    filterNode2->node_name = "filter_2";
     filterNode2->set_previous(*testNode2, 1);
 
-    EquiJoinOperator* jOp = new EquiJoinOperator(1, 1);
-    planNode* jNode = new planNode(jOp, filterNode1, filterNode2, 1);
+    FilterOperatorSyscat* filter_op3 = new FilterOperatorSyscat(2, Integer(32, 7, PUBLIC), "eq", &rel_stats_dict["rel2"][2]);
+    planNode *filterNode3 = new planNode(filter_op3, 1);
+    filterNode3->node_name = "filter_3";
+    filterNode3->set_previous(*testNode3, 1);
+
+    EquiJoinOperatorSyscat* jOp1 = new EquiJoinOperatorSyscat(1, 1);
+    planNode* jNode1 = new planNode(jOp1, filterNode1, filterNode2, 1);
+    jNode1->set_previous(*filterNode1,1);
+    jNode1->set_previous(*filterNode2,2);
+    jNode1->node_name = "join_1";
+
+    EquiJoinOperatorSyscat* jOp2 = new EquiJoinOperatorSyscat(1, 1);
+    planNode* jNode2 = new planNode(jOp2, jNode1, filterNode3, 1);
+    jNode2->set_previous(*jNode1,1);
+    jNode2->set_previous(*filterNode3,2);
+    jNode2->node_name = "join_2";
+
+    EquiJoinOperatorSyscat* jOp3 = new EquiJoinOperatorSyscat(1, 1);
+    planNode* jNode3 = new planNode(jOp3, jNode2, testNode4, 1);
+    jNode3->set_previous(*jNode2,1);
+    jNode3->set_previous(*testNode4,2);
+    jNode2->node_name = "join_3";
     
 
-    EquiJoinOperator* jOp2 = new EquiJoinOperator(1, 1);
-    planNode* jNode2 = new planNode(jOp2, filterNode2, testNode3, 1);
-    jNode2->set_previous(*jNode,1);
-    jNode2->set_previous(*testNode3,2);
+    EquiJoinOperatorSyscat* jOp4 = new EquiJoinOperatorSyscat(1, 1);
+    planNode* jNode4 = new planNode(jOp4, jNode3, testNode5, 1);
+    jNode4->set_previous(*jNode3,1);
+    jNode4->set_previous(*testNode5,2);
+    jNode4->node_name = "join_4";
 
+    //Cost computation
+    float cost = get_plan_cost(jNode4,1);
+    std::cout << "Q5 CostModel cost DP case: " << cost << endl;
+
+    //query execution without planNode to reduce memory usage
     auto start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation* query_output;
-    for(int i= 0; i < 2; i++){
-        query_output = jNode->get_output();
-    }
-    //(*query_output).print_relation("Testing query output: ");
+    //SecureRelation* query_output = jNode4->get_output();
+    SecureRelation inter1 = filter_op1->execute(*rels_dict["rel0"]);
+    SecureRelation inter2 = filter_op2->execute(*rels_dict["rel1"]);
+    SecureRelation inter3 = filter_op3->execute(*rels_dict["rel2"]);
+    inter2 = jOp1->execute(inter1,inter2);
+    inter2 = jOp2->execute(inter2, inter3);
+    inter2 = jOp3->execute(inter2, *rels_dict["rel3"]);
+    inter2 = jOp4->execute(inter2, *rels_dict["rel4"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Q2 runtime in the completely oblivious case: " << duration_filter_by_fixed_value/2 << " ms" << std::endl;
-    //std::cout << "Output size for oblivious case: " << query_output->flags.size() << endl;
-    float input_size1 = rels_dict["rel1"]->flags.size();
-    float input_size2 = rels_dict["rel2"]->flags.size();
-    float input_size3 = rels_dict["rel3"]->flags.size();
-    float cost = input_size1 + input_size2 + (input_size1 * input_size2) + input_size3 + (input_size1 * input_size2 * input_size1);
-    std::cout << "Cost oblivious case: " << input_size1 + input_size2 + (input_size1 * input_size2) << endl;
-    //query_output->sort_by_flag();
-    //query_output->print_relation("Result of oblivious execution.");
+    std::cout << "\n\nQ5 runtime DP case: " << duration_filter_by_fixed_value << " ms" << std::endl;
 }
-
-
-void q1_dp_ops(std::map<string, SecureRelation*> rels_dict,std::map<string, std::vector<Stats>> rel_stats_dict){
-        auto start_time = std::chrono::high_resolution_clock::now();
-        planNode *testNode = new planNode(rels_dict["rel1"]);
-        testNode->node_name = "rel1";
-
-        planNode *testNode2 = new planNode(rels_dict["rel2"]);
-        testNode2->node_name = "rel2";
-
-        FilterOperatorSyscat* filter_op1 = new FilterOperatorSyscat(1, Integer(32, 5, PUBLIC), "eq", &rel_stats_dict["rel1"][1]);
-        planNode* filterNode1 = new planNode(filter_op1, filter_op1->selectivity);
-        filterNode1->node_name = "filter_0";
-        filterNode1->set_previous(*testNode, 1);
-
-        FilterOperatorSyscat* filter_op2 = new FilterOperatorSyscat(1, Integer(32, 5, PUBLIC), "eq", &rel_stats_dict["rel2"][1]);
-        planNode *filterNode2 = new planNode(filter_op2, filter_op2->selectivity);
-        filterNode2->node_name = "filter_1";
-        filterNode2->set_previous(*testNode2, 1);
-
-        EquiJoinOperatorSyscat* jOp = new EquiJoinOperatorSyscat(1, 1, nullptr, nullptr);
-        planNode* jNode = new planNode(jOp, filterNode1, filterNode2, jOp->selectivity);
-        jNode->node_name = "join_0";
-    start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation* query_output;
-    for(int i= 0; i < 1; i++){
-        query_output = jNode->get_output();
-    }
-    //(*query_output).print_relation("Testing query output: ");
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    //std::cout << "Runtime with DP Syscat: " << duration_filter_by_fixed_value/2 << " ms" << std::endl;
-    //std::cout << "Output size for DP Syscat case: " << query_output->flags.size() << endl;
-    CostModel cm;
-    float cost = cm.get_cost(jNode);
-    //std::cout << "Cost DP Syscat case: " << cost << endl;
-    //query_output->print_relation("Result of DP-Syscat-optimized execution.");
-}
-
-void q1_prev_ops(std::map<string, SecureRelation*> rels_dict){
-    planNode *testNode = new planNode(rels_dict["rel1"]);
-    testNode->node_name = "rel1";
-
-    planNode *testNode2 = new planNode(rels_dict["rel2"]);
-    testNode2->node_name = "rel2";
-
-    FilterOperator* filter_op1 = new FilterOperator(1, Integer(32, 5, PUBLIC), "eq");
-    planNode *filterNode1 = new planNode(filter_op1, 1);
-    filterNode1->node_name = "filter_0";
-    filterNode1->set_previous(*testNode, 1);
-
-    FilterOperator* filter_op2 = new FilterOperator(1, Integer(32, 5, PUBLIC), "eq");
-    planNode *filterNode2 = new planNode(filter_op2, 1);
-    filterNode2->node_name = "filter_1";
-    filterNode2->set_previous(*testNode2, 1);
-
-    EquiJoinOperator* jOp = new EquiJoinOperator(1, 1);
-    planNode* jNode = new planNode(jOp, filterNode1, filterNode2, 1);
-    
-    //Cost model output
-    CostModel cm;
-    float cost = 0;
-    std::tuple<float,float> costModel_output = cm.get_cost(jNode, cost, 0);
-    float costModel_cost = std::get<0>(costModel_output);
-    std::cout << "CostModel cost oblivious case: " << costModel_cost << endl;
-
-    //Record runtime
-    auto start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation* query_output;
-    for(int i= 0; i < 5; i++){
-        query_output = jNode->get_output();
-    }
-    //(*query_output).print_relation("Testing query output: ");
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ5 runtime oblivious case: " << duration_filter_by_fixed_value/5 << " ms" << std::endl;
-}
-
-/*planNode* parse_and_plan(std::map<string, SecureRelation*> rels_dict){
-    //5. Parse query
-    std::string qname = "q2";
-    //std::string query = "select * from rel1 join rel2 on rel1.col1 = rel2.col1 where rel1.col0 = 4 and rel2.col0 = 5;";
-    std::string query = "select * from rel1 where rel1.col1=1";
-
-    auto start_time = std::chrono::high_resolution_clock::now();
-    Parser p(qname, query);
-    p.get_json();
-    
-    
-   
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-    std::cout << "Time to parse query: " << duration_filter_by_fixed_value << " ms" << std::endl;
-    
-    //6. plan query
-    start_time = std::chrono::high_resolution_clock::now();
-    fs::path current_path = std::filesystem::current_path(); //current_dir / "core" / "parser" / "get_logical_tree.py";
-    std::string plan_file_name = (current_path / "test" / "parsed" / (qname + "_logictree.json")).string();
-    std::string node_details_file = (current_path / "test" / "parsed" / (qname + "_nodes.json")).string();
-
-    Planner plnr(plan_file_name, node_details_file, rels_dict);
-    planNode *rootNode = plnr.build_plan();
-    plnr.rels_dict = rels_dict;
-    end_time = std::chrono::high_resolution_clock::now();
-    duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-    std::cout << "Time to build plan: " << duration_filter_by_fixed_value << " ms" << std::endl;
-
-
-
-    return rootNode;
-}*/
 
 
 
@@ -418,7 +257,7 @@ int main(int argc, char** argv) {
 
     //2. Create and initialize a large relation
     const int num_cols = 4;  // 4 columns
-    const int num_rows = 100;
+    const int num_rows = 20;
     int alice_rows = num_rows/2;
     int bob_rows = num_rows - alice_rows;
     //std::cout << alice_rows << ", " << bob_rows << endl;
@@ -427,7 +266,7 @@ int main(int argc, char** argv) {
 
     //3. Get relations
     std::map<string, SecureRelation*> rels_dict;
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 5; i++){
         string relname = "rel" + std::to_string(i);
         rels_dict[relname] = new SecureRelation(num_cols, 0);
     }
@@ -436,7 +275,7 @@ int main(int argc, char** argv) {
 
     //4. Build DP System Catalog (Use DPOptimizer to add noise to counts)
     std::map<string, std::vector<Stats>> rel_stats_dict;
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 5; i++){
         string relname = "rel" + std::to_string(i);
         rel_stats_dict[relname] = std::vector<Stats>(num_cols);
     }
@@ -444,24 +283,12 @@ int main(int argc, char** argv) {
 
 
     //7. run query
-    //planNode* node = parse_and_plan(rels_dict);
-
     // previous ops
-    //std::cout << "Q1 Oblivious run: " << endl;
-    //q1_prev_ops(rels_dict);
-    //std::cout << "Q2 Oblivious run: " << endl;
-    //q2_prev_ops(rels_dict);
-    std::cout << "Q3 Oblivious run: " << endl;
-    q3_prev_ops(rels_dict);
-   
-    // current ops
-    //std::cout << "Q1 DP run: " << endl;
-    //q1_dp_ops(rels_dict, rel_stats_dict);
-    //std::cout << "Q2 DP run: " << endl;
-    //q2_dp_ops(rels_dict, rel_stats_dict);
-    //std::cout << "Q3 DP run: " << endl;
-    //q3_dp_ops(rels_dict, rel_stats_dict);
+    debug_prev_ops(rels_dict);
 
+    std::cout << "\n\n___________________________________________________________________________________________________________________________\n\n";
+   
+    debug_dp_ops(rels_dict, rel_stats_dict);
 
     
     
