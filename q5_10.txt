@@ -1,0 +1,34 @@
+connected
+Time taken to scan relations: 15 ms
+Q5 CostModel cost oblivious case: 111130
+Runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Runtime for individual operator 1 ms
+Runtime for individual operator 5 ms
+Runtime for individual operator 58 ms
+Runtime for individual operator 207 ms
+
+
+Q5 runtime oblivious case: 551 ms
+
+
+___________________________________________________________________________________________________________________________
+
+Selectivity after get_stat: 0
+Selectivity after get_stat: 0.1
+Selectivity after get_stat: 0.1
+Q5 CostModel cost DP case: 2.78056e+06
+Runtime for individual operator 0 ms
+Filter selectivity: 0
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Runtime for individual operator 0 ms
+Filter selectivity: 0.1
+Runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+
+
+Q5 runtime DP case: 7 ms

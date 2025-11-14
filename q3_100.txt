@@ -1,0 +1,25 @@
+connected
+Time taken to scan relations: 43 ms
+Q3 Oblivious run: 
+Q3 CostModel cost oblivious case: 1.31797e+07
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 2 ms
+Total runtime for individual operator 5 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 2 ms
+Total runtime for individual operator 4 ms
+Runtime for individual operator 61 ms
+Total runtime for individual operator 132 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 7391 ms
+Total runtime for individual operator 14915 ms
+rel4
+Total runtime for individual operator 0 ms

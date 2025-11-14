@@ -1,0 +1,28 @@
+connected
+Time taken to scan relations: 23 ms
+Runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Runtime for individual operator 2 ms
+Runtime for individual operator 26 ms
+Runtime for individual operator 594 ms
+Runtime for individual operator 4048 ms
+
+
+Q4 runtime oblivious case: 9404 ms
+
+
+___________________________________________________________________________________________________________________________
+
+Selectivity after get_stat: 0
+Selectivity after get_stat: 0.133333
+Runtime for individual operator 0 ms
+Filter selectivity: 0
+Runtime for individual operator 0 ms
+Filter selectivity: 0.133333
+Runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Runtime for individual operator 7 ms
+Runtime for individual operator 19 ms
+
+
+Q4 runtime oblivious case: 58 ms
