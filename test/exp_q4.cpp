@@ -145,14 +145,16 @@ void q4_dp_ops(std::map<string, SecureRelation*> rels_dict,std::map<string, std:
 
 
     auto start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation* query_output;
-    for(int i= 0; i < 5; i++){
-        query_output = jNode4->get_output();
-    }
-    //(*query_output).print_relation("Testing query output: ");
+    SecureRelation inter1 = filter_op1->execute(*rels_dict["rel0"]);
+    SecureRelation inter2 = filter_op2->execute(*rels_dict["rel1"]);
+    inter2 = jOp->execute(inter1,inter2);
+    inter2 = jOp2->execute(inter2, *rels_dict["rel2"]);
+    inter2 = jOp3->execute(inter2, *rels_dict["rel3"]);
+    inter2 = jOp4->execute(inter2, *rels_dict["rel4"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ4 runtime with DP Syscat: " << duration_filter_by_fixed_value/5 << " ms" << std::endl;
+    std::cout << "\n\nQ4 runtime DP case: " << duration_filter_by_fixed_value << " ms" << std::endl;
+    
 }
 
 void q4_prev_ops(std::map<string, SecureRelation*> rels_dict){
@@ -213,11 +215,12 @@ void q4_prev_ops(std::map<string, SecureRelation*> rels_dict){
 
     //Record runtime
     auto start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation* query_output;
-    //for(int i= 0; i < 5; i++){
-    query_output = jNode4->get_output();
-    //}
-    //(*query_output).print_relation("Testing query output: ");
+    SecureRelation inter1 = filter_op1->execute(*rels_dict["rel1"]);
+    SecureRelation inter2 = filter_op2->execute(*rels_dict["rel2"]);
+    inter2 = jOp->execute(inter1,inter2);
+    inter2 = jOp2->execute(inter2, *rels_dict["rel3"]);
+    inter2 = jOp3->execute(inter2, *rels_dict["rel4"]);
+    inter2 = jOp4->execute(inter2, *rels_dict["rel0"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
     std::cout << "\n\nQ4 runtime oblivious case: " << duration_filter_by_fixed_value << " ms" << std::endl;
@@ -270,7 +273,7 @@ void debug_dp_ops(std::map<string, SecureRelation*> rels_dict, std::map<string, 
     inter2 = jOp4->execute(inter2, *rels_dict["rel4"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ4 runtime oblivious case: " << duration_filter_by_fixed_value << " ms" << std::endl;
+    std::cout << "\n\nQ4 runtime DP case: " << duration_filter_by_fixed_value << " ms" << std::endl;
 }
 
 
@@ -319,14 +322,14 @@ int main(int argc, char** argv) {
     //std::cout << "Q4 Oblivious run: " << endl;
     //q4_prev_ops(rels_dict);
     //q4_prev_ops(rels_dict);
-    debug_prev_ops(rels_dict);
+    q4_prev_ops(rels_dict);
 
    std::cout << "\n\n___________________________________________________________________________________________________________________________\n\n";
     // current ops
     //std::cout << "Q4 DP run: " << endl;
     //q4_dp_ops(rels_dict, rel_stats_dict);
 
-    debug_dp_ops(rels_dict, rel_stats_dict);
+    q4_dp_ops(rels_dict, rel_stats_dict);
 
 
     

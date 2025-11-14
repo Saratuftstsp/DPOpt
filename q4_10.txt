@@ -1,20 +1,22 @@
 connected
-Time taken to scan relations: 17 ms
+Time taken to scan relations: 16 ms
+Q4 CostModel cost oblivious case: 111120
 Runtime for individual operator 0 ms
 Runtime for individual operator 0 ms
 Runtime for individual operator 1 ms
 Runtime for individual operator 5 ms
-Runtime for individual operator 57 ms
-Runtime for individual operator 210 ms
+Runtime for individual operator 56 ms
+Runtime for individual operator 201 ms
 
 
-Q4 runtime oblivious case: 554 ms
+Q4 runtime oblivious case: 534 ms
 
 
 ___________________________________________________________________________________________________________________________
 
 Selectivity after get_stat: 0.1
 Selectivity after get_stat: 0.1
+Q4 cost DP Syscat case (cost model output): 2.78054e+06
 Runtime for individual operator 0 ms
 Filter selectivity: 0.1
 Runtime for individual operator 0 ms
@@ -25,4 +27,4 @@ Runtime for individual operator 0 ms
 Runtime for individual operator 7 ms
 
 
-Q4 runtime oblivious case: 25 ms
+Q4 runtime DP case: 25 ms
