@@ -1,0 +1,258 @@
+connected
+Time taken to scan relations: 20 ms
+Q3 Oblivious run: 
+Q3 CostModel cost oblivious case: 54255
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+Runtime for individual operator 2 ms
+Total runtime for individual operator 6 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 22 ms
+Total runtime for individual operator 52 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 87 ms
+Total runtime for individual operator 227 ms
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+Runtime for individual operator 2 ms
+Total runtime for individual operator 7 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 26 ms
+Total runtime for individual operator 61 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 93 ms
+Total runtime for individual operator 247 ms
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+Runtime for individual operator 2 ms
+Total runtime for individual operator 6 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 22 ms
+Total runtime for individual operator 51 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 82 ms
+Total runtime for individual operator 215 ms
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 1 ms
+Runtime for individual operator 2 ms
+Total runtime for individual operator 7 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 27 ms
+Total runtime for individual operator 62 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 89 ms
+Total runtime for individual operator 241 ms
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 0 ms
+Runtime for individual operator 2 ms
+Total runtime for individual operator 6 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 22 ms
+Total runtime for individual operator 51 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 85 ms
+Total runtime for individual operator 222 ms
+
+
+Q3 runtime oblivious case: 231 ms
+
+
+___________________________________________________________________________________________________________________________
+
+Q3 DP run: 
+Selectivity after get_stat: 0.0666667
+Selectivity after get_stat: 0
+Q3 cost DP Syscat case (cost model output): 87
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.0666667
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0
+Total runtime for individual operator 3 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 5 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 5 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 6 ms
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.0666667
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0
+Total runtime for individual operator 3 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 4 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 4 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 6 ms
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.0666667
+Total runtime for individual operator 2 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0
+Total runtime for individual operator 3 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 5 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 5 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 7 ms
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.0666667
+Total runtime for individual operator 2 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0
+Total runtime for individual operator 3 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 5 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 5 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 7 ms
+join_2
+join_1
+join_0
+filter_0
+rel1
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0.0666667
+Total runtime for individual operator 1 ms
+filter_1
+rel2
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Filter selectivity: 0
+Total runtime for individual operator 3 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 5 ms
+rel3
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 5 ms
+rel4
+Total runtime for individual operator 0 ms
+Runtime for individual operator 0 ms
+Total runtime for individual operator 7 ms
+
+
+Q3 runtime with DP Syscat: 6 ms
