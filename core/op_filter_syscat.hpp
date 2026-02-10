@@ -63,7 +63,6 @@ emp::Bit FilterOperatorSyscat::compare(const emp::Integer& a, const emp::Integer
 }
 
 SecureRelation FilterOperatorSyscat::operation(const SecureRelation& input) {
-    auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation output = input; // Make a copy of the input relation
     
     if (target_column.empty()) { // If the target is a single value
@@ -75,9 +74,6 @@ SecureRelation FilterOperatorSyscat::operation(const SecureRelation& input) {
             output.flags[i] = Integer(1, compare(input.columns[column_index][i], target_column[i], condition).reveal<bool>(), party);
         }
     }
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Runtime for individual operator "<< duration_filter_by_fixed_value/2 << " ms" << std::endl;
     // resize that uses selectivity
     return this->prune(output);
 }
@@ -131,7 +127,8 @@ SecureRelation FilterOperatorSyscat::prune(SecureRelation rel){
     }
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Prune time for individual operator "<< duration_filter_by_fixed_value/2 << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "Prune time for individual operator "<< duration_us << " micro_sec" << std::endl;
     return rel;
 }
 

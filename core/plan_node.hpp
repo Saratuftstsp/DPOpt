@@ -105,17 +105,20 @@ planNode::planNode(BinaryOperator* bin_op, SecureRelation* input_rel1, planNode*
 SecureRelation* planNode::get_output(){
     std::cout << node_name << endl;
     auto start_time = std::chrono::high_resolution_clock::now();
+    auto end_time = std::chrono::high_resolution_clock::now();
     SecureRelation* output = new SecureRelation();
     // Case 1: Unary operator
     if (up != nullptr){
         // Case 1a) input is a SecureRelation
         if (input1 != nullptr){
-            //std::cout << "Found right execution scenario.\n";
+            start_time = std::chrono::high_resolution_clock::now();
             *output = up->execute(*input1);
-            //std::cout << "Completed execution.\n";
+            end_time = std::chrono::high_resolution_clock::now();
         }else{
             SecureRelation* input = previous1 -> get_output();
+            start_time = std::chrono::high_resolution_clock::now();
             *output = up->execute(*input);
+            end_time = std::chrono::high_resolution_clock::now();
         }
     }
     // Case 2: Binary operator
@@ -123,39 +126,47 @@ SecureRelation* planNode::get_output(){
         if (input1 != nullptr){
             //Case 2a) both left child and right child is also a secure relation
             if (input2 != nullptr){
+                start_time = std::chrono::high_resolution_clock::now();
                 *output = bp -> execute(*input1, *input2);
+                end_time = std::chrono::high_resolution_clock::now();
             //Case 2b) left child is a secure relation and right child is another operator
             }else{
                 SecureRelation* right_input = previous2 -> get_output();
-                //selectivity =* previous2->selectivity;
+                start_time = std::chrono::high_resolution_clock::now();
                 *output = bp -> execute(*input1, *right_input);
+                end_time = std::chrono::high_resolution_clock::now();
             }
         }else{
             SecureRelation* left_input = previous1 -> get_output();
             //(*left_input).print_relation("Filter1 output: \n");
             //Case 2c) left child is an operator and right child is a secure relation
             if (input2 != nullptr){
+                start_time = std::chrono::high_resolution_clock::now();
                 *output = bp -> execute(*left_input, *input2);
+                end_time = std::chrono::high_resolution_clock::now();
             //Case 2d) left child is a secure relation and right child is another operator
             }else{
                 SecureRelation* right_input = previous2 -> get_output();
-                //(*right_input).print_relation("Filter2 output: \n");
+                start_time = std::chrono::high_resolution_clock::now();
                 *output = bp -> execute(*left_input, *right_input);
+                end_time = std::chrono::high_resolution_clock::now();
             }
         }
     }
     else if (node_name.substr(0,3)=="rel") {
+        start_time = std::chrono::high_resolution_clock::now();
         *output = *input1;
+        end_time = std::chrono::high_resolution_clock::now();
     }
     else{ //rootNode case
         std::cout << "rootNode check" << endl;
         *output = *(previous1 -> get_output());
     }
-    string print_title = "Result of operator " + node_name + ": ";
-    //output->print_relation(print_title);
-    auto end_time = std::chrono::high_resolution_clock::now();
+
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Total runtime for individual operator "<< duration_filter_by_fixed_value << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "Total runtime for individual operator "<< node_name << " " << duration_us << " micro_sec" << std::endl;
+    std::cout << "Output size for operator " << node_name << " " << output->flags.size() << endl;
     return output;
 }
 

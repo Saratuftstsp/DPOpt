@@ -45,7 +45,6 @@ EquiJoinOperatorSyscat::EquiJoinOperatorSyscat(int col_idx1, int col_idx2, Stats
     : column_index1(col_idx1), column_index2(col_idx2), stats1(statistics1), stats2(statistics2) { if (stats1!=nullptr && stats2!=nullptr) {this-> get_stat();}}
 
 SecureRelation EquiJoinOperatorSyscat::operation(const SecureRelation& rel1, const SecureRelation& rel2) {
-    auto start_time = std::chrono::high_resolution_clock::now();
     int result_rows = rel1.columns[0].size() * rel2.columns[0].size();
     int result_cols = rel1.columns.size() + rel2.columns.size();
 
@@ -73,9 +72,6 @@ SecureRelation EquiJoinOperatorSyscat::operation(const SecureRelation& rel1, con
             result.flags[result_row_index] = emp::If(join_condition, emp::Integer(1, 1, ALICE), emp::Integer(1, 0, ALICE));
         }
     }
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Runtime for individual operator "<< duration_filter_by_fixed_value/2 << " ms" << std::endl;
 
     return result;
 }

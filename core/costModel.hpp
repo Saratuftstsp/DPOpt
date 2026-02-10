@@ -22,8 +22,7 @@ public:
 };
 
 std::tuple<float,float> CostModel::get_cost(planNode *node, int cost, int prune){
-    //implement like the get_cost() funtion of filter_syscat
-    //1. add cost for sorting and copying
+    float individual_operator_cost = 0;
     // Case 1: Unary operator
     if (node->up != nullptr){
         int input_size = 0;
@@ -40,17 +39,20 @@ std::tuple<float,float> CostModel::get_cost(planNode *node, int cost, int prune)
         int next_op_insize = input_size;
         int op_cost = input_size; //O(n) to apply filter
         cost = cost + op_cost;
+        individual_operator_cost += op_cost;
 
         if ((prune==1)){ //extra cost in the DP Syscat case: sort and prune
             int sort_cost = std::ceil(input_size * pow(std::log10(input_size),2)); //sort cost of O(n log^2(n))
             cost = cost + sort_cost;
-            if(0 < node->selectivity < 1){
+            individual_operator_cost += sort_cost;
+            if(node->selectivity > 0 &&  node->selectivity < 1){
                 int prune_cost = input_size; // O(n) cost for pruning
                 cost = cost + prune_cost;
+                individual_operator_cost += prune_cost;
                 next_op_insize = node->selectivity * next_op_insize;
             }
         }
-        
+        std::cout << "Individual operator cost of " << node->node_name << ": " << individual_operator_cost << " \n";
         return std::make_tuple(cost, next_op_insize);
     }
     // Case 2: Binary operator
@@ -65,8 +67,9 @@ std::tuple<float,float> CostModel::get_cost(planNode *node, int cost, int prune)
             input_size1 = node->input1->flags.size();
         }else{
             std::tuple<float,float> costModel_output = get_cost(node->previous1, cost, prune);
-            cost = std::get<0>(costModel_output);
+            cost = std::get<0>(costModel_output); //total cost updated with left previous node cost
             input_size1 = std::get<1>(costModel_output);
+            std::cout << "Input1 size of " << node->node_name << " " << input_size1 << endl;
         }
 
         // get right_input cost and size
@@ -74,28 +77,34 @@ std::tuple<float,float> CostModel::get_cost(planNode *node, int cost, int prune)
             input_size2 = node->input2->flags.size();
         }else{
             std::tuple<float,float> costModel_output = get_cost(node->previous2, cost, prune);
-            cost = std::get<0>(costModel_output);
+            cost = std::get<0>(costModel_output); //total cost updated with left previous node cost
             input_size2 = std::get<1>(costModel_output);
+            std::cout << "Input2 size of " << node->node_name << " " << input_size2 << endl;
         }
 
         //compute join cost and join output size
         next_op_insize = input_size1 * input_size2;
         int op_cost = next_op_insize;
         cost = cost + op_cost;
+        individual_operator_cost += op_cost;
+
         if (prune==1){
             int sort_cost = std::ceil(input_size1 * input_size2 * pow(std::log10(input_size1 * input_size2),2)); //sort cost of O(n log^2(n))
             cost = cost + sort_cost;
+            individual_operator_cost += sort_cost;
             if(node->selectivity < 1){
                 int prune_cost = input_size1 * input_size2;
                 cost = cost + prune_cost;
+                individual_operator_cost += prune_cost;
                 next_op_insize = node->selectivity * next_op_insize;
             }
         }
-
+        std::cout << "Individual operator cost of " << node->node_name << ": " << individual_operator_cost << " \n";
         return std::make_tuple(cost,next_op_insize);
     }else{
          if (node->input1 != nullptr){
-            return std::make_tuple(cost, node->input1->flags.size() * node->selectivity);
+            //std::cout << "Selectivity of rel "<< node->node_name << " " << node->selectivity << endl;
+            return std::make_tuple(cost, node->input1->flags.size());
         }
     }
 }
