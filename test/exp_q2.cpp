@@ -25,7 +25,7 @@ using namespace emp;
 
 void get_relations(int party, int num_cols, int alice_rows, int bob_rows, std::map<string, SecureRelation*> &rels_dict){
     auto start_time = std::chrono::high_resolution_clock::now();
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 5; i++){
         string relname = "rel" + std::to_string(i);
         std::string fname = party==BOB ? relname+"_bob.csv":relname+"_alice.csv";
         //std::cout << "Party: " << party << "\n";
@@ -109,6 +109,8 @@ void q2_dp_ops(std::map<string, SecureRelation*> rels_dict,std::map<string, std:
     EquiJoinOperatorSyscat* jOp = new EquiJoinOperatorSyscat(1, 1, nullptr, nullptr);
     planNode* jNode = new planNode(jOp, filterNode1, filterNode2, jOp->selectivity);
     jNode->node_name = "join_0";
+    jNode->set_previous(*filterNode1,1);
+    jNode->set_previous(*filterNode2,2);
 
     EquiJoinOperatorSyscat* jOp2 = new EquiJoinOperatorSyscat(1, 1, nullptr, nullptr);
     planNode* jNode2 = new planNode(jOp, jNode, testNode3, jOp2->selectivity);
@@ -126,13 +128,14 @@ void q2_dp_ops(std::map<string, SecureRelation*> rels_dict,std::map<string, std:
 
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
-    for(int i= 0; i < 5; i++){
+    for(int i= 0; i < 1; i++){
        query_output = jNode2->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ2 runtime with DP Syscat: " << duration_filter_by_fixed_value/5 << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "\n\nQ2 runtime with DP Syscat: " << duration_us << " micro_sec" << std::endl;
 }
 
 
@@ -158,10 +161,14 @@ void q2_prev_ops(std::map<string, SecureRelation*> rels_dict){
 
     EquiJoinOperator* jOp = new EquiJoinOperator(1, 1);
     planNode* jNode = new planNode(jOp, filterNode1, filterNode2, 1);
+    jNode->node_name = "join_0";
+    jNode->set_previous(*filterNode1,1);
+    jNode->set_previous(*filterNode2,2);
     
 
     EquiJoinOperator* jOp2 = new EquiJoinOperator(1, 1);
-    planNode* jNode2 = new planNode(jOp2, filterNode2, testNode3, 1);
+    planNode* jNode2 = new planNode(jOp2, jNode, testNode3, 1);
+    jNode2->node_name = "join_1";
     jNode2->set_previous(*jNode,1);
     jNode2->set_previous(*testNode3,2);
 
@@ -175,13 +182,14 @@ void q2_prev_ops(std::map<string, SecureRelation*> rels_dict){
     //Record runtime
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
-    for(int i= 0; i < 5; i++){
+    for(int i= 0; i < 1; i++){
         query_output = jNode2->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
-    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ2 runtime oblivious case: " << duration_filter_by_fixed_value/5 << " ms" << std::endl;
+    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "\n\nQ2 runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
 }
 
 
@@ -200,7 +208,7 @@ int main(int argc, char** argv) {
 
     //2. Create and initialize a large relation
     const int num_cols = 4;  // 4 columns
-    const int num_rows = 10;
+    const int num_rows = 20;
     int alice_rows = num_rows/2;
     int bob_rows = num_rows - alice_rows;
     //std::cout << alice_rows << ", " << bob_rows << endl;
@@ -209,7 +217,7 @@ int main(int argc, char** argv) {
 
     //3. Get relations
     std::map<string, SecureRelation*> rels_dict;
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 5; i++){
         string relname = "rel" + std::to_string(i);
         rels_dict[relname] = new SecureRelation(num_cols, 0);
     }
@@ -218,7 +226,7 @@ int main(int argc, char** argv) {
 
     //4. Build DP System Catalog (Use DPOptimizer to add noise to counts)
     std::map<string, std::vector<Stats>> rel_stats_dict;
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 5; i++){
         string relname = "rel" + std::to_string(i);
         rel_stats_dict[relname] = std::vector<Stats>(num_cols);
     }
@@ -226,12 +234,12 @@ int main(int argc, char** argv) {
 
 
     //7. run query
-
+    std::cout << rels_dict["rel1"]->flags.size() << endl;
     // previous ops
     std::cout << "Q2 Oblivious run: " << endl;
     q2_prev_ops(rels_dict);
 
-   std::cout << "\n\n___________________________________________________________________________________________________________________________\n\n";
+    std::cout << "\n\n___________________________________________________________________________________________________________________________\n\n";
     // current ops
     std::cout << "Q2 DP run: " << endl;
     q2_dp_ops(rels_dict, rel_stats_dict);

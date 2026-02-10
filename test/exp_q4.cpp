@@ -153,7 +153,8 @@ void q4_dp_ops(std::map<string, SecureRelation*> rels_dict,std::map<string, std:
     inter2 = jOp4->execute(inter2, *rels_dict["rel4"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ4 runtime DP case: " << duration_filter_by_fixed_value << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "\n\nQ4 runtime DP case: " << duration_us << " micro_seccle" << std::endl;
     
 }
 
@@ -223,7 +224,8 @@ void q4_prev_ops(std::map<string, SecureRelation*> rels_dict){
     inter2 = jOp4->execute(inter2, *rels_dict["rel0"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ4 runtime oblivious case: " << duration_filter_by_fixed_value << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "\n\nQ4 runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
 }
 
 void debug_prev_ops(std::map<string, SecureRelation*> rels_dict){
@@ -273,7 +275,8 @@ void debug_dp_ops(std::map<string, SecureRelation*> rels_dict, std::map<string, 
     inter2 = jOp4->execute(inter2, *rels_dict["rel4"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ4 runtime DP case: " << duration_filter_by_fixed_value << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "\n\nQ4 runtime DP case: " << duration_us << " micro_sec" << std::endl;
 }
 
 
@@ -329,7 +332,10 @@ int main(int argc, char** argv) {
     //std::cout << "Q4 DP run: " << endl;
     //q4_dp_ops(rels_dict, rel_stats_dict);
 
-    q4_dp_ops(rels_dict, rel_stats_dict);
+    for(int i = 0; i < 10; i ++){
+        q4_dp_ops(rels_dict, rel_stats_dict);
+    }
+    
 
 
     

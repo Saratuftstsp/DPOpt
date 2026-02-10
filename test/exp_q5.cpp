@@ -164,7 +164,8 @@ void debug_prev_ops(std::map<string, SecureRelation*> rels_dict){
     inter2 = jOp4->execute(inter2, *rels_dict["rel4"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ5 runtime oblivious case: " << duration_filter_by_fixed_value << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "\n\nQ5 runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
 }
 
 void debug_dp_ops(std::map<string, SecureRelation*> rels_dict, std::map<string, std::vector<Stats>> rel_stats_dict){
@@ -239,7 +240,8 @@ void debug_dp_ops(std::map<string, SecureRelation*> rels_dict, std::map<string, 
     inter2 = jOp4->execute(inter2, *rels_dict["rel4"]);
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ5 runtime DP case: " << duration_filter_by_fixed_value << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "\n\nQ5 runtime DP case: " << duration_us << " micro_sec" << std::endl;
 }
 
 
@@ -257,7 +259,7 @@ int main(int argc, char** argv) {
 
     //2. Create and initialize a large relation
     const int num_cols = 4;  // 4 columns
-    const int num_rows = 10;
+    const int num_rows = 20;
     int alice_rows = num_rows/2;
     int bob_rows = num_rows - alice_rows;
     //std::cout << alice_rows << ", " << bob_rows << endl;

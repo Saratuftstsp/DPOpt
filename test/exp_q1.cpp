@@ -118,13 +118,14 @@ void q1_dp_ops(std::map<string, SecureRelation*> rels_dict,std::map<string, std:
 
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
-    for(int i= 0; i < 5; i++){
+    for(int i= 0; i < 1; i++){
         query_output = jNode->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ1 runtime with DP Syscat: " << duration_filter_by_fixed_value/5 << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "\n\nQ1 runtime with DP Syscat: " << duration_us << " micro_sec" << std::endl;
 }
 
 void q1_prev_ops(std::map<string, SecureRelation*> rels_dict){
@@ -158,13 +159,14 @@ void q1_prev_ops(std::map<string, SecureRelation*> rels_dict){
     //Record runtime
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
-    for(int i= 0; i < 5; i++){
+    for(int i= 0; i < 1; i++){
         query_output = jNode->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "\n\nQ1 runtime oblivious case: " << duration_filter_by_fixed_value/5 << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "\n\nQ1 runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
     
 }
 
@@ -205,13 +207,14 @@ void q1_prev_ops_cost(std::map<string, SecureRelation*> rels_dict){
     //Record runtime
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
-    for(int i= 0; i < 5; i++){
+    for(int i= 0; i < 1; i++){
         query_output = jNode->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Q1 runtime oblivious case: " << duration_filter_by_fixed_value/5 << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "Q1 runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
 
 }
 
@@ -255,13 +258,14 @@ void q1_dp_ops_cost(std::map<string, SecureRelation*> rels_dict,std::map<string,
 
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
-    for(int i= 0; i < 5; i++){
+    for(int i= 0; i < 1; i++){
         query_output = jNode->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
-    std::cout << "Q1 runtime with DP Syscat: " << duration_filter_by_fixed_value/5 << " ms" << std::endl;
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    std::cout << "Q1 runtime with DP Syscat: " << duration_us << " ms" << std::endl;
     
 }
 
@@ -281,7 +285,7 @@ int main(int argc, char** argv) {
 
     //2. Create and initialize a large relation
     const int num_cols = 4;  // 4 columns
-    const int num_rows = 10;
+    const int num_rows = 20;
     int alice_rows = num_rows/2;
     int bob_rows = num_rows - alice_rows;
     //std::cout << alice_rows << ", " << bob_rows << endl;
