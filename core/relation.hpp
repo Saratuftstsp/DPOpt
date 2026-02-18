@@ -12,6 +12,8 @@
 
 class SecureRelation {
 public:
+    std::vector<string> col_names;
+    std::vector<int> col_types; // 0 means boolean, 1 means int, 2 means float and 3 means string
     std::vector<std::vector<int>> true_cols;
     std::vector<std::vector<emp::Integer>> columns;
     std::vector<emp::Integer> flags;
