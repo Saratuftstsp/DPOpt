@@ -59,3 +59,7 @@ size_t GlobalStringEncoder::size() const
 {
     return reverse_.size();
 }
+
+/*string filter_val = "JORDAN";
+    uint32_t id = encoder.encode(filter_val);
+*/

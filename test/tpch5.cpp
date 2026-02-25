@@ -25,14 +25,55 @@
 using namespace emp;
 
 
-void get_relations(int party, int num_cols, int alice_rows, int bob_rows, std::map<string, SecureRelation*> &rels_dict, GlobalStringEncoder &encoder){
+void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_rows, std::vector<int> bob_rows, std::map<string, SecureRelation*> &rels_dict, GlobalStringEncoder &encoder){
+    std::vector<std::string> tpch_tables = {
+    "customer",
+    "orders",
+    "lineitem",
+    "supplier",
+    "nation",
+    "region",
+    "part",
+    "partsupp"
+    };  
     auto start_time = std::chrono::high_resolution_clock::now();
-    string relname = "drt";
-    std::string fname = party==BOB ? relname+"_bob.csv":relname+"_alice.csv";  
-    ScanOperator s = ScanOperator(fname, num_cols, alice_rows, bob_rows, encoder);
-    s.execute(*rels_dict[relname], party); // get histogram also, non-emp
-    rels_dict[relname]->print_relation("Testing Scanner: \n");
-    
+    string relname;
+    for(int i = 0; i < 8; i++){
+        relname = tpch_tables[i];
+        std::string fname = party==BOB ? "tpch_data/bob_" +relname +".csv": "tpch_data/alice_" + relname +".csv";
+        ScanOperator s = ScanOperator(fname, num_cols[i], alice_rows[i], bob_rows[i], encoder);
+        s.delimiter = '|';
+        s.execute(*rels_dict[relname], party); // get histogram also, non-emp
+        rels_dict[relname]->print_relation("Testing Scanner: \n");
+    }
+   
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto duration_scan = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+    std::cout << "Time taken to scan relations: " << duration_scan << " ms" << std::endl;
+}
+
+void get_relations2(int party, std::vector<int> num_cols, std::vector<int> alice_rows, std::vector<int> bob_rows, std::map<string, SecureRelation*> &rels_dict, GlobalStringEncoder &encoder){
+    std::vector<std::string> tpch_tables = {
+    "customer",
+    "orders",
+    "lineitem",
+    "supplier",
+    "nation",
+    "region",
+    "part",
+    "partsupp"
+    };  
+    auto start_time = std::chrono::high_resolution_clock::now();
+    string relname;
+    for(int i = 0; i < 5; i++){
+        relname = tpch_tables[i];
+        std::string fname = party==BOB ? "tpch_data/bob_" +relname +".csv": "tpch_data/alice_" + relname +".csv";  
+        ScanOperator s = ScanOperator(fname, num_cols[i], alice_rows[i], bob_rows[i], encoder);
+        s.delimiter = '|';
+        s.execute(*rels_dict[relname], party); // get histogram also, non-emp
+        //rels_dict[relname]->print_relation("Testing Scanner: \n");
+    }
+   
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_scan = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
     std::cout << "Time taken to scan relations: " << duration_scan << " ms" << std::endl;
@@ -84,49 +125,46 @@ void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict,
 
 
 
-void q1_prev_ops(std::map<string, SecureRelation*> rels_dict){
-    planNode *testNode = new planNode(rels_dict["drt"]);
-    testNode->node_name = "rel1";
-
-    double filter_val = 3.4;
-    uint64_t bits;
-    std::memcpy(&bits, &filter_val, sizeof(double));
-
-    // reinterpret as signed for EMP constructor
-    int64_t signed_bits = static_cast<int64_t>(bits);
+void q1_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncoder encoder){
+    planNode *testNode1 = new planNode(rels_dict["customer"]);
+    testNode1->node_name = "rel1";
     
-    FilterOperator* filter_op1 = new FilterOperator(2, Integer(64, signed_bits, PUBLIC), "eq");
+
+    planNode *testNode2 = new planNode(rels_dict["orders"]);
+    testNode2->node_name = "rel2";
+
+    planNode *testNode3 = new planNode(rels_dict["lineitem"]);
+    testNode3->node_name = "rel3";
+
+    planNode *testNode4 = new planNode(rels_dict["nation"]);
+    testNode4->node_name = "rel4";
+
+    string filter_val = "JORDAN";
+    uint32_t id = encoder.encode(filter_val);
+    FilterOperator* filter_op1 = new FilterOperator(1, Integer(32, id, PUBLIC), "eq");
     planNode *filterNode1 = new planNode(filter_op1, 1);
-    filterNode1->node_name = "filter_0";
-    filterNode1->set_previous(*testNode, 1);
+    filterNode1->node_name = "filter_1";
+    filterNode1->set_previous(*testNode4, 1);
 
-    /*EquiJoinOperator* jOp = new EquiJoinOperator(1, 1);
-    planNode* jNode = new planNode(jOp, testNode, filterNode2, 1);
+    EquiJoinOperator* jOp1 = new EquiJoinOperator(0, 1);
+    planNode* jNode1 = new planNode(jOp1, testNode1, testNode2, 1);
+    jNode1->node_name = "join_1";
+    jNode1->set_previous(*testNode1, 1);
+    jNode1->set_previous(*testNode2, 2);
 
 
-    float input_size1 = rels_dict["rel1"]->flags.size();
-    float input_size2 = rels_dict["rel2"]->flags.size();
-    //Manual cost computation
-    float manual_cost = input_size1 + input_size2 + input_size1*input_size2;
-    //Cost model output
-    CostModel cm;
-    float cost = 0;
-    std::tuple<float,float> costModel_output = cm.get_cost(jNode, cost, 0);
-    float costModel_cost = std::get<0>(costModel_output);
-    std::cout << "Manual cost oblivious case: " << manual_cost << endl;
-    std::cout << "CostModel cost oblivious case: " << costModel_cost << endl;*/
 
     //Record runtime
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
     for(int i= 0; i < 1; i++){
-        query_output = filterNode1->get_output();
+        query_output = jNode1->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
     auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
-    query_output->print_relation("Float filter query output:");
+    query_output->print_relation("TPC-H q5 c-o join query output:");
     std::cout << "Float filter query runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
 
 }
@@ -148,19 +186,66 @@ int main(int argc, char** argv) {
 
 
     //2. Create and initialize a large relation
-    const int num_cols = 3;  // 4 columns
-    const int num_rows = 5;
-    int alice_rows = 3;
-    int bob_rows = num_rows - alice_rows;
+    //const int num_cols = 3;  // 4 columns
+    //const int num_rows = 5;
+    //int alice_rows = 3;
+    //int bob_rows = num_rows - alice_rows;
     //std::cout << alice_rows << ", " << bob_rows << endl;
     //const int num_rows = 1 << 12;  // Around a million rows
+
+    std::vector<std::string> tpch_tables = {
+    "customer",
+    "orders",
+    "lineitem",
+    "supplier",
+    "nation",
+    "region",
+    "part",
+    "partsupp"
+    };  
+
+    std::vector<int> tpch_numcols = {
+    8,
+    9,
+    16,
+    7,
+    4,
+    3,
+    9,
+    5
+    }; 
+
+    std::vector<int> alice_rows = {
+    20,
+    20,
+    20,
+    20,
+    13,
+    5,
+    20,
+    20
+    };
+
+    std::vector<int> bob_rows = {
+    20,
+    20,
+    5,
+    20,
+    12,
+    5,
+    20,
+    20
+    };
 
 
     //3. Get relations
     std::map<string, SecureRelation*> rels_dict;
-    rels_dict["drt"] = new SecureRelation(num_cols, 0);
+    for(int i =0; i < 8; i++){
+        rels_dict[tpch_tables[i]] = new SecureRelation(tpch_numcols[i], 0);
+    }
+        
     GlobalStringEncoder encoder;
-    get_relations(party, num_cols, alice_rows, bob_rows, rels_dict, encoder);
+    get_relations2(party, tpch_numcols, alice_rows, bob_rows, rels_dict, encoder);
     
 
     //4. Build DP System Catalog (Use DPOptimizer to add noise to counts)
@@ -175,7 +260,7 @@ int main(int argc, char** argv) {
 
     // previous ops
     //std::cout << "Q1 Oblivious run: " << endl;
-    q1_prev_ops(rels_dict);
+    q1_prev_ops(rels_dict, encoder);
   
     io->flush();
 
