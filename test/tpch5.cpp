@@ -24,7 +24,7 @@
 
 using namespace emp;
 
-
+#define NUM_OF_ROWS 20
 void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_rows, std::vector<int> bob_rows, std::map<string, SecureRelation*> &rels_dict, GlobalStringEncoder &encoder){
     std::vector<std::string> tpch_tables = {
     "customer",
@@ -128,10 +128,17 @@ void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict,
 void q1_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncoder encoder){
     planNode *testNode1 = new planNode(rels_dict["customer"]);
     testNode1->node_name = "rel1";
+    rels_dict["customer"]->print_relation("Customer relation: ");
+    Integer encrypted_int64 = rels_dict["customer"]->columns[5][0];
+    long long unencrypted = encrypted_int64.reveal<int64_t>();
+    double true_float;
+    memcpy(&true_float, &unencrypted, sizeof(double));
+    std::cout << true_float << "\n";
     
 
     planNode *testNode2 = new planNode(rels_dict["orders"]);
     testNode2->node_name = "rel2";
+    rels_dict["orders"]->print_relation("Orders relation: ");
 
     planNode *testNode3 = new planNode(rels_dict["lineitem"]);
     testNode3->node_name = "rel3";
@@ -165,7 +172,7 @@ void q1_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncode
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
     auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
     query_output->print_relation("TPC-H q5 c-o join query output:");
-    std::cout << "Float filter query runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
+    std::cout << "String Join query runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
 
 }
 
@@ -215,26 +222,28 @@ int main(int argc, char** argv) {
     5
     }; 
 
+    // how many rows does Alice contribute
     std::vector<int> alice_rows = {
-    20,
-    20,
-    20,
-    20,
+    NUM_OF_ROWS,
+    NUM_OF_ROWS,
+    NUM_OF_ROWS,
+    NUM_OF_ROWS,
     13,
     5,
-    20,
-    20
+    NUM_OF_ROWS,
+    NUM_OF_ROWS
     };
-
+    
+    // how many rows does Bob contribute
     std::vector<int> bob_rows = {
-    20,
-    20,
-    5,
-    20,
+    NUM_OF_ROWS,
+    NUM_OF_ROWS,
+    NUM_OF_ROWS,
+    NUM_OF_ROWS,
     12,
     5,
-    20,
-    20
+    NUM_OF_ROWS,
+    NUM_OF_ROWS
     };
 
 
