@@ -4,9 +4,9 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = -DEMP_CIRCUIT_PATH=/usr/local/include/emp-tool/circuits/files/ -DEMP_ENABLE_RDSEED
 
-CXX_INCLUDES = -I/Users/saraalam/Projects/SPECIAL -I/opt/homebrew/opt/openssl/include -I/usr/local/include
+CXX_INCLUDES = -I/Users/saraalam/Desktop/DPOpt -I/opt/homebrew/Cellar/openssl@3/3.5.0/include -I/usr/local/include -I/opt/homebrew/opt/libpqxx/include
 
-CXX_FLAGSarm64 =   -pthread -Wall -funroll-loops -Wno-ignored-attributes -Wno-unused-result -march=armv8-a+simd+crypto+crc -std=c++11 -O3 -O3 -DNDEBUG -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk   -Wno-sign-compare
+CXX_FLAGSarm64 = -I/opt/homebrew/opt/boost/include  -pthread -Wall -funroll-loops -Wno-ignored-attributes -Wno-unused-result -march=armv8-a+simd+crypto+crc -std=c++11 -O3 -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk   -Wno-sign-compare
 
-CXX_FLAGS =   -pthread -Wall -funroll-loops -Wno-ignored-attributes -Wno-unused-result -march=armv8-a+simd+crypto+crc -std=c++11 -O3 -O3 -DNDEBUG -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk   -Wno-sign-compare
+CXX_FLAGS = -I/opt/homebrew/opt/boost/include  -pthread -Wall -funroll-loops -Wno-ignored-attributes -Wno-unused-result -march=armv8-a+simd+crypto+crc -std=c++11 -O3 -O3 -DNDEBUG -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk   -Wno-sign-compare
 

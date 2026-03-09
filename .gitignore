@@ -1,2 +1,9 @@
 CMakeCache.txt
-/test/CMakeCache.txt
+/test/CMakeCache.txttpch_data/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+bin/
+exp/
+exp_result/

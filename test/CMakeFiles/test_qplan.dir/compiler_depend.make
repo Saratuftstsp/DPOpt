@@ -286,8 +286,13 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/popcount.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/rotate.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit_reference \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/chars_format.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/from_chars_integral.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/from_chars_result.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/tables.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars_base_10.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars_floating_point.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars_integral.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars_result.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/traits.h \
@@ -427,6 +432,7 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/memory_resource.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/ostream.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/pair.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/span.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/sstream.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/streambuf.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/string.h \
@@ -458,6 +464,7 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iter_swap.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator_traits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator_with_data.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/mergeable.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/move_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/move_sentinel.h \
@@ -567,17 +574,47 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/uniform_real_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/weibull_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/access.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/all.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/as_rvalue_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/common_view.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/concepts.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/container_compatible_range.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/counted.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/dangling.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/data.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/drop_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/drop_while_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/elements_view.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/empty.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/empty_view.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/enable_borrowed_range.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/enable_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/filter_view.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/from_range.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/iota_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/istream_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/join_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/lazy_split_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/movable_box.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/non_propagating_cache.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/owning_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/range_adaptor.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/rbegin.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/ref_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/rend.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/repeat_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/reverse_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/single_view.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/size.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/split_view.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/subrange.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/take_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/take_while_view.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/to.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/transform_view.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/view_interface.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/views.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/zip_view.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__split_buffer \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__std_mbstate_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__string/char_traits.h \
@@ -767,6 +804,7 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__variant/monostate.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__verbose_abort \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/algorithm \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/any \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/atomic \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit \
@@ -774,7 +812,9 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cassert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cctype \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/charconv \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/chrono \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ciso646 \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/climits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/clocale \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cmath \
@@ -796,6 +836,7 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/execution \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/forward_list \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/fstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future \
@@ -808,11 +849,13 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/list \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/locale \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/locale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/map \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/math.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory_resource \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/mutex \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/new \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/numeric \
@@ -820,8 +863,11 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/queue \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/random \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ranges \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/set \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/shared_mutex \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/span \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept \
@@ -839,6 +885,7 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/typeinfo \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/unordered_map \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/utility \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/valarray \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/variant \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/vector \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/version \
@@ -846,6 +893,7 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/gethostuuid.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/OSCacheControl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h \
@@ -998,9 +1046,14 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
   core/_op_binary.hpp \
   core/_op_unary.hpp \
+  core/dpoptimizer.hpp \
   core/op_equijoin.hpp \
+  core/op_equijoin_syscat.hpp \
+  core/op_filter.hpp \
   core/op_filter_syscat.hpp \
   core/op_idx_equijoin.hpp \
+  core/op_scanner.hpp \
+  core/parser/parser.hpp \
   core/plan_node.hpp \
   core/relation.hpp \
   core/stats.hpp \
@@ -1009,35 +1062,282 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
   emp-sh2pc/sh_eva.h \
   emp-sh2pc/sh_gen.h \
   emp-sh2pc/sh_party.h \
-  /opt/homebrew/opt/openssl/include/openssl/asn1.h \
-  /opt/homebrew/opt/openssl/include/openssl/asn1err.h \
-  /opt/homebrew/opt/openssl/include/openssl/bio.h \
-  /opt/homebrew/opt/openssl/include/openssl/bioerr.h \
-  /opt/homebrew/opt/openssl/include/openssl/bn.h \
-  /opt/homebrew/opt/openssl/include/openssl/bnerr.h \
-  /opt/homebrew/opt/openssl/include/openssl/configuration.h \
-  /opt/homebrew/opt/openssl/include/openssl/core.h \
-  /opt/homebrew/opt/openssl/include/openssl/core_dispatch.h \
-  /opt/homebrew/opt/openssl/include/openssl/crypto.h \
-  /opt/homebrew/opt/openssl/include/openssl/cryptoerr.h \
-  /opt/homebrew/opt/openssl/include/openssl/cryptoerr_legacy.h \
-  /opt/homebrew/opt/openssl/include/openssl/e_os2.h \
-  /opt/homebrew/opt/openssl/include/openssl/ec.h \
-  /opt/homebrew/opt/openssl/include/openssl/ecerr.h \
-  /opt/homebrew/opt/openssl/include/openssl/evp.h \
-  /opt/homebrew/opt/openssl/include/openssl/evperr.h \
-  /opt/homebrew/opt/openssl/include/openssl/indicator.h \
-  /opt/homebrew/opt/openssl/include/openssl/macros.h \
-  /opt/homebrew/opt/openssl/include/openssl/obj_mac.h \
-  /opt/homebrew/opt/openssl/include/openssl/objects.h \
-  /opt/homebrew/opt/openssl/include/openssl/objectserr.h \
-  /opt/homebrew/opt/openssl/include/openssl/opensslconf.h \
-  /opt/homebrew/opt/openssl/include/openssl/opensslv.h \
-  /opt/homebrew/opt/openssl/include/openssl/params.h \
-  /opt/homebrew/opt/openssl/include/openssl/safestack.h \
-  /opt/homebrew/opt/openssl/include/openssl/stack.h \
-  /opt/homebrew/opt/openssl/include/openssl/symhacks.h \
-  /opt/homebrew/opt/openssl/include/openssl/types.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/asn1.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/asn1err.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/bio.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/bioerr.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/bn.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/bnerr.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/configuration.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/core.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/core_dispatch.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/crypto.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/cryptoerr.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/cryptoerr_legacy.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/e_os2.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/ec.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/ecerr.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/evp.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/evperr.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/indicator.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/macros.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/obj_mac.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/objects.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/objectserr.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/opensslconf.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/opensslv.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/params.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/safestack.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/stack.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/symhacks.h \
+  /opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/types.h \
+  /opt/homebrew/include/nlohmann/adl_serializer.hpp \
+  /opt/homebrew/include/nlohmann/byte_container_with_subtype.hpp \
+  /opt/homebrew/include/nlohmann/detail/abi_macros.hpp \
+  /opt/homebrew/include/nlohmann/detail/conversions/from_json.hpp \
+  /opt/homebrew/include/nlohmann/detail/conversions/to_chars.hpp \
+  /opt/homebrew/include/nlohmann/detail/conversions/to_json.hpp \
+  /opt/homebrew/include/nlohmann/detail/exceptions.hpp \
+  /opt/homebrew/include/nlohmann/detail/hash.hpp \
+  /opt/homebrew/include/nlohmann/detail/input/binary_reader.hpp \
+  /opt/homebrew/include/nlohmann/detail/input/input_adapters.hpp \
+  /opt/homebrew/include/nlohmann/detail/input/json_sax.hpp \
+  /opt/homebrew/include/nlohmann/detail/input/lexer.hpp \
+  /opt/homebrew/include/nlohmann/detail/input/parser.hpp \
+  /opt/homebrew/include/nlohmann/detail/input/position_t.hpp \
+  /opt/homebrew/include/nlohmann/detail/iterators/internal_iterator.hpp \
+  /opt/homebrew/include/nlohmann/detail/iterators/iter_impl.hpp \
+  /opt/homebrew/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+  /opt/homebrew/include/nlohmann/detail/iterators/iterator_traits.hpp \
+  /opt/homebrew/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+  /opt/homebrew/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+  /opt/homebrew/include/nlohmann/detail/json_custom_base_class.hpp \
+  /opt/homebrew/include/nlohmann/detail/json_pointer.hpp \
+  /opt/homebrew/include/nlohmann/detail/json_ref.hpp \
+  /opt/homebrew/include/nlohmann/detail/macro_scope.hpp \
+  /opt/homebrew/include/nlohmann/detail/macro_unscope.hpp \
+  /opt/homebrew/include/nlohmann/detail/meta/call_std/begin.hpp \
+  /opt/homebrew/include/nlohmann/detail/meta/call_std/end.hpp \
+  /opt/homebrew/include/nlohmann/detail/meta/cpp_future.hpp \
+  /opt/homebrew/include/nlohmann/detail/meta/detected.hpp \
+  /opt/homebrew/include/nlohmann/detail/meta/identity_tag.hpp \
+  /opt/homebrew/include/nlohmann/detail/meta/is_sax.hpp \
+  /opt/homebrew/include/nlohmann/detail/meta/std_fs.hpp \
+  /opt/homebrew/include/nlohmann/detail/meta/type_traits.hpp \
+  /opt/homebrew/include/nlohmann/detail/meta/void_t.hpp \
+  /opt/homebrew/include/nlohmann/detail/output/binary_writer.hpp \
+  /opt/homebrew/include/nlohmann/detail/output/output_adapters.hpp \
+  /opt/homebrew/include/nlohmann/detail/output/serializer.hpp \
+  /opt/homebrew/include/nlohmann/detail/string_concat.hpp \
+  /opt/homebrew/include/nlohmann/detail/string_escape.hpp \
+  /opt/homebrew/include/nlohmann/detail/string_utils.hpp \
+  /opt/homebrew/include/nlohmann/detail/value_t.hpp \
+  /opt/homebrew/include/nlohmann/json.hpp \
+  /opt/homebrew/include/nlohmann/json_fwd.hpp \
+  /opt/homebrew/include/nlohmann/ordered_map.hpp \
+  /opt/homebrew/include/nlohmann/thirdparty/hedley/hedley.hpp \
+  /opt/homebrew/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+  /opt/homebrew/opt/boost/include/boost/assert.hpp \
+  /opt/homebrew/opt/boost/include/boost/assert/source_location.hpp \
+  /opt/homebrew/opt/boost/include/boost/config.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/compiler/clang.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/compiler/clang_version.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/detail/cxx_composite.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/detail/posix_features.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/detail/select_compiler_config.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/detail/select_platform_config.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/detail/select_stdlib_config.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/detail/suffix.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/helper_macros.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/no_tr1/cmath.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/platform/macos.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/stdlib/libcpp.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/user.hpp \
+  /opt/homebrew/opt/boost/include/boost/config/workaround.hpp \
+  /opt/homebrew/opt/boost/include/boost/core/bit.hpp \
+  /opt/homebrew/opt/boost/include/boost/core/cmath.hpp \
+  /opt/homebrew/opt/boost/include/boost/core/enable_if.hpp \
+  /opt/homebrew/opt/boost/include/boost/cstdint.hpp \
+  /opt/homebrew/opt/boost/include/boost/detail/workaround.hpp \
+  /opt/homebrew/opt/boost/include/boost/exception/exception.hpp \
+  /opt/homebrew/opt/boost/include/boost/integer.hpp \
+  /opt/homebrew/opt/boost/include/boost/integer/integer_log2.hpp \
+  /opt/homebrew/opt/boost/include/boost/integer/integer_mask.hpp \
+  /opt/homebrew/opt/boost/include/boost/integer/static_log2.hpp \
+  /opt/homebrew/opt/boost/include/boost/integer_fwd.hpp \
+  /opt/homebrew/opt/boost/include/boost/integer_traits.hpp \
+  /opt/homebrew/opt/boost/include/boost/io/ios_state.hpp \
+  /opt/homebrew/opt/boost/include/boost/io_fwd.hpp \
+  /opt/homebrew/opt/boost/include/boost/limits.hpp \
+  /opt/homebrew/opt/boost/include/boost/random.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/additive_combine.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/bernoulli_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/beta_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/binomial_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/cauchy_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/chi_squared_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/config.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/const_mod.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/disable_warnings.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/enable_warnings.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/generator_bits.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/generator_seed_seq.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/int_float_pair.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/integer_log2.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/large_arithmetic.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/mixmax_skip_N17.ipp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/operators.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/polynomial.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/ptr_helper.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/seed.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/seed_impl.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/signed_unsigned_tools.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/size.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/uniform_int_float.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/vector_io.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/detail/xoshiro_base.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/discard_block.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/discrete_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/exponential_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/extreme_value_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/fisher_f_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/gamma_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/generalized_inverse_gaussian_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/generate_canonical.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/geometric_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/hyperexponential_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/independent_bits.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/inverse_gaussian_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/inversive_congruential.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/lagged_fibonacci.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/laplace_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/linear_congruential.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/linear_feedback_shift.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/lognormal_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/mersenne_twister.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/mixmax.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/negative_binomial_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/non_central_chi_squared_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/normal_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/piecewise_constant_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/piecewise_linear_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/poisson_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/random_number_generator.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/ranlux.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/seed_seq.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/shuffle_order.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/shuffle_output.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/splitmix64.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/student_t_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/subtract_with_carry.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/taus88.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/traits.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/triangle_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/uniform_01.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/uniform_int.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/uniform_int_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/uniform_on_sphere.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/uniform_real.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/uniform_real_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/uniform_smallint.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/variate_generator.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/weibull_distribution.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/xor_combine.hpp \
+  /opt/homebrew/opt/boost/include/boost/random/xoshiro.hpp \
+  /opt/homebrew/opt/boost/include/boost/static_assert.hpp \
+  /opt/homebrew/opt/boost/include/boost/throw_exception.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/add_const.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/add_reference.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/add_rvalue_reference.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/add_volatile.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/conditional.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/declval.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/detail/config.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/detail/has_prefix_operator.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/detail/is_function_cxx_11.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/detail/yes_no_type.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/has_pre_increment.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/integral_constant.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/intrinsics.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_arithmetic.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_array.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_complete.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_const.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_convertible.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_enum.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_floating_point.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_function.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_integral.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_lvalue_reference.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_reference.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_rvalue_reference.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_same.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_signed.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_unsigned.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_void.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/is_volatile.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/make_unsigned.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/make_void.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/remove_cv.hpp \
+  /opt/homebrew/opt/boost/include/boost/type_traits/remove_reference.hpp \
+  /opt/homebrew/opt/boost/include/boost/utility/enable_if.hpp \
+  /opt/homebrew/opt/boost/include/boost/version.hpp \
+  /opt/homebrew/opt/libpqxx/include/pqxx/array.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/binarystring.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/blob.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/composite.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/config-public-compiler.h \
+  /opt/homebrew/opt/libpqxx/include/pqxx/connection.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/cursor.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/dbtransaction.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/errorhandler.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/except.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/field.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/array-composite.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/callgate.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/concat.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/conversions.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/encoding_group.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/encodings.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/gates/connection-stream_from.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/header-post.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/header-pre.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/ignore-deprecated-post.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/ignore-deprecated-pre.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/libpq-forward.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/result_iter.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/result_iterator.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/sql_cursor.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/statement_parameters.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/stream_iterator.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/stream_query.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/internal/stream_query_impl.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/isolation.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/largeobject.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/nontransaction.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/notification.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/params.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/pipeline.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/pqxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/prepared_statement.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/range.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/result.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/robusttransaction.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/row.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/separated_list.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/strconv.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/stream_from.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/stream_to.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/subtransaction.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/time.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/transaction.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/transaction_base.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/transaction_focus.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/transactor.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/types.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/util.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/version.hxx \
+  /opt/homebrew/opt/libpqxx/include/pqxx/zview.hxx \
   /usr/local/include/emp-ot/co.h \
   /usr/local/include/emp-ot/cot.h \
   /usr/local/include/emp-ot/emp-ot.h \
@@ -1117,8 +1417,6 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
 
 /usr/local/include/emp-tool/utils/ccrh.h:
 
-/usr/local/include/emp-tool/utils/block.h:
-
 /usr/local/include/emp-tool/utils/aes_opt.h:
 
 /usr/local/include/emp-tool/io/net_io_channel.h:
@@ -1131,15 +1429,11 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
 
 /usr/local/include/emp-tool/circuits/float32.h:
 
-/usr/local/include/emp-tool/circuits/comparable.h:
-
 /usr/local/include/emp-tool/circuits/bit.hpp:
 
 /usr/local/include/emp-tool/circuits/aes_128_ctr.h:
 
 /usr/local/include/emp-ot/ot.h:
-
-/usr/local/include/emp-ot/np.h:
 
 /usr/local/include/emp-ot/iknp.h:
 
@@ -1155,35 +1449,239 @@ test/CMakeFiles/test_qplan.dir/qplan.cpp.o: test/qplan.cpp \
 
 /usr/local/include/emp-ot/co.h:
 
-/opt/homebrew/opt/openssl/include/openssl/safestack.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/version.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/params.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/util.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/opensslconf.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/transactor.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/objectserr.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/transaction_focus.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/obj_mac.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/subtransaction.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/macros.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/stream_from.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/indicator.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/robusttransaction.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/evp.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/result.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/ecerr.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/notification.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/ec.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/nontransaction.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/cryptoerr_legacy.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/stream_query_impl.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/crypto.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/stream_iterator.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/core_dispatch.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/statement_parameters.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/bioerr.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/result_iter.hxx:
 
-/opt/homebrew/opt/openssl/include/openssl/bio.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/ignore-deprecated-pre.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/header-pre.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/gates/connection-stream_from.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/field.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/except.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/errorhandler.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/range.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/cursor.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/connection.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/config-public-compiler.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/array.hxx:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_void.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_function.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_enum.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_convertible.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_complete.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/detail/is_function_cxx_11.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/detail/config.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/declval.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/add_volatile.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/add_rvalue_reference.hpp:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/add_reference.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/variate_generator.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/uniform_real.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/uniform_01.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/splitmix64.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/ranlux.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/poisson_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/piecewise_linear_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/piecewise_constant_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/non_central_chi_squared_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/negative_binomial_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/inverse_gaussian_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/generalized_inverse_gaussian_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/fisher_f_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/version.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/discrete_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/uniform_int_float.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/size.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/signed_unsigned_tools.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/seed.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/integer_log2.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/generator_bits.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/enable_warnings.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/const_mod.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/generate_canonical.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/config.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/cauchy_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/binomial_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/additive_combine.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random.hpp:
+
+/opt/homebrew/opt/boost/include/boost/limits.hpp:
+
+/opt/homebrew/opt/boost/include/boost/io_fwd.hpp:
+
+/opt/homebrew/opt/boost/include/boost/integer_traits.hpp:
+
+/opt/homebrew/opt/boost/include/boost/integer/integer_mask.hpp:
+
+/opt/homebrew/opt/boost/include/boost/exception/exception.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/polynomial.hpp:
+
+/opt/homebrew/opt/boost/include/boost/detail/workaround.hpp:
+
+/opt/homebrew/opt/boost/include/boost/cstdint.hpp:
+
+/opt/homebrew/opt/boost/include/boost/core/bit.hpp:
+
+/opt/homebrew/opt/boost/include/boost/config/helper_macros.hpp:
+
+/opt/homebrew/opt/boost/include/boost/config/detail/suffix.hpp:
+
+/usr/local/include/emp-tool/utils/block.h:
+
+/opt/homebrew/opt/boost/include/boost/config/detail/select_compiler_config.hpp:
+
+/opt/homebrew/opt/boost/include/boost/config/detail/posix_features.hpp:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/stream_to.hxx:
+
+/opt/homebrew/include/nlohmann/thirdparty/hedley/hedley.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/normal_distribution.hpp:
+
+/opt/homebrew/include/nlohmann/json_fwd.hpp:
+
+/opt/homebrew/include/nlohmann/detail/string_utils.hpp:
+
+/opt/homebrew/include/nlohmann/detail/string_concat.hpp:
+
+/opt/homebrew/include/nlohmann/detail/output/serializer.hpp:
+
+/opt/homebrew/include/nlohmann/detail/output/output_adapters.hpp:
+
+/opt/homebrew/include/nlohmann/detail/meta/is_sax.hpp:
+
+/opt/homebrew/include/nlohmann/detail/meta/cpp_future.hpp:
+
+/opt/homebrew/include/nlohmann/detail/meta/call_std/begin.hpp:
+
+/opt/homebrew/include/nlohmann/detail/macro_unscope.hpp:
+
+/opt/homebrew/include/nlohmann/detail/iterators/primitive_iterator.hpp:
+
+/opt/homebrew/include/nlohmann/detail/input/parser.hpp:
+
+/opt/homebrew/include/nlohmann/detail/input/json_sax.hpp:
+
+/opt/homebrew/include/nlohmann/detail/input/input_adapters.hpp:
+
+/opt/homebrew/include/nlohmann/detail/hash.hpp:
+
+/opt/homebrew/include/nlohmann/detail/exceptions.hpp:
+
+/opt/homebrew/include/nlohmann/detail/conversions/to_chars.hpp:
+
+/opt/homebrew/include/nlohmann/detail/conversions/from_json.hpp:
+
+/opt/homebrew/include/nlohmann/adl_serializer.hpp:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/params.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/opensslv.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/opensslconf.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/objectserr.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/indicator.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/ecerr.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/ec.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/symhacks.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/cryptoerr_legacy.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/cryptoerr.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_same.hpp:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/crypto.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/core_dispatch.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/bn.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/bioerr.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/bio.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/asn1.h:
 
 emp-sh2pc/sh_party.h:
 
@@ -1193,9 +1691,19 @@ emp-sh2pc/semihonest.h:
 
 core/plan_node.hpp:
 
+core/parser/parser.hpp:
+
+core/op_filter.hpp:
+
+core/op_equijoin_syscat.hpp:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/objects.h:
+
 core/_op_unary.hpp:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h:
+
+/opt/homebrew/include/nlohmann/detail/json_pointer.hpp:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h:
 
@@ -1215,11 +1723,15 @@ core/_op_unary.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_ctype.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/pqxx:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/wchar.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/unistd.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/types.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/sql_cursor.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/syslimits.h:
 
@@ -1241,6 +1753,8 @@ emp-sh2pc/emp-sh2pc.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_useconds_t.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/conversions.hxx:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int8_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int32_t.h:
@@ -1252,6 +1766,8 @@ emp-sh2pc/emp-sh2pc.h:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_timeval.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_time_t.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/macros.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_suseconds_t.h:
 
@@ -1267,15 +1783,17 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_sa_family_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_rune_t.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_rsize_t.h:
+
+/opt/homebrew/include/nlohmann/detail/input/position_t.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_posix_vdisable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_null.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_nlink_t.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/configuration.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_mode_t.h:
 
@@ -1290,6 +1808,8 @@ core/relation.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_intptr_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int8_t.h:
+
+/opt/homebrew/opt/boost/include/boost/random/exponential_distribution.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_int64_t.h:
 
@@ -1307,9 +1827,9 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_copy.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_clr.h:
+core/dpoptimizer.hpp:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_errno_t.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_clr.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_dev_t.h:
 
@@ -1329,6 +1849,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_t.h:
 
+/opt/homebrew/include/nlohmann/detail/input/lexer.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_rwlockattr_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_rwlock_t.h:
@@ -1340,6 +1862,8 @@ core/relation.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_mutex_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_pthread/_pthread_attr_t.h:
+
+/opt/homebrew/opt/boost/include/boost/random/bernoulli_distribution.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_ct_rune_t.h:
 
@@ -1353,9 +1877,13 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/string.h:
 
+/opt/homebrew/opt/boost/include/boost/random/detail/int_float_pair.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/runetype.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pthread/qos.h:
+/opt/homebrew/opt/boost/include/boost/random/independent_bits.hpp:
+
+/opt/homebrew/include/nlohmann/detail/meta/type_traits.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pthread/pthread_impl.h:
 
@@ -1369,8 +1897,6 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/net/net_kev.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/math.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/malloc/_ptrcheck.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_stdlib.h:
@@ -1379,6 +1905,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/malloc/_malloc.h:
 
+/opt/homebrew/opt/boost/include/boost/random/detail/ptr_helper.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/signal.h:
@@ -1386,6 +1914,8 @@ core/relation.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/limits.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/endian.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/integral_constant.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/machine/_types.h:
 
@@ -1397,13 +1927,17 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/gethostuuid.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h:
+/opt/homebrew/opt/boost/include/boost/random/seed_seq.hpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/fcntl.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wctype.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/wchar.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/version:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/valarray:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/mach/machine/_structs.h:
 
@@ -1413,7 +1947,13 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/type_traits:
 
+/opt/homebrew/opt/boost/include/boost/type_traits/detail/has_prefix_operator.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/tuple:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/transaction.hxx:
+
+/opt/homebrew/include/nlohmann/detail/string_escape.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/thread:
 
@@ -1427,11 +1967,15 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/sstream:
 
-/opt/homebrew/opt/openssl/include/openssl/asn1.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/span:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/set:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ratio:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_rune_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ranges:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/random:
 
@@ -1445,8 +1989,6 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/math.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/locale.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/locale:
@@ -1454,6 +1996,8 @@ core/relation.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/limits:
+
+/opt/homebrew/opt/boost/include/boost/core/enable_if.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iterator:
 
@@ -1463,61 +2007,83 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/future:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_stable_sort.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/fstream:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/forward_list:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/filesystem:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwchar:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/sift_down.h:
+/usr/local/include/emp-tool/io/io_channel.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstring:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctime:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdlib:
 
 /usr/local/include/emp-tool/circuits/swappable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdio:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdint:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstddef:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdarg:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/condition_variable:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/tables.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/climits:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/concepts:
+/opt/homebrew/opt/boost/include/boost/type_traits/make_unsigned.hpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ciso646:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/chrono:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/charconv:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/errno.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cassert:
 
+/opt/homebrew/include/nlohmann/detail/iterators/internal_iterator.hpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/atomic:
+
+/usr/local/include/emp-tool/circuits/comparable.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/any:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__variant/monostate.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/common_reference.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/to_underlying.h:
-
-/opt/homebrew/opt/openssl/include/openssl/bn.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/terminate_on_exception.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/priority_tag.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/piecewise_construct.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/forward_like.h:
+/opt/homebrew/opt/boost/include/boost/static_assert.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_const_ref.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/forward.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/declval.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/transform.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/convert_to_integral.h:
+
+/opt/homebrew/opt/boost/include/boost/random/gamma_distribution.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_none_of.h:
 
@@ -1543,6 +2109,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_reference.h:
 
+/opt/homebrew/include/nlohmann/detail/abi_macros.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_cvref.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_cv.h:
@@ -1564,6 +2132,8 @@ core/relation.hpp:
 /usr/local/include/emp-tool/utils/aes.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_remove_if.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_const_lvalue_ref.h:
 
@@ -1621,6 +2191,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_lvalue_reference.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/from_chars_integral.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_convertible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_is_heap.h:
@@ -1641,6 +2213,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_reference.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/header-post.hxx:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_empty.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/queue:
@@ -1657,7 +2231,13 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_convertible.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/pipeline.hxx:
+
+/opt/homebrew/opt/boost/include/boost/random/linear_congruential.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_compound.h:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/xoshiro_base.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_class.h:
 
@@ -1675,17 +2255,9 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_unbounded_array.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/zip_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_always_bitcastable.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_out_result.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/fstream.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/contention_t.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/duration.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/unreachable.h:
 
 /usr/local/include/emp-tool/utils/group.h:
 
@@ -1715,17 +2287,15 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/decay.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_set.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/datasizeof.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/path.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/common_type.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctime:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_core_convertible.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/to_underlying.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/common_reference.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/apply_cv.h:
 
@@ -1751,6 +2321,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tree:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/join_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/thread.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h:
@@ -1761,17 +2333,63 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__split_buffer:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/take_while_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/subrange.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/unreachable_sentinel.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/split_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/size.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/aligned_union.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/single_view.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/ref_view.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/limits.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/rbegin.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/non_propagating_cache.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/movable_box.h:
+
+/usr/local/include/emp-ot/np.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/encoding_group.hxx:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/stack.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/istream_view.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/shift_left.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/iota_view.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_min_element.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/from_range.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/addressof.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/filter_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/empty.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/exception:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/minmax_element.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/drop_while_view.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_rotate_copy.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator_destructor.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/counted.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/container_compatible_range.h:
 
@@ -1779,11 +2397,27 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/concepts.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/common_view.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/declval.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/repeat_view.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/compare_strong_order_fallback.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/as_rvalue_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/uniform_random_bit_generator.h:
+
+/opt/homebrew/include/nlohmann/detail/iterators/iterator_traits.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/student_t_distribution.h:
 
+/opt/homebrew/opt/boost/include/boost/random/taus88.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/shuffle_order_engine.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/bnerr.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_final.h:
 
@@ -1793,11 +2427,13 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/this_thread.h:
 
-/opt/homebrew/opt/openssl/include/openssl/symhacks.h:
+/opt/homebrew/opt/boost/include/boost/random/triangle_distribution.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/copy_cv.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/piecewise_constant_distribution.h:
+
+/opt/homebrew/opt/boost/include/boost/config/detail/select_platform_config.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/piecewise_linear_distribution.h:
 
@@ -1807,6 +2443,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/lognormal_distribution.h:
 
+/opt/homebrew/opt/boost/include/boost/random/detail/seed_impl.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/log2.h:
@@ -1814,6 +2452,8 @@ core/relation.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/linear_congruential_engine.h:
 
 /usr/local/include/emp-tool/execution/plain_circ.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/libpq-forward.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/is_valid.h:
 
@@ -1845,6 +2485,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/cauchy_distribution.h:
 
+/opt/homebrew/opt/boost/include/boost/type_traits/is_arithmetic.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/fisher_f_distribution.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/binomial_distribution.h:
@@ -1861,7 +2503,11 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_32_64_or_128_bit.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/owning_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/transform_reduce.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/concat.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint64_t.h:
 
@@ -1869,11 +2515,15 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/transform_inclusive_scan.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/reverse_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/transform_exclusive_scan.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__locale_dir/locale_base_api/bsd_locale_defaults.h:
+/opt/homebrew/opt/boost/include/boost/integer_fwd.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/functional:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__locale_dir/locale_base_api/bsd_locale_defaults.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/reduce.h:
 
@@ -1881,11 +2531,13 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/pstl_reduce.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/errno.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/callgate.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/sfinae_helpers.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__threading_support:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_signed.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars_result.h:
 
@@ -1894,6 +2546,8 @@ core/relation.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/partial_sum.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/iota.h:
+
+/opt/homebrew/opt/boost/include/boost/config/stdlib/libcpp.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h:
 
@@ -1911,11 +2565,17 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mutex/mutex.h:
 
+/opt/homebrew/opt/boost/include/boost/type_traits/is_integral.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mutex/lock_guard.h:
+
+/opt/homebrew/include/nlohmann/detail/macro_scope.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/traits.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/integer_sequence.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/isolation.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/netinet6/in6.h:
 
@@ -1935,6 +2595,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/uninitialized_algorithms.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/composite.hxx:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/temporary_buffer.h:
 
 /usr/local/include/emp-ot/ferret/ferret_cot.hpp:
@@ -1947,11 +2609,15 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_trivially_copyable.h:
 
+/opt/homebrew/include/nlohmann/detail/meta/identity_tag.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/raw_storage_iterator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_u_int64_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/strip_signature.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/intrinsics.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/ranges_uninitialized_algorithms.h:
 
@@ -1963,7 +2629,11 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/ranges_construct_at.h:
 
+/opt/homebrew/include/nlohmann/ordered_map.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/binary_negate.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/all.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_pod.h:
 
@@ -1991,13 +2661,11 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_floating_point.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_rotate_copy.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator_destructor.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/constructible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/uniform_int_distribution.h:
+
+/opt/homebrew/include/nlohmann/detail/conversions/to_json.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/inplace_merge.h:
 
@@ -2005,15 +2673,17 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator.h:
 
+/opt/homebrew/opt/boost/include/boost/random/detail/mixmax_skip_N17.ipp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/mismatch.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/align.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/prepared_statement.hxx:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/string:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/wrap_iter.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/unreachable_sentinel.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/sortable.h:
 
@@ -2027,19 +2697,17 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/segmented_iterator.h:
 
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/e_os2.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_rotate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/readable_traits.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h:
+/opt/homebrew/opt/boost/include/boost/random/extreme_value_distribution.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/view_interface.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/prev.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocation_guard.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ostreambuf_iterator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/move_sentinel.h:
 
@@ -2049,17 +2717,21 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_function.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/permutable.h:
+/opt/homebrew/opt/boost/include/boost/random/uniform_real_distribution.hpp:
 
-/opt/homebrew/opt/openssl/include/openssl/cryptoerr.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/permutable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/move_iterator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/accumulate.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator_with_data.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iterator.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstddef:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/views.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/iter_swap.h:
 
@@ -2075,9 +2747,13 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_callable.h:
 
+/opt/homebrew/opt/boost/include/boost/random/weibull_distribution.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/front_insert_iterator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_extent.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/drop_view.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/half_positive.h:
 
@@ -2106,6 +2782,8 @@ core/relation.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__thread/id.h:
 
 /usr/local/include/emp-tool/io/file_io_channel.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_reference.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/bounded_iter.h:
 
@@ -2137,17 +2815,33 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/sstream.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocation_guard.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/ostreambuf_iterator.h:
+
+/opt/homebrew/opt/boost/include/boost/throw_exception.hpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/math.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/span.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/remove_cv.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/pair.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/ostream.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/istream.h:
 
+/opt/homebrew/include/nlohmann/detail/input/binary_reader.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/reverse_iterator.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fsfilcnt_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/get.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/ignore-deprecated-post.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_void.h:
 
@@ -2163,9 +2857,9 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/perfect_forward.h:
 
-/opt/homebrew/opt/openssl/include/openssl/stack.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/insert_iterator.h:
+
+/opt/homebrew/opt/boost/include/boost/integer/integer_log2.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/operations.h:
 
@@ -2177,17 +2871,25 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/normal_distribution.h:
 
-/opt/homebrew/opt/openssl/include/openssl/evperr.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_clock_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/mem_fn.h:
+
+/opt/homebrew/opt/boost/include/boost/config/detail/cxx_composite.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_default_constructible.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/invoke.h:
 
+/opt/homebrew/opt/boost/include/boost/random/uniform_int.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/function.h:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/operators.hpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/range_adaptor.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/time.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/synth_three_way.h:
 
@@ -2201,11 +2903,13 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/binder2nd.h:
 
-/opt/homebrew/opt/openssl/include/openssl/types.h:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/different_from.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/binder1st.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/make_void.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/bind_front.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bitset:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h:
 
@@ -2231,7 +2935,11 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/format_string.h:
 
+/opt/homebrew/include/nlohmann/detail/meta/call_std/end.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/format_parse_context.h:
+
+/opt/homebrew/include/nlohmann/detail/json_custom_base_class.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/min_max_result.h:
 
@@ -2245,21 +2953,9 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h:
 
-/usr/local/include/emp-tool/io/io_channel.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ctype.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/projected.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_uint16_t.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_equal.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_minmax.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_sort.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/in_place.h:
 
@@ -2270,8 +2966,6 @@ core/relation.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/compare_weak_order_fallback.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/terminate.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdint:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/exception_ptr.h:
 
@@ -2293,15 +2987,15 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__debug_utils/strict_weak_ordering_check.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstring:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/sift_down.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/fence.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__debug_utils/randomize_range.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_move_backward.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/compare:
+/opt/homebrew/opt/boost/include/boost/type_traits/conditional.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/swappable.h:
 
@@ -2309,15 +3003,11 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/semiregular.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_move_constructible.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/result_of.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cctype:
+/opt/homebrew/opt/boost/include/boost/io/ios_state.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/relation.h:
+
+/opt/homebrew/opt/boost/include/boost/random/subtract_with_carry.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_iterator_concept.h:
 
@@ -2337,9 +3027,13 @@ core/relation.hpp:
 
 /usr/local/include/emp-ot/cot.h:
 
+/opt/homebrew/opt/boost/include/boost/random/shuffle_output.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/common_with.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/concepts.h:
+
+/opt/homebrew/opt/boost/include/boost/random/mixmax.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/mersenne_twister_engine.h:
 
@@ -2353,13 +3047,13 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/cmp.h:
 
-/opt/homebrew/opt/openssl/include/openssl/bnerr.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/invoke.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_status.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/addressof.h:
+/opt/homebrew/opt/boost/include/boost/integer/static_log2.hpp:
+
+/opt/homebrew/include/nlohmann/json.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/three_way_comparable.h:
 
@@ -2385,6 +3079,8 @@ core/relation.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/compare_three_way.h:
 
+/opt/homebrew/include/nlohmann/detail/iterators/iter_impl.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/find_if_not.h:
 
 emp-sh2pc/sh_gen.h:
@@ -2393,13 +3089,19 @@ emp-sh2pc/sh_gen.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/common_comparison_category.h:
 
-/opt/homebrew/opt/openssl/include/openssl/opensslv.h:
+/opt/homebrew/opt/libpqxx/include/pqxx/dbtransaction.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/rotate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_null_pointer.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/stream_query.hxx:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/to.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month_weekday.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/zview.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month.h:
 
@@ -2407,9 +3109,15 @@ emp-sh2pc/sh_gen.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/ctype.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/elements_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__condition_variable/condition_variable.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/subtract_with_carry_engine.h:
+
+/opt/homebrew/opt/boost/include/boost/random/shuffle_order.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/time_point.h:
 
@@ -2417,15 +3125,19 @@ core/op_idx_equijoin.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/indirectly_comparable.h:
 
+/opt/homebrew/opt/boost/include/boost/random/beta_distribution.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/merge.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_floating_point.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/system_clock.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/rank.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/minmax_element.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/steady_clock.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/shared_mutex:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h:
 
@@ -2447,6 +3159,10 @@ core/op_idx_equijoin.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/literals.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/params.hxx:
+
+/opt/homebrew/opt/boost/include/boost/config.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/width_estimation_table.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_implicitly_default_constructible.h:
@@ -2455,11 +3171,25 @@ core/op_idx_equijoin.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/format_error.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/unreachable.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_out_result.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/fstream.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/contention_t.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/duration.h:
+
+/opt/homebrew/opt/boost/include/boost/random/inversive_congruential.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/next_permutation.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__node_handle:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_transform.h:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/large_arithmetic.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/month_weekday.h:
 
@@ -2493,6 +3223,12 @@ core/op_idx_equijoin.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_allocator.h:
 
+/usr/local/include/emp-tool/utils/ThreadPool.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/add_const.hpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator_arg_t.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/directory_entry.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit_reference:
@@ -2519,6 +3255,8 @@ core/op_idx_equijoin.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_destructible.h:
 
+/opt/homebrew/opt/boost/include/boost/random/xor_combine.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/ordering.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/bit_log2.h:
@@ -2533,15 +3271,23 @@ core/op_idx_equijoin.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/endian.h:
 
+/opt/homebrew/opt/boost/include/boost/random/detail/vector_io.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/high_resolution_clock.h:
 
 core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/bit_floor.h:
 
+/opt/homebrew/opt/boost/include/boost/random/lognormal_distribution.hpp:
+
+/opt/homebrew/opt/boost/include/boost/random/chi_squared_distribution.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_remove.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/bit_ceil.h:
+
+/opt/homebrew/opt/boost/include/boost/random/uniform_int_distribution.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/string_view.h:
 
@@ -2553,6 +3299,10 @@ core/op_filter_syscat.hpp:
 
 /usr/local/include/emp-tool/execution/protocol_execution.h:
 
+/opt/homebrew/include/nlohmann/detail/meta/void_t.hpp:
+
+/opt/homebrew/include/nlohmann/byte_container_with_subtype.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/memory_order.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/enable_if.h:
@@ -2562,6 +3312,8 @@ core/op_filter_syscat.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/unary_function.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backend.h:
+
+/opt/homebrew/opt/boost/include/boost/random/lagged_fibonacci.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/regular.h:
 
@@ -2575,7 +3327,11 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/swap_ranges.h:
 
+/opt/homebrew/opt/boost/include/boost/type_traits/is_const.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/check_memory_order.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_array.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_destructible.h:
 
@@ -2586,6 +3342,10 @@ core/op_filter_syscat.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_sync.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/perm_options.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/forward_like.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/from_chars_result.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_lock_free.h:
 
@@ -2603,6 +3363,8 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/upper_bound.h:
 
+/opt/homebrew/opt/boost/include/boost/type_traits/is_rvalue_reference.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/unique.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_wctype.h:
@@ -2619,13 +3381,11 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/access.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/shift_left.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/climits:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_polymorphic.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/blsr.h:
+
+/opt/homebrew/opt/boost/include/boost/config/compiler/clang_version.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/set_symmetric_difference.h:
 
@@ -2639,7 +3399,13 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/locale.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/transform_view.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/lazy_split_view.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/set_intersection.h:
+
+core/op_scanner.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__bit/popcount.h:
 
@@ -2653,8 +3419,6 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__mbstate_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__compare/compare_strong_order_fallback.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/has_unique_object_representation.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/next.h:
@@ -2665,6 +3429,10 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/lazy.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/strconv.hxx:
+
+/opt/homebrew/opt/boost/include/boost/random/hyperexponential_distribution.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/rotate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/find_first_of.h:
@@ -2672,8 +3440,6 @@ core/op_filter_syscat.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/sample.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_fill.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h:
 
 /usr/local/include/emp-ot/ferret/mpcot_reg.h:
 
@@ -2685,9 +3451,15 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/reverse.h:
 
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/asn1err.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/replace_if.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove_copy.h:
+
+/opt/homebrew/opt/boost/include/boost/integer.hpp:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream:
 
@@ -2695,7 +3467,11 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__atomic/atomic_flag.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/result_iterator.hxx:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_copy_n.h:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/obj_mac.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_pid_t.h:
 
@@ -2709,9 +3485,13 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_stable_partition.h:
 
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/safestack.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_merge.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_sort_heap.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/memory_resource:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_constant_evaluated.h:
 
@@ -2735,11 +3515,17 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_search.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/aligned_union.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_off_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_reverse_copy.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/libkern/_OSByteOrder.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cctype:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_nothrow_move_constructible.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/result_of.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_reverse.h:
 
@@ -2748,6 +3534,8 @@ core/op_filter_syscat.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_const.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/temp_value.h:
+
+/opt/homebrew/opt/boost/include/boost/config/detail/select_stdlib_config.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/parser_std_format_spec.h:
 
@@ -2759,13 +3547,15 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/Availability.h:
 
-/opt/homebrew/opt/openssl/include/openssl/objects.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_transform.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_indices.h:
 
+/opt/homebrew/include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/make_heap.h:
+
+/opt/homebrew/opt/boost/include/boost/random/random_number_generator.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/add_volatile.h:
 
@@ -2776,6 +3566,8 @@ core/op_filter_syscat.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_prev_permutation.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/stable_sort.h:
+
+/opt/homebrew/include/nlohmann/detail/iterators/iteration_proxy.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_partition_point.h:
 
@@ -2795,21 +3587,23 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_partition_copy.h:
 
+/opt/homebrew/opt/boost/include/boost/type_traits/is_lvalue_reference.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_search_n.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/statically_widen.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/rend.h:
+
+/opt/homebrew/opt/boost/include/boost/random/student_t_distribution.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/exception.h:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/generator_seed_seq.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_next_permutation.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/find.h:
-
-/usr/local/include/emp-ot/ferret/constants.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/hash.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h:
 
@@ -2818,6 +3612,12 @@ core/op_filter_syscat.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cmath:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/count.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ios:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/compare:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_move_backward.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_find.h:
 
@@ -2829,23 +3629,29 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/bind.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/encodings.hxx:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_locale.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_found_result.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/math.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/take_view.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_make_heap.h:
 
 /usr/local/include/emp-tool/circuits/number.h:
 
+/opt/homebrew/include/nlohmann/detail/meta/detected.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_lower_bound.h:
-
-/usr/local/include/emp-tool/utils/ThreadPool.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory/allocator_arg_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/seed_seq.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_min.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/is_unsigned.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/exchange.h:
 
@@ -2861,13 +3667,13 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__exception/operations.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/terminate_on_exception.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_partial_sort.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/push_heap.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_includes.h:
+
+/opt/homebrew/opt/boost/include/boost/random/laplace_distribution.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_ssize_t.h:
 
@@ -2909,15 +3715,25 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_volatile.h:
 
+/opt/homebrew/include/nlohmann/detail/output/binary_writer.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_remove_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/make_signed.h:
 
+/opt/homebrew/opt/boost/include/boost/random/uniform_on_sphere.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_count_if.h:
+
+/opt/homebrew/opt/boost/include/boost/random/discard_block.hpp:
+
+/opt/homebrew/include/nlohmann/detail/json_ref.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_stdio.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_fun_result.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/remove_reference.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/lexicographical_compare_three_way.h:
 
@@ -2929,11 +3745,15 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_count.h:
 
+/opt/homebrew/opt/boost/include/boost/config/compiler/clang.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_any_of.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_uid_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_clamp.h:
+
+/opt/homebrew/opt/boost/include/boost/random/uniform_smallint.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__string/extern_template_lists.h:
 
@@ -2945,7 +3765,11 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/clamp_to_integral.h:
 
+/opt/homebrew/opt/boost/include/boost/config/workaround.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_binary_search.h:
+
+/opt/homebrew/opt/boost/include/boost/config/user.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_all_of.h:
 
@@ -2953,17 +3777,23 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_copy_if.h:
 
-/opt/homebrew/opt/openssl/include/openssl/asn1err.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/copy_options.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/predicate.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_unique_copy.h:
 
+/opt/homebrew/opt/boost/include/boost/utility/enable_if.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/_types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/data.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/fstream:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_stable_sort.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/blob.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_generate_n.h:
 
@@ -2981,9 +3811,17 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/is_permutation.h:
 
-/opt/homebrew/opt/openssl/include/openssl/e_os2.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__memory_resource/polymorphic_allocator.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cerrno:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_equal.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_minmax.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_sort.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/largeobject.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/remove.h:
 
@@ -2992,8 +3830,6 @@ core/op_filter_syscat.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_fill_n.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__filesystem/file_time_type.h:
-
-/opt/homebrew/opt/openssl/include/openssl/configuration.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__iterator/common_iterator.h:
 
@@ -3009,11 +3845,13 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_literal_type.h:
 
-/opt/homebrew/opt/openssl/include/openssl/core.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_shuffle.h:
 
+/opt/homebrew/opt/boost/include/boost/random/xoshiro.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/subrange.h:
+
+/opt/homebrew/opt/boost/include/boost/assert.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backend.h:
 
@@ -3037,6 +3875,10 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/prev_permutation.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/row.hxx:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/binarystring.hxx:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/year_month_day.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__format/formatter_output.h:
@@ -3053,6 +3895,10 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/enable_view.h:
 
+/opt/homebrew/opt/boost/include/boost/random/traits.hpp:
+
+/opt/homebrew/include/nlohmann/detail/iterators/json_reverse_iterator.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/partition.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/move.h:
@@ -3063,13 +3909,13 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/minmax.h:
 
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/evp.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/hh_mm_ss.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/transaction_base.hxx:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/conjunction.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/binder1st.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/different_from.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_is_sorted_until.h:
 
@@ -3081,17 +3927,19 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/none_of.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cstdlib:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_errno_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_primary_template.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array:
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__ranges/empty_view.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_is_partitioned.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/merge.h:
+
+/usr/local/include/emp-ot/ferret/constants.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/cwctype:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/hash.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/same_as.h:
 
@@ -3101,7 +3949,17 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/max.h:
 
+/opt/homebrew/opt/boost/include/boost/random/mersenne_twister.hpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_fd_set.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/datasizeof.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/chars_format.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/remove_pointer.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/separated_list.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_partition.h:
 
@@ -3113,13 +3971,23 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_remove_copy_if.h:
 
+/opt/homebrew/opt/boost/include/boost/type_traits/is_volatile.hpp:
+
+/opt/homebrew/opt/boost/include/boost/config/platform/macos.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/auto_cast.h:
+
+/opt/homebrew/opt/boost/include/boost/type_traits/has_pre_increment.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars_base_10.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__random/poisson_distribution.h:
 
+/opt/homebrew/opt/boost/include/boost/random/linear_feedback_shift.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/binary_search.h:
+
+/opt/homebrew/opt/boost/include/boost/random/detail/disable_warnings.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_set_union.h:
 
@@ -3129,9 +3997,13 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__tuple/tuple_types.h:
 
+/opt/homebrew/opt/boost/include/boost/assert/source_location.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/comp.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__chrono/weekday.h:
+
+/opt/homebrew/opt/boost/include/boost/config/no_tr1/cmath.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/stable_sort.h:
 
@@ -3145,9 +4017,19 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/memory_resource.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/pthread/qos.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/to_chars_floating_point.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__fwd/array.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/any_of.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/stdexcept:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/array:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_primary_template.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/is_sorted_until.h:
 
@@ -3165,6 +4047,8 @@ core/op_filter_syscat.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/fill.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/list:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__type_traits/is_reference_wrapper.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/sys/_types/_uintptr_t.h:
@@ -3180,6 +4064,8 @@ core/op_filter_syscat.hpp:
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/max_element.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/for_each.h:
+
+/opt/homebrew/include/nlohmann/detail/meta/std_fs.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__utility/is_pointer_in_range.h:
 
@@ -3199,6 +4085,8 @@ core/stats.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_in_result.h:
 
+/opt/homebrew/opt/boost/include/boost/type_traits/detail/yes_no_type.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/equal_range.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/arch.h:
@@ -3207,11 +4095,19 @@ core/stats.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/min_element.h:
 
+/opt/homebrew/opt/libpqxx/include/pqxx/internal/array-composite.hxx:
+
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/evperr.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/copy_backward.h:
+
+/opt/homebrew/opt/libpqxx/include/pqxx/types.hxx:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/any_of.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/sort.h:
+
+/opt/homebrew/opt/boost/include/boost/random/geometric_distribution.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/weak_result_type.h:
 
@@ -3219,13 +4115,13 @@ core/stats.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/is_heap_until.h:
 
+/opt/homebrew/include/nlohmann/detail/value_t.hpp:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__concepts/arithmetic.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__functional/identity.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/in_in_out_result.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/bit:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_mismatch.h:
 
@@ -3247,13 +4143,9 @@ core/_op_binary.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/signal.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/deque:
-
 /usr/local/include/emp-tool/utils/sse2neon.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/_param.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/arm/limits.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/lower_bound.h:
 
@@ -3283,9 +4175,17 @@ core/_op_binary.hpp:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__numeric/midpoint.h:
 
+/opt/homebrew/Cellar/openssl@3/3.5.0/include/openssl/core.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/ranges_find_if_not.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__algorithm/generate_n.h:
+
+/opt/homebrew/opt/boost/include/boost/core/cmath.hpp:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/concepts:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/__charconv/tables.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/_types/_wctrans_t.h:
 

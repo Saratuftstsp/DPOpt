@@ -1,0 +1,25 @@
+{
+ "filter_0": {
+  "name": "filter",
+  "input1": "rel1",
+  "colref1": 1,
+  "filterval": 1,
+  "filterop": "="
+ },
+ "select_0": {
+  "name": "select"
+ },
+ "join_0": {
+  "name": "join",
+  "input1": "rel1",
+  "input2": "rel2",
+  "colref1": 1,
+  "colref2": 1
+ },
+ "rel1_0": {
+  "name": "rel1"
+ },
+ "rel2_0": {
+  "name": "rel2"
+ }
+}

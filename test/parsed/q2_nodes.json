@@ -1,0 +1,15 @@
+{
+ "filter_0": {
+  "name": "filter",
+  "input1": "rel1",
+  "colref1": 1,
+  "filterval": 1,
+  "filterop": "="
+ },
+ "select_0": {
+  "name": "select"
+ },
+ "rel1_0": {
+  "name": "rel1"
+ }
+}

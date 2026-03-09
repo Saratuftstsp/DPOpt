@@ -1,0 +1,31 @@
+Query: select r1.c1, r2.c1 from r1 join r2 on r1.c2=r2.c2 where r1.c3=4 and r2.c3=5
+
+How to get the names of the columns? TargetList field at indentation level 2
+How to get the filters? whereClause at indentation level 2
+How to get join? also fromClause
+
+
+***Changed the directory for the tree output for debuging, so please change it back when done.
+
+## Node details
+plan_json() already iterates through all the nodes in order. Need to add a new parameter to the
+function definition and return statement, that records node details in a dictionary,
+just the few details that the emp/special operators can hold. 
+
+Planner:
+Read from those two files to construct the tree and 
+then push down filters (only heuristic to implement rn)
+
+Optimizer:
+Use cost model to choose between join orders for 2-3-4 joins.
+Use DP statistics in the process
+
+Executor:
+Take tree picked by the optimizer and run the query.
+
+09/05/2025
+Working on the Planner. Main functions to implement/fix/test:
+1. Reading the jsons for the tree and nodes
+2. Recursively build the tree
+3. Push filters down
+

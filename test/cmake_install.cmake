@@ -1,4 +1,4 @@
-# Install script for directory: /Users/saraalam/Projects/SPECIAL/test
+# Install script for directory: /Users/saraalam/Desktop/DPOpt/test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

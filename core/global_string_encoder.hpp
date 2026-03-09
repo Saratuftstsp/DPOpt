@@ -19,7 +19,7 @@ public:
     // Size of dictionary
     size_t size() const;
 
-private:
+
     std::unordered_map<std::string, uint32_t> forward_;
     std::vector<std::string> reverse_;
     bool frozen_ = false;

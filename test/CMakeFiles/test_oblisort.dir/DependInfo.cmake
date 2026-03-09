@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/saraalam/Projects/SPECIAL/test/oblisort.cpp" "test/CMakeFiles/test_oblisort.dir/oblisort.cpp.o" "gcc" "test/CMakeFiles/test_oblisort.dir/oblisort.cpp.o.d"
+  "/Users/saraalam/Desktop/DPOpt/test/oblisort.cpp" "test/CMakeFiles/test_oblisort.dir/oblisort.cpp.o" "gcc" "test/CMakeFiles/test_oblisort.dir/oblisort.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
