@@ -34,18 +34,17 @@ public:
     int bob_size;
     GlobalStringEncoder encoder;
     char delimiter;
-    char delimiter;
     
 
     // Constructor takes string by const reference
     ScanOperator(const std::string &filename, int num_cols, int alice_rows, int bob_rows, GlobalStringEncoder &encoder): csvFileName(filename), num_cols(num_cols), alice_size(alice_rows), bob_size(bob_rows), encoder(encoder) {}
-    ScanOperator(const std::string &filename, int num_cols, int alice_rows, int bob_rows, GlobalStringEncoder &encoder): csvFileName(filename), num_cols(num_cols), alice_size(alice_rows), bob_size(bob_rows), encoder(encoder) {}
+
     void execute(SecureRelation &input, const int party)
     {
         operation(input, party);
     }
     std::vector<std::std::string> make_dummy_row(){
-        std::vector<std::std::string> dummy_row;
+        std::vector<std::string> dummy_row;
         for(int i = 0; i < num_cols; i++){
             dummy_row.push_back("0");
         }
@@ -76,8 +75,6 @@ public:
         std::string token;
         std::vector<int> schema;
 
-        while (std::getline(ss, token, delimiter))
-        {   //std::cout << token << "\n";
         while (std::getline(ss, token, delimiter))
         {   //std::cout << token << "\n";
             DataType token_type = detectType(token);
@@ -118,43 +115,17 @@ public:
             return;
         }
         std::string line;
-        // ----- Read and parse column headers -----
-        /*/*if (std::getline(file, line))
-        {
-            std::stringstream ss(line);
-            std::string token;*/
-            std::string token;*/
-
-            /*/*while (std::getline(ss, token, ','))
-            {
-                combinedData.col_names.push_back(token);
-            }
-
-            //sanity check - print out column names extracted from csv
-            std::cout << "Column names:\n";
-            for (const auto& col : combinedData.col_names)
-                std::cout << col << std::endl;*/*/
-
-            //detect data types from first 2 (can replace this with some n later, depending on the data size) rows
-            int num_rows_to_infer_types_from = 1;
-            int num_rows_to_infer_types_from = 1;
-            int i = 0;
-            std::vector<int> schema;
-            while (std::getline(file, line) && i < num_rows_to_infer_types_from){
-                schema = inferSchema(line);
-                i++;
-            }
-            combinedData.col_types = schema;
-
-        ////}
-        file.close();
-
-        if (combinedData.col_types.size() != num_cols) {
-                std::cerr << "Schema mismatch: expected " << num_cols << " got "
-              << combinedData.col_types.size() << std::endl;
-                exit(1);
+            
+        int num_rows_to_infer_types_from = 1;
+        int i = 0;
+        std::vector<int> schema;
+        while (std::getline(file, line) && i < num_rows_to_infer_types_from){
+            schema = inferSchema(line);
+            i++;
         }
+        combinedData.col_types = schema;
 
+        file.close();
 
         if (combinedData.col_types.size() != num_cols) {
                 std::cerr << "Schema mismatch: expected " << num_cols << " got "
@@ -184,7 +155,7 @@ public:
         return Integer(64, signed_bits, party);
     }
 
-    Integer convert_cell_to_int(std::string cell, int col_type, int party){
+
     Integer convert_cell_to_int(std::string cell, int col_type, int party){
         
         switch (col_type){
@@ -242,16 +213,8 @@ protected:
         
          // 1. READ & ISOLATE
         std::vector<std::vector<std::string>> local_data;
-         // 1. READ & ISOLATE
-        std::vector<std::vector<std::string>> local_data;
         std::string line;
         
-        //std::getline(file, line); // ignore header
-        while (std::getline(file, line))
-        {   //std::cout << "Raw line: \n" << line << "\n";
-        
-        //std::getline(file, line); // ignore header
-        // hardcode number of rows to read to control scale
         int num_rows_to_read = alice_size; //alice_size == bob_size so this is okay
         int num_rows_read = 0;
         while (std::getline(file, line) && num_rows_read < num_rows_to_read)
@@ -260,14 +223,7 @@ protected:
             std::string cell;
             std::vector<std::string> parsed_row;
             while (std::getline(ss, cell, delimiter))
-            std::vector<std::string> parsed_row;
-            while (std::getline(ss, cell, delimiter))
             {  
-                //std::cout << cell << "\n";
-                parsed_row.push_back(cell);
-            }
-            local_data.push_back(parsed_row);
-        }
                 //std::cout << cell << "\n";
                 parsed_row.push_back(cell);
             }
@@ -324,61 +280,10 @@ protected:
             combinedData.flags.push_back(emp::Integer(1, 0, ALICE) + emp::Integer(1, 1, BOB));
     }
     
-}
-};
-
-
-        // Track how many actual rows were read from the CSV before we pad with dummies
-        int num_real_rows = local_data.size();
-
-        // 3. SYNCHRONIZE
-        
-        // --- Phase A: Alice's Inputs ---
-        for (int i = 0; i < alice_size; i++) {
-            for (int col_idx = 0; col_idx < num_cols; col_idx++) {
-                Integer alice_val, bob_val;
-                int bit_width = (combinedData.col_types[col_idx] == 2) ? 64 : 32;
-                
-                if (party == ALICE) {
-                    alice_val = convert_cell_to_int(local_data[i][col_idx], combinedData.col_types[col_idx], ALICE);
-                    bob_val = Integer(bit_width, 0, BOB);
-                } else { // BOB
-                    alice_val = Integer(bit_width, 0, ALICE);
-                    bob_val = Integer(bit_width, 0, BOB);
-                }
-                
-                Integer ss_val = alice_val + bob_val;
-                combinedData.columns[col_idx].push_back(ss_val);
-            }
-            
-            // --- NEW: Add the Row Flag ---
-            combinedData.flags.push_back(emp::Integer(1, 0, ALICE) + emp::Integer(1, 1, BOB));
-        }
-
-        // --- Phase B: Bob's Inputs ---
-        for (int i = 0; i < bob_size; i++) {
-            for (int col_idx = 0; col_idx < num_cols; col_idx++) {
-                Integer alice_val, bob_val;
-                int bit_width = (combinedData.col_types[col_idx] == 2) ? 64 : 32;
-                
-                if (party == BOB) {
-                    alice_val = Integer(bit_width, 0, ALICE);
-                    bob_val = convert_cell_to_int(local_data[i][col_idx], combinedData.col_types[col_idx], BOB);
-                } else { // ALICE
-                    alice_val = Integer(bit_width, 0, ALICE);
-                    bob_val = Integer(bit_width, 0, BOB);
-                }
-                
-                Integer ss_val = alice_val + bob_val;
-                combinedData.columns[col_idx].push_back(ss_val);
-            }
-
-            combinedData.flags.push_back(emp::Integer(1, 0, ALICE) + emp::Integer(1, 1, BOB));
-        }
-    
     }
 
-};
+}
+;
 
 
 #endif // SCAN_OPERATOR_HPP

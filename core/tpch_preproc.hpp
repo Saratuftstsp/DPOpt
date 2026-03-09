@@ -150,9 +150,9 @@ public:
         for(int i = 0; i < 8; i++){
             std::string relname = tpch_tables[i];
             std::cout << "Relation name: " << relname << std::endl;
-            std::string fname1 = "tpch_data/bob_" +relname +".csv";
+            std::string fname1 = "/Users/saraalam/Desktop/DPOpt_broken/tpch_data/bob_" +relname +".csv";
             read_csv(fname1);
-            std::string fname2 = "tpch_data/alice_" + relname +".csv";
+            std::string fname2 = "/Users/saraalam/Desktop/DPOpt_broken/tpch_data/alice_" + relname +".csv";
             read_csv(fname2);
         }
 

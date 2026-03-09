@@ -1,5 +1,0 @@
-connected
-Time taken to scan relations: 43 ms
-Runtime for individual operator 2 ms
-Runtime for individual operator 2 ms
-Runtime for individual operator 49 ms
