@@ -33,7 +33,7 @@ public:
     int alice_size;
     int bob_size;
     GlobalStringEncoder encoder;
-    char delimiter;
+    char delimiter = '|';
     
 
     // Constructor takes string by const reference
@@ -43,7 +43,7 @@ public:
     {
         operation(input, party);
     }
-    std::vector<std::std::string> make_dummy_row(){
+    std::vector<std::string> make_dummy_row(){
         std::vector<std::string> dummy_row;
         for(int i = 0; i < num_cols; i++){
             dummy_row.push_back("0");
@@ -73,7 +73,6 @@ public:
         std::vector<int> schema;
         std::stringstream ss(line);
         std::string token;
-        std::vector<int> schema;
 
         while (std::getline(ss, token, delimiter))
         {   //std::cout << token << "\n";
@@ -137,7 +136,6 @@ public:
     double parseDouble(const std::string& token){
         size_t pos;
         double value = std::stod(token, &pos);
-        //std::cout << value << std::endl;
 
         if (pos != token.size())
             throw std::runtime_error("Invalid floating-point value: " + token);
@@ -161,32 +159,15 @@ public:
         switch (col_type){
             case 0:
                 return Integer(1, std::stoi(cell), party); // or whatever boolean logic
-            case 0:
-                return Integer(1, std::stoi(cell), party); // or whatever boolean logic
             case 1:
                 //int conversion
-                //read string "cell" as an int and then create emp Integer with it
-                
-                //std::cout << cell << "\n";
-                //return Integer(32,std::stoi(cell),party);
-                return Integer(32,0,party);
+                return Integer(32,parseDouble(cell),party);
             case 2:
-                
-                //std::cout << cell << "\n";
-                return Integer(32,std::stoi(cell),party);
+                return doubleToInteger(parseDouble(cell),party);
                 //return Integer(32,0,party);
-            case 2:
-                //float conversion
-                return doubleToInteger(parseDouble(cell), party);
-            case 3:
             case 3:
                 //string conversion
-                //std::cout << "Here for string\n";
-                //std::cout << cell << "\n";
-                //std::cout << cell << "\n";
-                int mapping = encoder.encode(cell);
-                //std::cout << mapping << "\n";
-                int mapping = encoder.forward_[cell];
+                int mapping = 0; //encoder.forward_[cell];
                 return Integer(32, mapping, party);
         }
 
@@ -254,7 +235,7 @@ protected:
                 Integer ss_val = alice_val + bob_val;
                 combinedData.columns[col_idx].push_back(ss_val);
             }
-            
+            std::cout << "Read a row successfully.\n";
             // --- NEW: Add the Row Flag ---
             combinedData.flags.push_back(emp::Integer(1, 0, ALICE) + emp::Integer(1, 1, BOB));
         }
@@ -279,6 +260,7 @@ protected:
 
             combinedData.flags.push_back(emp::Integer(1, 0, ALICE) + emp::Integer(1, 1, BOB));
     }
+    std::cout << "Read a table completely.\n";
     
     }
 

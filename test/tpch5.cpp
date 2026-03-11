@@ -20,11 +20,12 @@
 //#include "core/planner.hpp"
 #include "core/costModel.hpp"
 #include "core/global_string_encoder.hpp"
+#include "core/tpch_preproc.hpp"
 #include <tuple>
 
 using namespace emp;
 
-#define NUM_OF_ROWS 20
+#define NUM_OF_ROWS 1
 
 void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_rows, std::vector<int> bob_rows, std::map<string, SecureRelation*> &rels_dict, GlobalStringEncoder &encoder){
     std::vector<std::string> tpch_tables = {
@@ -45,6 +46,7 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
         ScanOperator s = ScanOperator(fname, num_cols[i], alice_rows[i], bob_rows[i], encoder);
         s.delimiter = '|';
         s.execute(*rels_dict[relname], party); // get histogram also, non-emp
+        std::cout << "Scanned table index " << i << endl;
         //rels_dict[relname]->print_relation("Testing Scanner: \n");
     }
    
@@ -221,6 +223,11 @@ int main(int argc, char** argv) {
         rels_dict[tpch_tables[i]] = new SecureRelation(tpch_numcols[i], 0);
     }
         
+    if(party==ALICE){
+        PreProc preprocessor;
+        preprocessor.create_public_mapping();
+    }
+    
     GlobalStringEncoder encoder;
     get_relations(party, tpch_numcols, alice_rows, bob_rows, rels_dict, encoder);
     
@@ -237,7 +244,7 @@ int main(int argc, char** argv) {
 
     // previous ops
     //std::cout << "Q1 Oblivious run: " << endl;
-    q1_prev_ops(rels_dict, encoder);
+    //q1_prev_ops(rels_dict, encoder);
   
     io->flush();
 
