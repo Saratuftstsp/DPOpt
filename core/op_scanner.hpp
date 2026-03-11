@@ -161,13 +161,13 @@ public:
                 return Integer(1, std::stoi(cell), party); // or whatever boolean logic
             case 1:
                 //int conversion
-                return Integer(32,parseDouble(cell),party);
+                return Integer(32,std::stoi(cell),party);
             case 2:
                 return doubleToInteger(parseDouble(cell),party);
                 //return Integer(32,0,party);
             case 3:
                 //string conversion
-                int mapping = 0; //encoder.forward_[cell];
+                int mapping = encoder.forward_[cell];
                 return Integer(32, mapping, party);
         }
 
@@ -226,6 +226,7 @@ protected:
                 
                 if (party == ALICE) {
                     alice_val = convert_cell_to_int(local_data[i][col_idx], combinedData.col_types[col_idx], ALICE);
+                    std::cout << "Converted a cell.\n";
                     bob_val = Integer(bit_width, 0, BOB);
                 } else { // BOB
                     alice_val = Integer(bit_width, 0, ALICE);
@@ -235,7 +236,7 @@ protected:
                 Integer ss_val = alice_val + bob_val;
                 combinedData.columns[col_idx].push_back(ss_val);
             }
-            std::cout << "Read a row successfully.\n";
+            
             // --- NEW: Add the Row Flag ---
             combinedData.flags.push_back(emp::Integer(1, 0, ALICE) + emp::Integer(1, 1, BOB));
         }
@@ -260,7 +261,7 @@ protected:
 
             combinedData.flags.push_back(emp::Integer(1, 0, ALICE) + emp::Integer(1, 1, BOB));
     }
-    std::cout << "Read a table completely.\n";
+   
     
     }
 
