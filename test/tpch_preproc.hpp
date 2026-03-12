@@ -171,16 +171,17 @@ public:
         for(int i = 0; i < 8; i++){
             std::string relname = tpch_tables[i];
             std::cout << "Relation name: " << relname << std::endl;
-            std::string fname1 = "/Users/saraalam/Desktop/DPOpt/tpch_data/bob_" +relname +".csv";
+            std::string fname1 = "./tpch_data/bob_" +relname +".csv";
             read_csv(fname1);
-            std::string fname2 = "/Users/saraalam/Desktop/DPOpt/tpch_data/alice_" + relname +".csv";
+            std::string fname2 = "./tpch_data/alice_" + relname +".csv";
             read_csv(fname2);
         }
 
         // write the mapping to another csv
         // std::ofstream creates the file if it doesn't exist by default.
         // std::ios::app ensures new data is added to the end.
-        std::ofstream file(encoded_filename, std::ios::app);
+        std::ofstream file(encoded_filename);
+        // std::ofstream file(encoded_filename, std::ios::app);
         // Check if the file was opened successfully
         if (!file) {
             std::cerr << "Error opening file: " << encoded_filename << std::endl;

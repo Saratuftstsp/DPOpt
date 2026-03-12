@@ -14,8 +14,12 @@ After you have installed dependencies, switch to the root directory of SPECIAL a
 2. `make`
 
 ### Test
-* IF you want to test the code, type
+* IF you want to test the code, you MUST preprocess the tpch data using the command:
 
+   `./bin/preprocess [number of rows]`
+
+* After the data has been preprocessed, you can then run Alice and Bob using the following command:
+   
    `./bin/[binaries] [port number] 1 & ./bin/[binaries] [port number] 2`
 
 * Examples: test filter operator, type
