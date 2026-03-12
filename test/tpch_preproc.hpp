@@ -1,20 +1,35 @@
 #pragma once
 
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <bit>
+#include <cstdint>
 #include <fstream>
 #include <string>
 #include <unordered_map>
 #include <vector>
 #include <stdexcept>
-#include "global_string_encoder.hpp"
+#include "core/global_string_encoder.hpp"
 
-#define NUM_OF_ROWS 10
+using namespace std;
+
+//#define NUM_OF_ROWS 10
+
+enum class DataType{
+    BOOLEAN,
+    INT,
+    FLOAT,
+    STRING
+};
 
 class PreProc {
 public:
     GlobalStringEncoder global_encoder;
-    string encoded_filename = "string_mapping.csv";
+    std::string encoded_filename = "string_mapping.csv";
     char delimiter='|';
+    int num_of_rows = 10;
 
     std::vector<std::string> tpch_tables = {
     "customer",
@@ -26,6 +41,8 @@ public:
     "part",
     "partsupp"
     }; 
+
+    PreProc(int num_rows){num_of_rows=num_rows;}
 
     DataType detectType(const std::string& token)
     {
@@ -136,15 +153,15 @@ public:
         file.close();
 
         //3. For each column, if schema specifies type string, add to mapping
-        std::cout << "Schema size: "; std::cout << schema.size() << endl;
-        std::cout << "Number of columns found: "; std::cout << local_data[0].size() << endl;
+        std::cout << "Schema size: "; std::cout << schema.size() << std::endl;
+        std::cout << "Number of columns found: "; std::cout << local_data[0].size() << std::endl;
         for(int i = 0; i < schema.size(); i++){
             if (schema[i]==3){
                 for(int j = 0; j < local_data.size(); j++){
                     std::string data = local_data[j][i];
                     uint32_t encoding = global_encoder.encode(data);
                 }
-            } std::cout << "Encoded column "; std::cout<< i << endl;
+            } std::cout << "Encoded column "; std::cout<< i << std::endl;
         }
     }
 

@@ -3,7 +3,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-
 #Testing macro
 set(PQXX_PREFIX /opt/homebrew/opt/libpqxx)
 set(PQ_PREFIX /opt/homebrew/opt/libpq)
@@ -27,7 +26,7 @@ macro (add_test_case_with_run _name)
 	add_test(NAME ${_name} COMMAND "./run" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/test_${_name}" WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/")
 endmacro()
 
-
+add_executable(preprocess preprocess.cpp)
 # Test cases
 #add_test_case_with_run(bit)
 #add_test_case_with_run(int)

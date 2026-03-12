@@ -20,7 +20,6 @@
 //#include "core/planner.hpp"
 #include "core/costModel.hpp"
 #include "core/global_string_encoder.hpp"
-#include "core/tpch_preproc.hpp"
 #include <tuple>
 
 using namespace emp;
@@ -332,8 +331,6 @@ int main(int argc, char** argv) {
     }
         
 
-    PreProc preprocessor;
-    preprocessor.create_public_mapping();
     
     GlobalStringEncoder encoder;
     get_public_string_encoding(encoder);
