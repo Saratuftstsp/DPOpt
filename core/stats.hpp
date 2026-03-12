@@ -2,6 +2,7 @@
 #pragma once
 
 struct Stats{
+    int datatype;
     int column_index; //the index of the column for which these statistics are collected
     int num_rows;
     std::vector<float> mcv;

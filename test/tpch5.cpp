@@ -57,27 +57,40 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
     std::cout << "Time taken to scan relations: " << duration_scan << " ms" << std::endl;
 }
 
-void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int party, Stats &s){
-    //1. Make array of all domain values
-    //.  and corresponding array of counts initialized to emp Integer 0
+void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int datatype, int party, Stats &s){
+    //1. Make array of all domain values using emp
     std::vector<int> vals;
     std::vector<Integer> vals_emp;
-    std::vector<Integer> counts; // need to make it a predetermined size
-    for(int i = 0; i < 11; i++){
-        vals.push_back(i);
-        vals_emp.push_back(Integer(32, i, PUBLIC));
-        counts.push_back(Integer(32, 0, ALICE)); // don't know if using just one party is okay or not
+    // std::unordered_set<Integer> vals_emp;
+    // this is not secure, need to collect and pass in the public domain vector
+    for(int i = 0; i < column.size(); i++){
+        if (std::find(vals_emp.begin(), vals_emp.end(), column[i]) == vals_emp.end()) {
+            vals_emp.push_back(column[i]);
+        }  
+    }
+
+    //2. Reveal domain values and put them in a dictionary with emp counts
+    map<int, emp::Integer> counts_dict;
+    Integer alice_count(32, 0, ALICE), Integer bob_count(32, 0, BOB);
+    for(int i = 0; i < vals_emp.size(); i++){
+        int val = vals_emp[i].reveal<int>();
+        Integer count = alice_count + bob_count;
+        counts_dict[val] = count;
     }
 
 
     //2. For each data value, evaluate predicate checking equality with each domain value
     //   and add to count
+    int bit_length = 32;
+    if (datatype==2) { bit_length = 64; }
     for(int i = 0; i < column.size(); i++){
-       for(int j = 0; j < vals.size(); j++){
+       for(const auto& pair : counts_dict){
+            int domain_value_public = pair.first;
+            Integer domain_value_emp = Integer(bit_length, domain_value_public, PUBLIC);
             std::vector<Bit> bit_bool;
-            bit_bool.push_back(column[i].equal(vals_emp[i]));
+            bit_bool.push_back(column[i].equal(domain_value_emp));
             Integer increment = Integer(bit_bool);
-            counts[j] = counts[j] + increment;
+            counts_dict[pair.first] = counts_dict[domain_value_public] + increment;
        }
     }
 
@@ -91,13 +104,13 @@ void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int part
 
 }
 
-void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict, int num_cols, int party, std::map<string, std::vector<Stats>> &noisy_rel_stats){
+void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict, std::map<string, int> num_cols_dict, int party, std::map<string, std::vector<Stats>> &noisy_rel_stats){
     DPOptimizer dpopt;
     for (const auto& pair : rels_dict) {
         const std::string& relname = pair.first;   // the key (string)
         SecureRelation* rel = pair.second;   // the value (pointer)
         //Idea: for each relation, pass in the columns and Stats objects to be populated
-        dpopt.dpanalyze(num_cols, rel->columns, noisy_rel_stats[relname], party);
+        dpopt.dpanalyze(num_cols_dict[relname], rel->columns, noisy_rel_stats[relname], party);
     }
 }
 
@@ -201,13 +214,6 @@ void tpch_q5_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringE
     jNode3->set_previous(*jNode2, 1);
     jNode3->set_previous(*filterNode1, 2);
 
-    EquiJoinOperator* jOp_test = new EquiJoinOperator(0, 0);
-    planNode* jNode1_test = new planNode(jOp_test, testNode2, testNode3, 1);
-    jNode1_test->node_name = "join_1_test";
-    jNode1_test->set_previous(*testNode2, 1);
-    jNode1_test->set_previous(*testNode3, 2);
-
-
 
     //Record runtime
     auto start_time = std::chrono::high_resolution_clock::now();
@@ -223,6 +229,66 @@ void tpch_q5_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringE
     std::vector<string> relnames = {"customer", "orders", "lineitem", "nation"};
     decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
     std::cout << "String Join query runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
+
+}
+
+
+void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncoder encoder, std::map<string, std::vector<int>> schema_dict){
+    planNode *testNode1 = new planNode(rels_dict["customer"]);
+    testNode1->node_name = "rel1";
+    
+
+    planNode *testNode2 = new planNode(rels_dict["orders"]);
+    testNode2->node_name = "rel2";
+    
+    
+    planNode *testNode3 = new planNode(rels_dict["lineitem"]);
+    testNode3->node_name = "rel3";
+    
+
+    planNode *testNode4 = new planNode(rels_dict["nation"]);
+    testNode4->node_name = "rel4";
+
+    string filter_val = "JORDAN";
+    uint32_t id = encoder.encode(filter_val);
+    FilterOperator* filter_op1 = new FilterOperator(1, Integer(32, id, PUBLIC), "eq");
+    planNode *filterNode1 = new planNode(filter_op1, 1);
+    filterNode1->node_name = "filter_1";
+    filterNode1->set_previous(*testNode4, 1);
+
+    EquiJoinOperator* jOp1 = new EquiJoinOperator(0, 1);
+    planNode* jNode1 = new planNode(jOp1, testNode1, testNode2, 1);
+    jNode1->node_name = "join_1";
+    jNode1->set_previous(*testNode1, 1);
+    jNode1->set_previous(*testNode2, 2);
+
+    EquiJoinOperator* jOp2 = new EquiJoinOperator(8, 0);
+    planNode* jNode2 = new planNode(jOp2, jNode1, testNode3, 1);
+    jNode2->node_name = "join_2";
+    jNode2->set_previous(*jNode1, 1);
+    jNode2->set_previous(*testNode3, 2);
+
+    EquiJoinOperator* jOp3 = new EquiJoinOperator(3, 0);
+    planNode* jNode3 = new planNode(jOp3, jNode2, filterNode1, 1);
+    jNode3->node_name = "join_3";
+    jNode3->set_previous(*jNode2, 1);
+    jNode3->set_previous(*filterNode1, 2);
+
+
+    //Record runtime
+    auto start_time = std::chrono::high_resolution_clock::now();
+    SecureRelation* query_output;
+    for(int i= 0; i < 1; i++){
+        query_output = jNode3->get_output();
+    }
+    //(*query_output).print_relation("Testing query output: ");
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
+    auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+    //query_output->print_relation("Decrypted query output:");
+    std::vector<string> relnames = {"customer", "orders", "lineitem", "nation"};
+    decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
+    std::cout << "String Join query runtime dp case: " << duration_us << " micro_sec" << std::endl;
 
 }
 
@@ -323,9 +389,11 @@ int main(int argc, char** argv) {
 
     //3. Get relations
     std::map<string, SecureRelation*> rels_dict;
+    std::map<string, int> num_cols_dict;
     std::map<string, std::vector<int>> schema_dict;
     for(int i =0; i < 8; i++){
         rels_dict[tpch_tables[i]] = new SecureRelation(tpch_numcols[i], 0);
+        num_cols_dict[tpch_tables[i]] = num_cols[i];
         std::vector<int> schema;
         schema_dict[tpch_tables[i]] = schema;
     }
@@ -338,12 +406,12 @@ int main(int argc, char** argv) {
     
 
     //4. Build DP System Catalog (Use DPOptimizer to add noise to counts)
-    /*std::map<string, std::vector<Stats>> rel_stats_dict;
-    for(int i = 0; i < 4; i++){
-        string relname = "rel" + std::to_string(i);
+    std::map<string, std::vector<Stats>> rel_stats_dict;
+    for(int i = 0; i < 5; i++){
+        string relname = tpch_tables[i];
         rel_stats_dict[relname] = std::vector<Stats>(num_cols);
     }
-    get_noisy_relation_statistics(rels_dict, 4, party, rel_stats_dict);*/
+    get_noisy_relation_statistics(rels_dict, num_cols_dict, party, rel_stats_dict);
 
     //7. run query
 
