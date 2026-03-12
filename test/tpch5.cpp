@@ -25,7 +25,7 @@
 
 using namespace emp;
 
-#define NUM_OF_ROWS 20
+#define NUM_OF_ROWS 10
 
 
 
@@ -50,7 +50,6 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
         s.delimiter = '|';
         s.execute(*rels_dict[relname], party); // get histogram also, non-emp
         schema_dict[relname] = rels_dict[relname]->col_types;
-        std::cout << "Scanned table index " << i << endl;
         //rels_dict[relname]->print_relation("Testing Scanner: \n");
     }
    
@@ -122,10 +121,12 @@ void decode_and_print_relation(SecureRelation rel, GlobalStringEncoder encoder, 
     std::cout << "TPC-H query 5 result:" << "\n";
     int true_size = 0;
     for (size_t row = 0; row < rel.columns[0].size(); row++) {
+        //std::cout << "Row number: " << row << endl;
         int flag = rel.flags[row].reveal<int>();
         if (flag){
             true_size++;
             for (size_t col = 0; col < rel.columns.size(); col++) {
+                //std::cout << "Col number: " << col << endl;
                 //std::cout << rel.columns[col][row].reveal<int>() << "\n";
                 switch(new_schema[col]){
                     case 0:
@@ -138,7 +139,7 @@ void decode_and_print_relation(SecureRelation rel, GlobalStringEncoder encoder, 
                         std::cout << decode_double(rel.columns[col][row]) << "\t";
                         break;
                     case 3:
-                        std::cout << encoder.decode(rel.columns[col][row].reveal<int>()) << "\t";
+                        std::cout << encoder.decode(rel.columns[col][row].reveal<uint32_t>()) << "\t";
                         break;
                 }
             
@@ -160,16 +161,17 @@ void tpch_q5_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringE
     double true_float;
     memcpy(&true_float, &unencrypted, sizeof(double));
     std::cout << true_float << "\n";*/
+    //rels_dict["customer"]->print_relation("Customer rel:");
     
 
     planNode *testNode2 = new planNode(rels_dict["orders"]);
     testNode2->node_name = "rel2";
-    decode_and_print_relation(*rels_dict["orders"], encoder, schema_dict, {"orders"});
+    //decode_and_print_relation(*rels_dict["orders"], encoder, schema_dict, {"orders"});
     
     
     planNode *testNode3 = new planNode(rels_dict["lineitem"]);
     testNode3->node_name = "rel3";
-    decode_and_print_relation(*rels_dict["lineitem"], encoder, schema_dict, {"lineitem"});
+    //decode_and_print_relation(*rels_dict["lineitem"], encoder, schema_dict, {"lineitem"});
     
 
     planNode *testNode4 = new planNode(rels_dict["nation"]);
@@ -188,10 +190,10 @@ void tpch_q5_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringE
     jNode1->set_previous(*testNode1, 1);
     jNode1->set_previous(*testNode2, 2);
 
-    EquiJoinOperator* jOp2 = new EquiJoinOperator(0, 0);
-    planNode* jNode2 = new planNode(jOp2, testNode2, testNode3, 1);
+    EquiJoinOperator* jOp2 = new EquiJoinOperator(8, 0);
+    planNode* jNode2 = new planNode(jOp2, jNode1, testNode3, 1);
     jNode2->node_name = "join_2";
-    jNode2->set_previous(*testNode2, 1);
+    jNode2->set_previous(*jNode1, 1);
     jNode2->set_previous(*testNode3, 2);
 
     EquiJoinOperator* jOp3 = new EquiJoinOperator(3, 0);
@@ -212,13 +214,14 @@ void tpch_q5_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringE
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
     for(int i= 0; i < 1; i++){
-        query_output = jNode1_test->get_output();
+        query_output = jNode3->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_filter_by_fixed_value = std::chrono::duration_cast<std::chrono::milliseconds>((end_time - start_time)).count();
     auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
-    std::vector<string> relnames = {"orders", "lineitem"};//{"customer", "orders", "lineitem", "nation"};
+    //query_output->print_relation("Decrypted query output:");
+    std::vector<string> relnames = {"customer", "orders", "lineitem", "nation"};
     decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
     std::cout << "String Join query runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
 
@@ -246,7 +249,7 @@ void get_public_string_encoding(GlobalStringEncoder &encoder){
         std::string int_str, string_val;
 
         // Extract the integer part (before the first comma)
-        if (std::getline(ss, int_str, ',')) {
+        if (std::getline(ss, int_str, '|')) {
             // Extract the string part (rest of the line after the comma)
             if (std::getline(ss, string_val)) {
                 encoder.encode(string_val);
@@ -300,8 +303,8 @@ int main(int argc, char** argv) {
     NUM_OF_ROWS,
     NUM_OF_ROWS,
     NUM_OF_ROWS,
-    13,
-    5,
+    14,
+    3,
     NUM_OF_ROWS,
     NUM_OF_ROWS
     };
@@ -312,8 +315,8 @@ int main(int argc, char** argv) {
     NUM_OF_ROWS,
     NUM_OF_ROWS,
     NUM_OF_ROWS,
-    12,
-    5,
+    11,
+    2,
     NUM_OF_ROWS,
     NUM_OF_ROWS
     };
@@ -328,10 +331,9 @@ int main(int argc, char** argv) {
         schema_dict[tpch_tables[i]] = schema;
     }
         
-    if(party==ALICE){
-        PreProc preprocessor;
-        preprocessor.create_public_mapping();
-    }
+
+    PreProc preprocessor;
+    preprocessor.create_public_mapping();
     
     GlobalStringEncoder encoder;
     get_public_string_encoding(encoder);

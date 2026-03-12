@@ -226,7 +226,6 @@ protected:
                 
                 if (party == ALICE) {
                     alice_val = convert_cell_to_int(local_data[i][col_idx], combinedData.col_types[col_idx], ALICE);
-                    std::cout << "Converted a cell.\n";
                     bob_val = Integer(bit_width, 0, BOB);
                 } else { // BOB
                     alice_val = Integer(bit_width, 0, ALICE);

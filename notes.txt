@@ -117,3 +117,10 @@ group by
     n_name
 order by
     revenue desc;
+
+Rows = 325, Extra Memory Used: 12 GB, Extra Swap Used: 1 GB
+Rows = 350, Extra Memory Used: 12 GB, Extra Swap Used: 2 GB
+Rows = 375, Extra Memory Used: 12 GB, Extra Swap Used: 3 GB
+Rows = 400, Extra Memory used: 12 GB, Extra swap used: 6 GB
+Rows = 450, Extra Memory used: 14 GB, Extra Swap used: 8 GB
+Rows = 475, Extra Memory Used:  14 GB, Extra Swap Used: 13 GB

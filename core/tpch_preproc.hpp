@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include "global_string_encoder.hpp"
 
+#define NUM_OF_ROWS 10
 
 class PreProc {
 public:
@@ -117,7 +118,9 @@ public:
         }
         std::vector<std::vector<std::string>> local_data;
         std::string line;
-        while (std::getline(file, line))
+        int num_rows_to_read = 2; //alice_size == bob_size so this is okay
+        int num_rows_read = 0;
+        while (std::getline(file, line) && num_rows_read < num_rows_to_read)
         {   //std::cout << "Raw line: \n" << line << "\n";
             std::stringstream ss(line);
             std::string cell;
@@ -128,6 +131,7 @@ public:
                 parsed_row.push_back(cell);
             }
             local_data.push_back(parsed_row);
+            num_rows_read+=1;
         }
         file.close();
 
@@ -150,9 +154,9 @@ public:
         for(int i = 0; i < 8; i++){
             std::string relname = tpch_tables[i];
             std::cout << "Relation name: " << relname << std::endl;
-            std::string fname1 = "/Users/saraalam/Desktop/DPOpt_broken/tpch_data/bob_" +relname +".csv";
+            std::string fname1 = "/Users/saraalam/Desktop/DPOpt/tpch_data/bob_" +relname +".csv";
             read_csv(fname1);
-            std::string fname2 = "/Users/saraalam/Desktop/DPOpt_broken/tpch_data/alice_" + relname +".csv";
+            std::string fname2 = "/Users/saraalam/Desktop/DPOpt/tpch_data/alice_" + relname +".csv";
             read_csv(fname2);
         }
 
@@ -170,7 +174,7 @@ public:
             //std::cout << i;
             //std::cout << "," << global_encoder.reverse_[i] << std::endl;
             file << i;
-            file << "," << global_encoder.reverse_[i] << std::endl;
+            file << "|" << global_encoder.reverse_[i] << std::endl;
         }
 
         // Close the file stream
