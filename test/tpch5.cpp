@@ -24,7 +24,7 @@
 
 using namespace emp;
 
-#define NUM_OF_ROWS 10
+#define NUM_OF_ROWS 2
 
 
 
@@ -40,6 +40,7 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
     "part",
     "partsupp"
     };  
+    
     auto start_time = std::chrono::high_resolution_clock::now();
     string relname;
     for(int i = 0; i < 5; i++){
@@ -47,9 +48,12 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
         std::string fname = party==BOB ? "tpch_data/bob_" +relname +".csv": "tpch_data/alice_" + relname +".csv";  
         ScanOperator s = ScanOperator(fname, num_cols[i], alice_rows[i], bob_rows[i], encoder);
         s.delimiter = '|';
+        std::cout << "2" << endl;
         s.execute(*rels_dict[relname], party); // get histogram also, non-emp
+        std::cout << relname << endl;
         schema_dict[relname] = rels_dict[relname]->col_types;
         //rels_dict[relname]->print_relation("Testing Scanner: \n");
+        
     }
    
     auto end_time = std::chrono::high_resolution_clock::now();
@@ -57,7 +61,7 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
     std::cout << "Time taken to scan relations: " << duration_scan << " ms" << std::endl;
 }
 
-void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int datatype, int party, Stats &s){
+/*void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int datatype, int party, Stats &s){
     //1. Make array of all domain values using emp
     std::vector<int> vals;
     std::vector<Integer> vals_emp;
@@ -89,7 +93,7 @@ void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int data
             Integer domain_value_emp = Integer(bit_length, domain_value_public, PUBLIC);
             std::vector<Bit> bit_bool;
             bit_bool.push_back(column[i].equal(domain_value_emp));
-            Integer increment = Integer(bit_bool);
+            //Integer increment = Integer(bit_bool);
             counts_dict[pair.first] = counts_dict[domain_value_public] + increment;
        }
     }
@@ -102,7 +106,7 @@ void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int data
     s.ndistinct = -1; //leave as -1 for now, will assign after adding noise
     bool diffp = 0;
 
-}
+}*/
 
 void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict, std::map<string, int> num_cols_dict, int party, std::map<string, std::vector<Stats>> &noisy_rel_stats){
     DPOptimizer dpopt;
@@ -368,7 +372,7 @@ int main(int argc, char** argv) {
     NUM_OF_ROWS,
     NUM_OF_ROWS,
     NUM_OF_ROWS,
-    14,
+    13,
     3,
     NUM_OF_ROWS,
     NUM_OF_ROWS
@@ -380,7 +384,7 @@ int main(int argc, char** argv) {
     NUM_OF_ROWS,
     NUM_OF_ROWS,
     NUM_OF_ROWS,
-    11,
+    12,
     2,
     NUM_OF_ROWS,
     NUM_OF_ROWS
@@ -389,29 +393,31 @@ int main(int argc, char** argv) {
 
     //3. Get relations
     std::map<string, SecureRelation*> rels_dict;
-    std::map<string, int> num_cols_dict;
+    //std::map<string, int> num_cols_dict;
     std::map<string, std::vector<int>> schema_dict;
     for(int i =0; i < 8; i++){
         rels_dict[tpch_tables[i]] = new SecureRelation(tpch_numcols[i], 0);
-        num_cols_dict[tpch_tables[i]] = num_cols[i];
+        //num_cols_dict[tpch_tables[i]] = num_cols[i];
         std::vector<int> schema;
         schema_dict[tpch_tables[i]] = schema;
     }
         
 
-    
     GlobalStringEncoder encoder;
     get_public_string_encoding(encoder);
+    std::cout << "1" << endl;
     get_relations(party, tpch_numcols, alice_rows, bob_rows, rels_dict, encoder, schema_dict);
+    std::cout << "3" << endl;
+    
     
 
     //4. Build DP System Catalog (Use DPOptimizer to add noise to counts)
-    std::map<string, std::vector<Stats>> rel_stats_dict;
+    /*std::map<string, std::vector<Stats>> rel_stats_dict;
     for(int i = 0; i < 5; i++){
         string relname = tpch_tables[i];
         rel_stats_dict[relname] = std::vector<Stats>(num_cols);
     }
-    get_noisy_relation_statistics(rels_dict, num_cols_dict, party, rel_stats_dict);
+    get_noisy_relation_statistics(rels_dict, num_cols_dict, party, rel_stats_dict);*/
 
     //7. run query
 
