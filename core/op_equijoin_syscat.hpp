@@ -26,13 +26,15 @@ public:
     // Construction changed to also take in a Statistics object pointer
     EquiJoinOperatorSyscat(int col_idx1, int col_idx2, Stats* statistics1, Stats* statistics2);
 
+    void get_stat();
+
     void set_stats(Stats* stats1, Stats* stats2);
 
     
 protected: //Why was this made protected? ---> Need to ask Prof Wang
     SecureRelation operation(const SecureRelation& rel1, const SecureRelation& rel2) override;
 
-    void get_stat();
+    
 
     SecureRelation prune(SecureRelation rel);
 
@@ -78,9 +80,9 @@ SecureRelation EquiJoinOperatorSyscat::operation(const SecureRelation& rel1, con
 
 void EquiJoinOperatorSyscat::get_stat(){
     // 1. Check if n_distinct1 and n_distinct2 are different from the cardinalities of rel1 and rel2
-    int n_dist1 = stats1->ndistinct;
+    int n_dist1 = stats1->domain.size();
     int num_rows1 = stats1->num_rows;
-    int n_dist2 = stats2->ndistinct;
+    int n_dist2 = stats2->domain.size();
     int num_rows2 = stats2->num_rows;
 
     //2. If the n_distincts are significantly lower than cardinalities, 
@@ -90,35 +92,30 @@ void EquiJoinOperatorSyscat::get_stat(){
         // sample "enough" times to get bar chart / histogram. ---> look up "sample complexity" (look in the probability Alice book)
         // for now, get the exact bar-chart/histogram
         float new_selectivity_num_rows = 0;
-        auto mcv1 = stats1->mcv;
-        auto mcv2 = stats2->mcv;
-        auto mcf1 = stats1->mcf;
-        auto mcf2 = stats2->mcf;
+        auto mcv1 = stats1->domain;
+        auto mcv2 = stats2->domain;
+        auto mcf1 = stats1->mcf_noisy;
+        auto mcf2 = stats2->mcf_noisy;
         auto rel1_num_common_vals = mcv1.size();
         auto rel2_num_common_vals = mcv2.size();
         auto rel1_total_rows_counted = 0;
         auto rel2_total_rows_counted = 0;
-        /*for(int i = 0; i < rel1_num_common_vals; i++){
-            std::cout << mcv1.at(i) << ", ";
-        }std::cout << "\n";
-        for(int i = 0; i < rel2_num_common_vals; i++){
-            std::cout << mcv2.at(i) << ", ";
-        }std::cout << "\n";*/
+        
         //3. Combine the two histograms to find the total selectivity as a fraction of the cross product cardinality
         for(int i = 0; i < rel1_num_common_vals; i++){
-            auto key = stats1->mcv.at(i);
+            auto key = stats1->domain[i];
             auto idx = find(mcv2.begin(), mcv2.end(), key);
             if (idx != mcv2.end()){
                 rel1_total_rows_counted += mcf1.at(i);
                 //std::cout << rel1_total_rows_counted << ", ";
                 rel2_total_rows_counted += mcf2.at(idx - mcv2.begin());
                 //std::cout << rel2_total_rows_counted << "\n";
-                new_selectivity_num_rows += mcf1.at(i) * mcf2.at(idx - mcv2.begin());
+                new_selectivity_num_rows += rel1_total_rows_counted * rel2_total_rows_counted;
             }
         }
         float new_selectivity = new_selectivity_num_rows/(num_rows1 * num_rows2);
         std::cout << new_selectivity << "\n";
-        if (0 < new_selectivity){
+        if (new_selectivity < 1){
             selectivity = new_selectivity;
         }
     }

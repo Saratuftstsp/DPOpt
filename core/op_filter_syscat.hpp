@@ -83,23 +83,23 @@ void FilterOperatorSyscat::get_stat(){
     // 1. Check if there are any statistics related to the specific filter ---> not done yet
     // 2. Make a secure Integer out of all the keys in mcv list and compare to target_value
     // 3. Modify the operator's selectivity field
-    std::vector<float> mcv = stats->mcv;
-    std::vector<float> mcf = stats->mcf;
+    std::vector<int> mcv = stats->domain;
+    std::vector<int> mcf = stats->mcf_noisy;
 
-    for (int i = 0; i < stats->mcf.size(); i++){
-        int val = mcv.at(i);
+    for (int i = 0; i < mcf.size(); i++){
+        int val = mcv[i];
         // this is public because no party provides it
         // and it is part of the query itself
         emp::Integer secure_val = Integer(32, val, PUBLIC);
         int cond_val = compare(secure_val, target_value, "eq").reveal<bool>();
         if (cond_val == 1){ //if filter value found
             // change selectivity and break out of loop
-            selectivity = (mcf.at(i)*1.0)/(stats->num_rows); 
-            i = stats->mcf.size() + 1;
+            selectivity = (mcf[i]*1.0)/(stats->num_rows); 
+            i = mcf.size() + 1;
         }
     }
     //std::cout << "Number of rows: " << stats->num_rows << endl;
-    std::cout << "Selectivity after get_stat: " << selectivity << endl;
+    //std::cout << "Selectivity after get_stat: " << selectivity << endl;
 }
 
 SecureRelation FilterOperatorSyscat::prune(SecureRelation rel){

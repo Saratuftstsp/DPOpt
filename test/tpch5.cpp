@@ -284,33 +284,36 @@ void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEnc
 
     string filter_val = "JORDAN";
     uint32_t id = encoder.encode(filter_val);
-    FilterOperatorSyscat* filter_op1 = new FilterOperatorSyscat(1, Integer(32, id, PUBLIC), "eq");
-    int idx_of_filter_val = 0;
+    FilterOperatorSyscat* filter_op1 = new FilterOperatorSyscat(1, Integer(32, id, PUBLIC), "eq", &rel_stats_dict["nation"][1]);
+    /*int idx_of_filter_val = 0;
     for(int i = 0; i < rel_stats_dict["nation"][1].domain.size(); i++){
         if (rel_stats_dict["nation"][1].domain[i] == id){
             idx_of_filter_val = i;
             break;
         }
     }
-    float sel = rel_stats_dict["nation"][1].mcf_noisy[idx_of_filter_val]/ rels_dict["nation"]->columns.size();
-    planNode *filterNode1 = new planNode(filter_op1, sel);
+    std::cout << idx_of_filter_val << endl;*/
+    planNode *filterNode1 = new planNode(filter_op1, filter_op1->selectivity);
     filterNode1->node_name = "filter_1";
     filterNode1->set_previous(*testNode4, 1);
 
-    EquiJoinOperator* jOp1 = new EquiJoinOperator(0, 1);
-    planNode* jNode1 = new planNode(jOp1, testNode1, testNode2, 1);
+    EquiJoinOperatorSyscat* jOp1 = new EquiJoinOperatorSyscat(0, 1, &rel_stats_dict["customer"][0], &rel_stats_dict["orders"][1]);
+    std::cout << "First join selectivity: " << jOp1->selectivity << endl;
+    planNode* jNode1 = new planNode(jOp1, testNode1, testNode2, jOp1->selectivity);
     jNode1->node_name = "join_1";
     jNode1->set_previous(*testNode1, 1);
     jNode1->set_previous(*testNode2, 2);
 
-    EquiJoinOperator* jOp2 = new EquiJoinOperator(8, 0);
-    planNode* jNode2 = new planNode(jOp2, jNode1, testNode3, 1);
+    EquiJoinOperatorSyscat* jOp2 = new EquiJoinOperatorSyscat(8, 0, &rel_stats_dict["orders"][0], &rel_stats_dict["lineitem"][0]);
+    std::cout << "Second join selectivity: " << jOp2->selectivity << endl;
+    planNode* jNode2 = new planNode(jOp2, jNode1, testNode3, jOp2->selectivity);
     jNode2->node_name = "join_2";
     jNode2->set_previous(*jNode1, 1);
     jNode2->set_previous(*testNode3, 2);
 
-    EquiJoinOperator* jOp3 = new EquiJoinOperator(3, 0);
-    planNode* jNode3 = new planNode(jOp3, jNode2, filterNode1, 1);
+    EquiJoinOperatorSyscat* jOp3 = new EquiJoinOperatorSyscat(3, 0, &rel_stats_dict["customer"][3], &rel_stats_dict["nation"][0]);
+    std::cout << "Third join selectivity: " << jOp3->selectivity << endl;
+    planNode* jNode3 = new planNode(jOp3, jNode2, filterNode1, jOp3->selectivity);
     jNode3->node_name = "join_3";
     jNode3->set_previous(*jNode2, 1);
     jNode3->set_previous(*filterNode1, 2);

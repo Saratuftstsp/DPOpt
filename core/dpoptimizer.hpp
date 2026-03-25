@@ -44,7 +44,7 @@ void DPOptimizer::dpanalyze(int num_cols, std::vector<std::vector<emp::Integer>>
         //set up the Laplace distribution
         static boost::mt19937 rng(static_cast<unsigned int>(std::time(0)));
         float sensitivity = 1;
-        float epsilon = 1;
+        float epsilon = 2;
         float scale = sensitivity/epsilon;
         boost::random::exponential_distribution<> exp_dist(1.0 / scale);
         boost::variate_generator<boost::mt19937&, boost::random::exponential_distribution<> > gen(rng, exp_dist);
