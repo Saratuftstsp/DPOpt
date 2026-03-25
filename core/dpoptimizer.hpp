@@ -17,6 +17,7 @@ public:
 
     float get_cost(planNode &root);
     void dpanalyze(int col_num, std::vector<std::vector<emp::Integer>> columns ,std::vector<Stats> &rel_stats, int party);
+    int round(int a);
     //void dpanalyze_col(int col_idx, std::vector<emp::Integer> column, Stats &col_stats, int party);
     void get_counts(int col_idx, std::vector<emp::Integer> column, int party, Stats &s);
 };
@@ -52,17 +53,26 @@ void DPOptimizer::dpanalyze(int num_cols, std::vector<std::vector<emp::Integer>>
         rel_stats[col_num].diffp = 1; // flip diffp flag
         for(int i = 0; i < rel_stats[col_num].domain.size(); i++){
             Integer old_row_count = rel_stats.at(col_num).mcf_priv[i]; // get number of rows
-            //int old_count = rel_stats.at(col_num).mcf_priv[i].reveal<int>();
-            //rel_stats[col_num].mcf.push_back(old_count);
-            //std::cout << "True row count: " << old_count << "\n";
             float noise = gen();   if (noise < 0){ noise = 0;} // need to set it to 0
-            emp::Integer noise_from_alice(32, (party == ALICE ? noise : 0), ALICE);
-            emp::Integer noise_from_bob(32, (party == BOB ? noise : 0), BOB);
+            emp::Integer noise_from_alice(32, (party == ALICE ? noise*1000 : 0), ALICE);
+            emp::Integer noise_from_bob(32, (party == BOB ? noise*1000 : 0), BOB);
             Integer new_row_count = old_row_count + noise_from_alice + noise_from_bob; // add noise to number of rows
-            rel_stats[col_num].mcf_noisy.push_back(new_row_count.reveal<int>()); //update stats object
+            rel_stats[col_num].mcf_noisy.push_back(round(new_row_count.reveal<int>())); //update stats object
         }
         //std::cout << "Check after noise: " << rel_stats.at(col_num).mcf_noisy.size() << endl;
+        for(int i = 0; i < rel_stats.at(col_num).mcf_priv.size(); i++){
+            rel_stats.at(col_num).mcf_priv[i] = rel_stats.at(col_num).mcf_priv[i] / Integer(32, 1000, PUBLIC);
+        }
     } 
+}
+
+// 9999 + 3000 = 12999 / 1000 = 12
+// 9999 + 3000 = 13000 / 1000 = 12
+// 9 + 3 = 12 = 12
+// 12999
+int DPOptimizer::round(int a) {
+    if (a % 1000 >= 500) return (a / 1000 + 1);
+    else return (a / 1000);
 }
 
 /*void DPOptimizer::dpanalyze_col(int col_idx, std::vector<emp::Integer> column, Stats &col_stats, int party){
@@ -110,6 +120,10 @@ void DPOptimizer::get_counts(int col_idx, std::vector<emp::Integer> column, int 
        for(int j = 0; j < vals_emp.size(); j++){
             s.mcf_priv[j] = s.mcf_priv[j] + emp::If((column[i]==vals_emp[j]), Integer(32, 1, PUBLIC), Integer(32, 0, PUBLIC));
        }
+    }
+
+    for(int i = 0; i < s.mcf_priv.size(); i++){
+        s.mcf_priv[i] = s.mcf_priv[i]*Integer(32, 1000, PUBLIC);
     }
     //std::cout << "Check after count: " << s.mcf_priv.size() << endl;
     //3. populate stats object partially
