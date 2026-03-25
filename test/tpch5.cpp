@@ -25,7 +25,7 @@
 
 using namespace emp;
 
-#define NUM_OF_ROWS 20
+#define NUM_OF_ROWS 2
 
 
 
@@ -252,7 +252,7 @@ void tpch_q5_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringE
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
     for(int i= 0; i < 1; i++){
-        query_output = filterNode1->get_output();
+        query_output = jNode3->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
@@ -323,7 +323,7 @@ void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEnc
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
     for(int i= 0; i < 1; i++){
-        query_output = filterNode1->get_output();
+        query_output = jNode3->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
