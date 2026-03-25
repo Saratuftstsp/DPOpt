@@ -3,6 +3,7 @@
 
 #include "relation.hpp"
 #include <vector>
+#include <unordered_set>
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -155,20 +156,23 @@ public:
 
 
     Integer convert_cell_to_int(std::string cell, int col_type, int party){
-        
+        int value = 0;
         switch (col_type){
             case 0:
-                return Integer(1, std::stoi(cell), party); // or whatever boolean logic
+                value = (std::stoi(cell) != 0);
+                return Integer(1, value, party); // or whatever boolean logic
             case 1:
                 //int conversion
-                return Integer(32,std::stoi(cell),party);
+                value = std::stoi(cell);
+                return Integer(32,value,party);
             case 2:
-                return doubleToInteger(parseDouble(cell),party);
+                value = parseDouble(cell); // or your double encoding
+                return doubleToInteger(value,party);
                 //return Integer(32,0,party);
             case 3:
                 //string conversion
-                int mapping = encoder.forward_[cell];
-                return Integer(32, mapping, party);
+                value = encoder.forward_[cell];
+                return Integer(32, value, party);
         }
 
     }

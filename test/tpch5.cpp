@@ -13,6 +13,7 @@
 #include "core/op_idx_equijoin.hpp"  // Including the new header file
 #include "core/stats.hpp"
 #include <map>
+#include <unordered_set>
 #include "core/plan_node.hpp"
 #include "core/op_scanner.hpp"
 #include "core/dpoptimizer.hpp"
@@ -24,7 +25,7 @@
 
 using namespace emp;
 
-#define NUM_OF_ROWS 2
+#define NUM_OF_ROWS 20
 
 
 
@@ -43,14 +44,12 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
     
     auto start_time = std::chrono::high_resolution_clock::now();
     string relname;
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 8; i++){
         relname = tpch_tables[i];
         std::string fname = party==BOB ? "tpch_data/bob_" +relname +".csv": "tpch_data/alice_" + relname +".csv";  
         ScanOperator s = ScanOperator(fname, num_cols[i], alice_rows[i], bob_rows[i], encoder);
         s.delimiter = '|';
-        std::cout << "2" << endl;
         s.execute(*rels_dict[relname], party); // get histogram also, non-emp
-        std::cout << relname << endl;
         schema_dict[relname] = rels_dict[relname]->col_types;
         //rels_dict[relname]->print_relation("Testing Scanner: \n");
         
@@ -61,40 +60,64 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
     std::cout << "Time taken to scan relations: " << duration_scan << " ms" << std::endl;
 }
 
-/*void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int datatype, int party, Stats &s){
-    //1. Make array of all domain values using emp
+void load_domains(std::map<std::string, std::vector<Stats>>& rel_stats_dict,const std::vector<std::string>& tpch_tables){
+
+    for (const std::string& relname : tpch_tables) {
+
+        std::vector<Stats> rel_stats_vec = rel_stats_dict[relname];
+        int num_cols = rel_stats_vec.size();
+
+        for (size_t col = 0; col < num_cols; col++) {
+            std::vector<int> col_domain = rel_stats_vec[col].domain;
+            std::string fname = "./tpch_data/domains/" +  relname + "_col_" + std::to_string(col) + ".txt";
+
+            std::ifstream file(fname);
+
+            if (!file) {
+                std::cerr << "Error opening domain file: " << fname << std::endl;
+                continue;
+            }
+
+            std::string line;
+
+            while (std::getline(file, line)) {
+                if(line.empty()) continue;
+                int value = std::stoi(line);
+                rel_stats_dict[relname][col].domain.push_back(value);
+            }
+
+            file.close();
+        }
+    }
+}
+
+void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int datatype, int party, Stats &s){
+    //1. Make vector of all domain values using emp
+    // and corresponding counts vector
     std::vector<int> vals;
     std::vector<Integer> vals_emp;
-    // std::unordered_set<Integer> vals_emp;
+    std::vector<Integer> counts;
+    emp::Integer alice_count(32, 0, ALICE);
+    emp::Integer bob_count(32, 0, BOB);
     // this is not secure, need to collect and pass in the public domain vector
     for(int i = 0; i < column.size(); i++){
-        if (std::find(vals_emp.begin(), vals_emp.end(), column[i]) == vals_emp.end()) {
+        //if (std::find(vals_emp.begin(), vals_emp.end(), column[i]) == vals_emp.end()) { //problem line
             vals_emp.push_back(column[i]);
-        }  
-    }
-
-    //2. Reveal domain values and put them in a dictionary with emp counts
-    map<int, emp::Integer> counts_dict;
-    Integer alice_count(32, 0, ALICE), Integer bob_count(32, 0, BOB);
-    for(int i = 0; i < vals_emp.size(); i++){
-        int val = vals_emp[i].reveal<int>();
-        Integer count = alice_count + bob_count;
-        counts_dict[val] = count;
+            emp::Integer count = alice_count + bob_count;
+            counts.push_back(count);
+        //}  
     }
 
 
     //2. For each data value, evaluate predicate checking equality with each domain value
     //   and add to count
-    int bit_length = 32;
-    if (datatype==2) { bit_length = 64; }
     for(int i = 0; i < column.size(); i++){
-       for(const auto& pair : counts_dict){
-            int domain_value_public = pair.first;
-            Integer domain_value_emp = Integer(bit_length, domain_value_public, PUBLIC);
-            std::vector<Bit> bit_bool;
-            bit_bool.push_back(column[i].equal(domain_value_emp));
-            //Integer increment = Integer(bit_bool);
-            counts_dict[pair.first] = counts_dict[domain_value_public] + increment;
+       for(int j = 0; j < counts.size(); j++){
+            std::vector<emp::Bit> bit_bool;
+            bit_bool.push_back(column[i].equal(vals_emp[j]));
+            emp::Integer increment(1, 0, PUBLIC);
+            increment[0] = bit_bool[0];
+            counts[j] = counts[j] + increment;
        }
     }
 
@@ -106,7 +129,7 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
     s.ndistinct = -1; //leave as -1 for now, will assign after adding noise
     bool diffp = 0;
 
-}*/
+}
 
 void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict, std::map<string, int> num_cols_dict, int party, std::map<string, std::vector<Stats>> &noisy_rel_stats){
     DPOptimizer dpopt;
@@ -115,7 +138,11 @@ void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict,
         SecureRelation* rel = pair.second;   // the value (pointer)
         //Idea: for each relation, pass in the columns and Stats objects to be populated
         dpopt.dpanalyze(num_cols_dict[relname], rel->columns, noisy_rel_stats[relname], party);
+        std::cout << relname << endl;
+        std::cout << noisy_rel_stats[relname][0].mcf_priv.size() << endl;
     }
+    //std::cout << "Check" << endl;
+    //std::cout << "Customer 1 count in lineitem: " << noisy_rel_stats["lineitem"][0].mcf_priv[0].reveal<int>() << endl;
 }
 
 double decode_double(Integer encrypted_int64){
@@ -162,7 +189,9 @@ void decode_and_print_relation(SecureRelation rel, GlobalStringEncoder encoder, 
             } std::cout << "| Flag: " << rel.flags[row].reveal<int>() << "\n";
         }
     
-    } std::cout << "True size of the result: " << true_size << std::endl;
+    } 
+    std::cout << "Total number of rows: " << rel.columns[0].size() << endl;
+    std::cout << "True size of the result: " << true_size << std::endl;
         
 }
 
@@ -223,7 +252,7 @@ void tpch_q5_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringE
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
     for(int i= 0; i < 1; i++){
-        query_output = jNode3->get_output();
+        query_output = filterNode1->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
@@ -231,13 +260,13 @@ void tpch_q5_prev_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringE
     auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
     //query_output->print_relation("Decrypted query output:");
     std::vector<string> relnames = {"customer", "orders", "lineitem", "nation"};
-    decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
+    //decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
     std::cout << "String Join query runtime oblivious case: " << duration_us << " micro_sec" << std::endl;
 
 }
 
 
-void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncoder encoder, std::map<string, std::vector<int>> schema_dict){
+void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncoder encoder, std::map<string, std::vector<int>> schema_dict,std::map<string, std::vector<Stats>> rel_stats_dict){
     planNode *testNode1 = new planNode(rels_dict["customer"]);
     testNode1->node_name = "rel1";
     
@@ -255,8 +284,16 @@ void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEnc
 
     string filter_val = "JORDAN";
     uint32_t id = encoder.encode(filter_val);
-    FilterOperator* filter_op1 = new FilterOperator(1, Integer(32, id, PUBLIC), "eq");
-    planNode *filterNode1 = new planNode(filter_op1, 1);
+    FilterOperatorSyscat* filter_op1 = new FilterOperatorSyscat(1, Integer(32, id, PUBLIC), "eq");
+    int idx_of_filter_val = 0;
+    for(int i = 0; i < rel_stats_dict["nation"][1].domain.size(); i++){
+        if (rel_stats_dict["nation"][1].domain[i] == id){
+            idx_of_filter_val = i;
+            break;
+        }
+    }
+    float sel = rel_stats_dict["nation"][1].mcf_noisy[idx_of_filter_val]/ rels_dict["nation"]->columns.size();
+    planNode *filterNode1 = new planNode(filter_op1, sel);
     filterNode1->node_name = "filter_1";
     filterNode1->set_previous(*testNode4, 1);
 
@@ -283,7 +320,7 @@ void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEnc
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
     for(int i= 0; i < 1; i++){
-        query_output = jNode3->get_output();
+        query_output = filterNode1->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
     auto end_time = std::chrono::high_resolution_clock::now();
@@ -291,7 +328,7 @@ void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEnc
     auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
     //query_output->print_relation("Decrypted query output:");
     std::vector<string> relnames = {"customer", "orders", "lineitem", "nation"};
-    decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
+    //decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
     std::cout << "String Join query runtime dp case: " << duration_us << " micro_sec" << std::endl;
 
 }
@@ -393,11 +430,15 @@ int main(int argc, char** argv) {
 
     //3. Get relations
     std::map<string, SecureRelation*> rels_dict;
-    //std::map<string, int> num_cols_dict;
+    std::map<string, std::vector<Stats>> rel_stats_dict;
     std::map<string, std::vector<int>> schema_dict;
+    std::map<string, int> tpch_numcols_dict;
     for(int i =0; i < 8; i++){
-        rels_dict[tpch_tables[i]] = new SecureRelation(tpch_numcols[i], 0);
-        //num_cols_dict[tpch_tables[i]] = num_cols[i];
+        string relname = tpch_tables[i];
+        int numcols = tpch_numcols[i];
+        tpch_numcols_dict[relname] = numcols;
+        rels_dict[relname] = new SecureRelation(numcols, 0);
+        rel_stats_dict[relname] = std::vector<Stats>(numcols);
         std::vector<int> schema;
         schema_dict[tpch_tables[i]] = schema;
     }
@@ -405,9 +446,18 @@ int main(int argc, char** argv) {
 
     GlobalStringEncoder encoder;
     get_public_string_encoding(encoder);
-    std::cout << "1" << endl;
     get_relations(party, tpch_numcols, alice_rows, bob_rows, rels_dict, encoder, schema_dict);
-    std::cout << "3" << endl;
+    load_domains(rel_stats_dict, tpch_tables);
+    get_noisy_relation_statistics(rels_dict, tpch_numcols_dict, party, rel_stats_dict);
+
+    for(int i = 0; i < rel_stats_dict["lineitem"][0].domain.size(); i++){
+        std::cout << "Customer " << rel_stats_dict["lineitem"][0].domain[i] << " true count and noisy count in lineitem: " << rel_stats_dict["lineitem"][0].mcf_priv[i].reveal<int>() << ", " << rel_stats_dict["lineitem"][0].mcf_noisy[i] << endl;
+        //std::cout << "Customer " << rel_stats_dict["lineitem"][0].domain[i] << " true count in lineitem: " << rel_stats_dict["lineitem"][0].mcf_priv[i].reveal<int>() << endl;
+        //std::cout << rel_stats_dict["lineitem"][0].mcf_noisy.size() << endl;
+    }
+    
+    std::map<string, std::vector<int>> example_schema_dict; example_schema_dict["lineitem"] = schema_dict["lineitem"];
+    //decode_and_print_relation(*rels_dict["lineitem"], encoder, example_schema_dict, {"lineitem"});
     
     
 
@@ -422,8 +472,10 @@ int main(int argc, char** argv) {
     //7. run query
 
     // previous ops
-    //std::cout << "Q1 Oblivious run: " << endl;
+    std::cout << "TPCH Q5 Oblivious run: " << endl;
     tpch_q5_prev_ops(rels_dict, encoder, schema_dict);
+    std::cout << "TPCH Q5 DP run: " << endl;
+    tpch_q5_dp_ops(rels_dict, encoder, schema_dict, rel_stats_dict);
   
     io->flush();
 
