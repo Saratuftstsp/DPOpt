@@ -1,7 +1,6 @@
 CMakeCache.txt
 /test/CMakeCache.txt
 string_mapping.csv
-tpch_data/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
