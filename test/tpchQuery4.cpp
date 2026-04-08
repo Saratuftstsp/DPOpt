@@ -24,7 +24,7 @@
 
 using namespace emp;
 
-#define NUM_OF_ROWS 10
+#define NUM_OF_ROWS 100
 
 
 
@@ -185,81 +185,144 @@ void decode_and_print_relation(SecureRelation rel, GlobalStringEncoder encoder, 
 }
 
 
-// select
-// 	*
-// from
-// 	customer join nation on c_nationkey = n_nationkey
-// where
-// 	n_name = 'CANADA'
-void query1_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncoder encoder, std::map<string, std::vector<int>> schema_dict){
+// select *
+// from part 
+// join partsupp on p_partkey = ps_partkey
+// join supplier on s_suppkey = ps_suppkey
+// join nation on s_nationkey = n_nationkey
+// join region on n_regionkey = r_regionkey
+// where r_name = 'ASIA' and p_size = 25
+void query4_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncoder encoder, std::map<string, std::vector<int>> schema_dict){
     // 1. Initialize base relation nodes
-    planNode *customerNode = new planNode(rels_dict["customer"]);
-    customerNode->node_name = "rel_customer";
+    planNode *partNode = new planNode(rels_dict["part"]);
+    partNode->node_name = "rel_part";
+
+    planNode *partsuppNode = new planNode(rels_dict["partsupp"]);
+    partsuppNode->node_name = "rel_partsupp";
+
+    planNode *supplierNode = new planNode(rels_dict["supplier"]);
+    supplierNode->node_name = "rel_supplier";
 
     planNode *nationNode = new planNode(rels_dict["nation"]);
     nationNode->node_name = "rel_nation";
 
-    // 2. Filter on nation: n_name = 'CANADA' (Column index 1)
-    string filter_val = "CANADA";
-    uint32_t id = encoder.encode(filter_val);
-    FilterOperator* filter_op = new FilterOperator(1, Integer(32, id, PUBLIC), "eq");
-    planNode *filterNode = new planNode(filter_op, 1);
-    filterNode->node_name = "filter_nation_canada";
-    filterNode->set_previous(*nationNode, 1);
+    planNode *regionNode = new planNode(rels_dict["region"]);
+    regionNode->node_name = "rel_region";
 
-    // 3. EquiJoin customer and filtered nation
-    // customer.c_nationkey (index 3) == nation.n_nationkey (index 0)
-    EquiJoinOperator* jOp = new EquiJoinOperator(3, 0);
-    planNode* jNode = new planNode(jOp, customerNode, filterNode, 1);
-    jNode->node_name = "join_cust_nation";
-    jNode->set_previous(*customerNode, 1);
-    jNode->set_previous(*filterNode, 2);
+    // 2. Filter 1 on part: p_size = 25 (Assuming standard TPC-H: Column index 5)
+    FilterOperator* filter_op_part = new FilterOperator(5, Integer(32, 25, PUBLIC), "eq");
+    planNode *filterNode_part = new planNode(filter_op_part, 1);
+    filterNode_part->node_name = "filter_p_size";
+    filterNode_part->set_previous(*partNode, 1);
 
-    // 4. Execute query and record runtime
+    // 3. Filter 2 on region: r_name = 'ASIA' (Assuming standard TPC-H: Column index 1)
+    FilterOperator* filter_op_region = new FilterOperator(1, Integer(32, encoder.encode("ASIA"), PUBLIC), "eq");
+    planNode *filterNode_region = new planNode(filter_op_region, 1);
+    filterNode_region->node_name = "filter_r_name";
+    filterNode_region->set_previous(*regionNode, 1);
+
+    // 4. Join 1: filtered part JOIN partsupp on p_partkey == ps_partkey
+    // part.p_partkey (index 0) == partsupp.ps_partkey (index 0)
+    EquiJoinOperator* jOp1 = new EquiJoinOperator(0, 0);
+    planNode* jNode1 = new planNode(jOp1, filterNode_part, partsuppNode, 1);
+    jNode1->node_name = "join_part_partsupp";
+    jNode1->set_previous(*filterNode_part, 1);
+    jNode1->set_previous(*partsuppNode, 2);
+
+    // 5. Join 2: Output1 JOIN supplier on ps_suppkey == s_suppkey
+    // Left side (jNode1) schema: 9 part cols + 5 partsupp cols = 14 cols.
+    // ps_suppkey was index 1 in partsupp -> shifts to index (9 + 1) = 10.
+    // Right side (supplier): s_suppkey is index 0.
+    EquiJoinOperator* jOp2 = new EquiJoinOperator(10, 0);
+    planNode* jNode2 = new planNode(jOp2, jNode1, supplierNode, 1);
+    jNode2->node_name = "join_p_ps_supplier";
+    jNode2->set_previous(*jNode1, 1);
+    jNode2->set_previous(*supplierNode, 2);
+
+    // 6. Join 3: Output2 JOIN nation on s_nationkey == n_nationkey
+    // Left side (jNode2) schema: 14 cols + 7 supplier cols = 21 cols.
+    // s_nationkey was index 3 in supplier -> shifts to index (14 + 3) = 17.
+    // Right side (nation): n_nationkey is index 0.
+    EquiJoinOperator* jOp3 = new EquiJoinOperator(17, 0);
+    planNode* jNode3 = new planNode(jOp3, jNode2, nationNode, 1);
+    jNode3->node_name = "join_all_nation";
+    jNode3->set_previous(*jNode2, 1);
+    jNode3->set_previous(*nationNode, 2);
+
+    // 7. Join 4: Output3 JOIN filtered region on n_regionkey == r_regionkey
+    // Left side (jNode3) schema: 21 cols + 4 nation cols = 25 cols.
+    // n_regionkey was index 2 in nation -> shifts to index (21 + 2) = 23.
+    // Right side (region): r_regionkey is index 0.
+    EquiJoinOperator* jOp4 = new EquiJoinOperator(23, 0);
+    planNode* jNode4 = new planNode(jOp4, jNode3, filterNode_region, 1);
+    jNode4->node_name = "join_all_region";
+    jNode4->set_previous(*jNode3, 1);
+    jNode4->set_previous(*filterNode_region, 2);
+
+    // 8. Execute query and record runtime
     auto start_time = std::chrono::high_resolution_clock::now();
-    SecureRelation* query_output = jNode->get_output();
-    // SecureRelation* query_output = jNode->get_output();
+    SecureRelation* query_output = jNode4->get_output();
     auto end_time = std::chrono::high_resolution_clock::now();
     auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
 
-    // 5. Decode and print result
-    std::vector<string> relnames = {"customer", "nation"};
+    // 9. Decode and print result (must order relnames exactly as they were joined)
+    std::vector<string> relnames = {"part", "partsupp", "supplier", "nation", "region"};
     decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
-    std::cout << "Query 1 runtime: " << duration_us << " micro_sec" << std::endl;
+    std::cout << "Custom 5-Way Join Query runtime: " << duration_us << " micro_sec" << std::endl;
 }
 
-void query1_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncoder encoder, std::map<string, std::vector<int>> schema_dict, std::map<string, std::vector<Stats>>& rel_stats_dict){
-    planNode *customerNode = new planNode(rels_dict["customer"]);
-    customerNode->node_name = "rel_customer";
-
+void query4_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEncoder encoder, std::map<string, std::vector<int>> schema_dict, std::map<string, std::vector<Stats>>& rel_stats_dict) {
+    planNode *partNode = new planNode(rels_dict["part"]);
+    planNode *partsuppNode = new planNode(rels_dict["partsupp"]);
+    planNode *supplierNode = new planNode(rels_dict["supplier"]);
     planNode *nationNode = new planNode(rels_dict["nation"]);
-    nationNode->node_name = "rel_nation";
+    planNode *regionNode = new planNode(rels_dict["region"]);
 
-    uint32_t id = encoder.encode("CANADA");
-    FilterOperatorSyscat* filter_op = new FilterOperatorSyscat(1, Integer(32, id, PUBLIC), "eq", &rel_stats_dict["nation"][1]);
-    std::cout << "Filter operator selectivity: " << filter_op->selectivity << endl;
-    planNode *filterNode = new planNode(filter_op, filter_op->selectivity);
-    filterNode->node_name = "filter_nation_canada";
-    filterNode->set_previous(*nationNode, 1);
+    FilterOperatorSyscat* filter_op_part = new FilterOperatorSyscat(5, Integer(32, 25, PUBLIC), "eq", &rel_stats_dict["part"][5]);
+    std::cout << "First filter operator selectivity: " << filter_op_part->selectivity << endl;
+    planNode *filterNode_part = new planNode(filter_op_part, filter_op_part->selectivity);
+    filterNode_part->set_previous(*partNode, 1);
+    
+    FilterOperatorSyscat* filter_op_region = new FilterOperatorSyscat(1, Integer(32, encoder.encode("ASIA"), PUBLIC), "eq", &rel_stats_dict["region"][1]);
+    std::cout << "Second filter operator selectivity: " << filter_op_region->selectivity << endl;
+    planNode *filterNode_region = new planNode(filter_op_region, filter_op_region->selectivity);
+    filterNode_region->set_previous(*regionNode, 1);
 
-    EquiJoinOperatorSyscat* jOp = new EquiJoinOperatorSyscat(3, 0, &rel_stats_dict["customer"][3], &rel_stats_dict["nation"][0]);
-    std::cout << "First join selectivity: " << jOp->selectivity << endl;
-    planNode* jNode = new planNode(jOp, customerNode, filterNode, jOp->selectivity);
-    jNode->node_name = "join_cust_nation";
-    jNode->set_previous(*customerNode, 1);
-    jNode->set_previous(*filterNode, 2);
+    EquiJoinOperatorSyscat* jOp1 = new EquiJoinOperatorSyscat(1, 0, &rel_stats_dict["partsupp"][1], &rel_stats_dict["supplier"][0]);
+    std::cout << "First join selectivity: " << jOp1->selectivity << endl;
+    planNode* jNode1 = new planNode(jOp1, partsuppNode, supplierNode, jOp1->selectivity);
+    jNode1->node_name = "join_partsupp_supplier";
+    jNode1->set_previous(*partsuppNode, 1);
+    jNode1->set_previous(*supplierNode, 2);
+
+    EquiJoinOperatorSyscat* jOp2 = new EquiJoinOperatorSyscat(0, 0, &rel_stats_dict["part"][0], &rel_stats_dict["partsupp"][0]);
+    std::cout << "Second join selectivity: " << jOp2->selectivity << endl;
+    planNode* jNode2 = new planNode(jOp2, filterNode_part, jNode1, jOp2->selectivity);
+    jNode2->node_name = "join_part_ps_supplier";
+    jNode2->set_previous(*filterNode_part, 1);
+    jNode2->set_previous(*jNode1, 2);
+    
+    EquiJoinOperatorSyscat* jOp3 = new EquiJoinOperatorSyscat(17, 0, &rel_stats_dict["supplier"][3], &rel_stats_dict["nation"][0]);
+    std::cout << "Third join selectivity: " << jOp3->selectivity << endl;
+    planNode* jNode3 = new planNode(jOp3, jNode2, nationNode, jOp3->selectivity);
+    jNode3->set_previous(*jNode2, 1);
+    jNode3->set_previous(*nationNode, 2);
+    
+    EquiJoinOperatorSyscat* jOp4 = new EquiJoinOperatorSyscat(23, 0, &rel_stats_dict["nation"][2], &rel_stats_dict["region"][0]);
+    std::cout << "Fourth join selectivity: " << jOp4->selectivity << endl;
+    planNode* jNode4 = new planNode(jOp4, jNode3, filterNode_region, jOp4->selectivity);
+    jNode4->set_previous(*jNode3, 1);
+    jNode4->set_previous(*filterNode_region, 2);
 
     // auto start_time = std::chrono::high_resolution_clock::now();
-    // SecureRelation* query_output = jNode->get_output();
+    // SecureRelation* query_output = jNode4->get_output();
     // auto end_time = std::chrono::high_resolution_clock::now();
     // auto duration_us = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
 
-    // std::vector<string> relnames = {"customer", "nation"};
+    // std::vector<string> relnames = {"part", "partsupp", "supplier", "nation", "region"};
     // decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
-    // std::cout << "Query 1 DP runtime: " << duration_us << " micro_sec" << std::endl;
+    // std::cout << "Query 4 DP runtime: " << duration_us << " micro_sec" << std::endl;
 }
-
-
 
 void get_public_string_encoding(GlobalStringEncoder &encoder){
     // The name of your CSV file
@@ -354,7 +417,6 @@ int main(int argc, char** argv) {
     };
 
 
-
     //3. Get relations
     std::map<string, SecureRelation*> rels_dict;
     std::map<string, std::vector<Stats>> rel_stats_dict;
@@ -379,7 +441,7 @@ int main(int argc, char** argv) {
     load_domains(rel_stats_dict, tpch_tables);
     
     //7. run query
-    // query1_ops(rels_dict, encoder, schema_dict);
+    // query4_ops(rels_dict, encoder, schema_dict);
     for(int i = 0; i < 10; i++){
         std::cout << "\nNoise addition iteration " << i << ": " << endl;
         // Inject privacy noise into catalog
@@ -387,7 +449,7 @@ int main(int argc, char** argv) {
         
         std::cout << "DP run " << i << ": "<< endl;
         
-        query1_dp_ops(rels_dict, encoder, schema_dict, rel_stats_dict); 
+        query4_dp_ops(rels_dict, encoder, schema_dict, rel_stats_dict); 
     }
   
     io->flush();
