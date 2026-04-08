@@ -44,7 +44,7 @@ void DPOptimizer::dpanalyze(int num_cols, std::vector<std::vector<emp::Integer>>
         //set up the Laplace distribution
         static boost::mt19937 rng(static_cast<unsigned int>(std::time(0)));
         float sensitivity = 1;
-        float epsilon = 2;
+        float epsilon = 10;
         float scale = sensitivity/epsilon;
         boost::random::exponential_distribution<> exp_dist(1.0 / scale);
         boost::variate_generator<boost::mt19937&, boost::random::exponential_distribution<> > gen(rng, exp_dist);
@@ -97,6 +97,25 @@ int DPOptimizer::round(int a) {
         emp::Integer new_row_count = Integer(32, old_row_count, party ) + Integer(32, noise, party ); // add noise to number of rows
         col_stats.mcf.at(i) = new_row_count.reveal<int>(); //update stats object
         //reveal data values AFTER counts have been noised
+    bool diffp = 0;
+
+}
+
+// Resources to help implement Laplace Mechanism:
+// https://beta.boost.org/doc/libs/1_42_0/libs/math/doc/sf_and_dist/html/math_toolkit/dist/dist_ref/dists/laplace_dist.html
+// The Mersenne Twister is a widely used pseudo-random number generator (PRNG) known for its speed and high-quality statistical properties.
+// Library required to connect to Postgres:
+// https://pqxx.org/libpqxx/
+
+/*std::cout << "Data value after reveal: " << column[i].reveal<int>() << endl;
+std::cout << "Domain value to compare data value with : " << vals_emp[j].reveal<int>() << endl;
+std::cout << "Result of comparison (boolean): " << column[i].equal(vals_emp[j]).reveal<bool>() << endl;*/
+
+/*Old code for Bit to Integer conversion I might use later
+//std::vector<Bit> bit_bool;
+            //bit_bool.push_back(column[i].equal(vals_emp[j]));
+            //s.mcf_priv[j] = s.mcf_priv[j] + Integer(32, bit_bool, party);
+
         col_stats.mcv.push_back(col_stats.mcv_priv.at(i).reveal<int>());
     }
 }*/
@@ -130,22 +149,4 @@ void DPOptimizer::get_counts(int col_idx, std::vector<emp::Integer> column, int 
     s.column_index = col_idx; //the index of the column for which these statistics are collected
     s.num_rows = column.size();
     s.ndistinct = -1; //leave as -1 for now, will assign after adding noise
-    bool diffp = 0;
-
 }
-
-// Resources to help implement Laplace Mechanism:
-// https://beta.boost.org/doc/libs/1_42_0/libs/math/doc/sf_and_dist/html/math_toolkit/dist/dist_ref/dists/laplace_dist.html
-// The Mersenne Twister is a widely used pseudo-random number generator (PRNG) known for its speed and high-quality statistical properties.
-// Library required to connect to Postgres:
-// https://pqxx.org/libpqxx/
-
-/*std::cout << "Data value after reveal: " << column[i].reveal<int>() << endl;
-std::cout << "Domain value to compare data value with : " << vals_emp[j].reveal<int>() << endl;
-std::cout << "Result of comparison (boolean): " << column[i].equal(vals_emp[j]).reveal<bool>() << endl;*/
-
-/*Old code for Bit to Integer conversion I might use later
-//std::vector<Bit> bit_bool;
-            //bit_bool.push_back(column[i].equal(vals_emp[j]));
-            //s.mcf_priv[j] = s.mcf_priv[j] + Integer(32, bit_bool, party);
-*/

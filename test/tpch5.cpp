@@ -25,7 +25,7 @@
 
 using namespace emp;
 
-#define NUM_OF_ROWS 2
+#define NUM_OF_ROWS 30
 
 
 
@@ -91,7 +91,7 @@ void load_domains(std::map<std::string, std::vector<Stats>>& rel_stats_dict,cons
     }
 }
 
-void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int datatype, int party, Stats &s){
+/*void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int datatype, int party, Stats &s){
     //1. Make vector of all domain values using emp
     // and corresponding counts vector
     std::vector<int> vals;
@@ -129,7 +129,7 @@ void get_noisy_col_stats(int col_idx, std::vector<emp::Integer> column, int data
     s.ndistinct = -1; //leave as -1 for now, will assign after adding noise
     bool diffp = 0;
 
-}
+}*/
 
 void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict, std::map<string, int> num_cols_dict, int party, std::map<string, std::vector<Stats>> &noisy_rel_stats){
     DPOptimizer dpopt;
@@ -294,22 +294,24 @@ void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEnc
     }
     std::cout << idx_of_filter_val << endl;*/
     planNode *filterNode1 = new planNode(filter_op1, filter_op1->selectivity);
+    std::cout << "Filter operator selectivity: " << filter_op1->selectivity << endl;
     filterNode1->node_name = "filter_1";
     filterNode1->set_previous(*testNode4, 1);
 
-    EquiJoinOperatorSyscat* jOp1 = new EquiJoinOperatorSyscat(0, 1, &rel_stats_dict["customer"][0], &rel_stats_dict["orders"][1]);
+    EquiJoinOperatorSyscat* jOp1 = new EquiJoinOperatorSyscat(0, 0, &rel_stats_dict["orders"][0], &rel_stats_dict["lineitem"][0]);
     std::cout << "First join selectivity: " << jOp1->selectivity << endl;
-    planNode* jNode1 = new planNode(jOp1, testNode1, testNode2, jOp1->selectivity);
+    planNode* jNode1 = new planNode(jOp1, testNode2, testNode3, jOp1->selectivity);
     jNode1->node_name = "join_1";
-    jNode1->set_previous(*testNode1, 1);
-    jNode1->set_previous(*testNode2, 2);
+    jNode1->set_previous(*testNode2, 1);
+    jNode1->set_previous(*testNode3, 2);
 
-    EquiJoinOperatorSyscat* jOp2 = new EquiJoinOperatorSyscat(8, 0, &rel_stats_dict["orders"][0], &rel_stats_dict["lineitem"][0]);
+    EquiJoinOperatorSyscat* jOp2 = new EquiJoinOperatorSyscat(0, 1, &rel_stats_dict["customer"][0], &rel_stats_dict["orders"][1]);
     std::cout << "Second join selectivity: " << jOp2->selectivity << endl;
-    planNode* jNode2 = new planNode(jOp2, jNode1, testNode3, jOp2->selectivity);
+    planNode* jNode2 = new planNode(jOp2, testNode1, jNode1, jOp2->selectivity);
     jNode2->node_name = "join_2";
-    jNode2->set_previous(*jNode1, 1);
-    jNode2->set_previous(*testNode3, 2);
+    jNode2->set_previous(*testNode1, 1);
+    jNode2->set_previous(*jNode1, 2);
+
 
     EquiJoinOperatorSyscat* jOp3 = new EquiJoinOperatorSyscat(3, 0, &rel_stats_dict["customer"][3], &rel_stats_dict["nation"][0]);
     std::cout << "Third join selectivity: " << jOp3->selectivity << endl;
@@ -322,7 +324,7 @@ void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEnc
     //Record runtime
     auto start_time = std::chrono::high_resolution_clock::now();
     SecureRelation* query_output;
-    for(int i= 0; i < 1; i++){
+    /*for(int i= 0; i < 1; i++){
         query_output = jNode3->get_output();
     }
     //(*query_output).print_relation("Testing query output: ");
@@ -332,7 +334,7 @@ void tpch_q5_dp_ops(std::map<string, SecureRelation*> rels_dict, GlobalStringEnc
     //query_output->print_relation("Decrypted query output:");
     std::vector<string> relnames = {"customer", "orders", "lineitem", "nation"};
     //decode_and_print_relation(*query_output, encoder, schema_dict, relnames);
-    std::cout << "String Join query runtime dp case: " << duration_us << " micro_sec" << std::endl;
+    std::cout << "String Join query runtime dp case: " << duration_us << " micro_sec" << std::endl;*/
 
 }
 
@@ -475,10 +477,15 @@ int main(int argc, char** argv) {
     //7. run query
 
     // previous ops
-    std::cout << "TPCH Q5 Oblivious run: " << endl;
-    tpch_q5_prev_ops(rels_dict, encoder, schema_dict);
-    std::cout << "TPCH Q5 DP run: " << endl;
-    tpch_q5_dp_ops(rels_dict, encoder, schema_dict, rel_stats_dict);
+    //std::cout << "TPCH Q5 Oblivious run: " << endl;
+    //tpch_q5_prev_ops(rels_dict, encoder, schema_dict);
+    for(int i = 0; i < 10; i++){
+        std::cout << "Noise addition iteration " << i << ": " << endl;
+        get_noisy_relation_statistics(rels_dict, tpch_numcols_dict, party, rel_stats_dict);
+        std::cout << "TPCH Q5 DP run " << i << ": "<< endl;
+        tpch_q5_dp_ops(rels_dict, encoder, schema_dict, rel_stats_dict);
+    }
+    
   
     io->flush();
 
