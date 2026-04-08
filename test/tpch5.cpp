@@ -25,7 +25,7 @@
 
 using namespace emp;
 
-#define NUM_OF_ROWS 30
+#define NUM_OF_ROWS 100
 
 
 
@@ -49,6 +49,7 @@ void get_relations(int party, std::vector<int> num_cols, std::vector<int> alice_
         std::string fname = party==BOB ? "tpch_data/bob_" +relname +".csv": "tpch_data/alice_" + relname +".csv";  
         ScanOperator s = ScanOperator(fname, num_cols[i], alice_rows[i], bob_rows[i], encoder);
         s.delimiter = '|';
+        s.alice_size = alice_rows[i];
         s.execute(*rels_dict[relname], party); // get histogram also, non-emp
         schema_dict[relname] = rels_dict[relname]->col_types;
         //rels_dict[relname]->print_relation("Testing Scanner: \n");
@@ -138,8 +139,8 @@ void get_noisy_relation_statistics(std::map<string, SecureRelation*> &rels_dict,
         SecureRelation* rel = pair.second;   // the value (pointer)
         //Idea: for each relation, pass in the columns and Stats objects to be populated
         dpopt.dpanalyze(num_cols_dict[relname], rel->columns, noisy_rel_stats[relname], party);
-        std::cout << relname << endl;
-        std::cout << noisy_rel_stats[relname][0].mcf_priv.size() << endl;
+        //std::cout << relname << endl;
+        //std::cout << noisy_rel_stats[relname][0].mcf_priv.size() << endl;
     }
     //std::cout << "Check" << endl;
     //std::cout << "Customer 1 count in lineitem: " << noisy_rel_stats["lineitem"][0].mcf_priv[0].reveal<int>() << endl;
@@ -480,7 +481,7 @@ int main(int argc, char** argv) {
     //std::cout << "TPCH Q5 Oblivious run: " << endl;
     //tpch_q5_prev_ops(rels_dict, encoder, schema_dict);
     for(int i = 0; i < 10; i++){
-        std::cout << "Noise addition iteration " << i << ": " << endl;
+        std::cout << "\nNoise addition iteration " << i << ": " << endl;
         get_noisy_relation_statistics(rels_dict, tpch_numcols_dict, party, rel_stats_dict);
         std::cout << "TPCH Q5 DP run " << i << ": "<< endl;
         tpch_q5_dp_ops(rels_dict, encoder, schema_dict, rel_stats_dict);

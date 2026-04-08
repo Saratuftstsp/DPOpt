@@ -30,10 +30,10 @@ float DPOptimizer::get_cost(planNode &root){
 
 void DPOptimizer::dpanalyze(int num_cols, std::vector<std::vector<emp::Integer>> columns, std::vector<Stats> &rel_stats, int party){
     for(int col_num = 0; col_num < num_cols; col_num++ ){ //replace 3 with number of columns
-        if (rel_stats.at(col_num).diffp == 1){
+        //if (rel_stats.at(col_num).diffp == 1){
             //std::cout << "Flag check\n";
-            return;
-        }
+            //return;
+        //}
 
         //get the right column's stats
         Stats stats_to_noise = rel_stats.at(col_num);
@@ -44,12 +44,15 @@ void DPOptimizer::dpanalyze(int num_cols, std::vector<std::vector<emp::Integer>>
         //set up the Laplace distribution
         static boost::mt19937 rng(static_cast<unsigned int>(std::time(0)));
         float sensitivity = 1;
-        float epsilon = 10;
+        float epsilon = 5;
         float scale = sensitivity/epsilon;
         boost::random::exponential_distribution<> exp_dist(1.0 / scale);
         boost::variate_generator<boost::mt19937&, boost::random::exponential_distribution<> > gen(rng, exp_dist);
 
         //add noise to the mcf values
+        if (!rel_stats[col_num].mcf_noisy.empty()) {
+            std::vector<int>().swap(rel_stats[col_num].mcf_noisy);
+        }
         rel_stats[col_num].diffp = 1; // flip diffp flag
         for(int i = 0; i < rel_stats[col_num].domain.size(); i++){
             Integer old_row_count = rel_stats.at(col_num).mcf_priv[i]; // get number of rows
@@ -123,6 +126,9 @@ std::cout << "Result of comparison (boolean): " << column[i].equal(vals_emp[j]).
 void DPOptimizer::get_counts(int col_idx, std::vector<emp::Integer> column, int party, Stats &s){
     //1. Make array of all domain values
     //.  and corresponding array of counts initialized to emp Integer 0
+    if (!s.mcf_priv.empty()) {
+        std::vector<emp::Integer>().swap(s.mcf_priv);
+    } 
     std::vector<Integer> vals_emp;
     for(int i = 0; i < s.domain.size(); i++){
         int domain_value = s.domain[i];
